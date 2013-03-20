@@ -63,6 +63,46 @@ public enum UserDao {
 
 	}
 
+	
+	public void putUserDetails(String username, User user)
+	{
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement prest = null;
+		
+		User obj = getUserByUsername(username);
+		if(obj==null)
+		{
+			//insert
+			try {
+				con = DBConnection.getConnection();
+				String sqlStatement = SqlConstants.insertUser;
+				prest = con.prepareStatement(sqlStatement);
+				prest.setString(1, user.getUsername());
+				prest.setString(2, user.getPassword());
+				prest.executeUpdate();
+
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		else
+		{
+			//update
+		}
+		
+
+
+	}
+	
 	public User getUserByUsername(String username) {
 
 		User userObj = null;
