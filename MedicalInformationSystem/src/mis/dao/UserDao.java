@@ -63,6 +63,33 @@ public enum UserDao {
 
 	}
 
+	public int removeUser(int userid)
+	{
+		Connection con = null;
+		PreparedStatement prest = null;
+		int rowsUpdated = 0;
+		try{
+		con = DBConnection.getConnection();
+		String sqlStatement = SqlConstants.deleteUser;
+		prest = con.prepareStatement(sqlStatement);
+		prest.setInt(1, userid);
+
+		rowsUpdated = prest.executeUpdate();
+		
+		return rowsUpdated;
+		}catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return rowsUpdated;
+	}
+	
 	public int putUserDetails(String username, User user) {
 		Connection con = null;
 		ResultSet rs = null;
