@@ -28,10 +28,10 @@ public class Test {
 		// Get XML
 		// System.out.println(service.path("rest").path("user").accept(MediaType.TEXT_XML).get(String.class));
 		// Get XML for application
-		System.out.println(service.path("rest").path("user")
-				.accept(MediaType.APPLICATION_JSON).get(String.class));
+//		System.out.println(service.path("rest").path("users")
+//				.accept(MediaType.APPLICATION_JSON).get(String.class));
 		// Get JSON for application
-		System.out.println(service.path("rest").path("user")
+		System.out.println(service.path("rest").path("users")
 				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
 	
@@ -81,11 +81,19 @@ public class Test {
 		}
 	}
 	
+	public static void deleteUser()
+	{
+		service.path("rest").path("users/5").delete();
+	}
+	
 	public static void main(String[] args) {
 		initialize();
-		//getAllUsers();
+		getAllUsers();
 		//getUserByUsername("mandar");
-		insertUser();
+		//insertUser();
+		deleteUser();
+		getAllUsers();
+		
 	}
 
 	private static URI getBaseURI() {
