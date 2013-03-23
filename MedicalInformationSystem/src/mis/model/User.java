@@ -1,9 +1,11 @@
 package mis.model;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class User {
+public class User implements Serializable {
 	private String username;
 	private String password;
 	public void setUsername(String username) {
@@ -17,6 +19,11 @@ public class User {
 	}
 	public String getPassword() {
 		return password;
+	}
+	
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + "]";
 	}
 
 }

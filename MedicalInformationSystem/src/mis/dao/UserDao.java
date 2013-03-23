@@ -63,24 +63,21 @@ public enum UserDao {
 
 	}
 
-	
-	public void putUserDetails(String username, User user)
-	{
+	public int putUserDetails(String username, User user) {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement prest = null;
-		
+		int result = 0;
 		User obj = getUserByUsername(username);
-		if(obj==null)
-		{
-			//insert
+		if (obj == null) {
+			// insert
 			try {
 				con = DBConnection.getConnection();
 				String sqlStatement = SqlConstants.insertUser;
 				prest = con.prepareStatement(sqlStatement);
 				prest.setString(1, user.getUsername());
 				prest.setString(2, user.getPassword());
-				prest.executeUpdate();
+				result = prest.executeUpdate();
 
 			} catch (Exception e) {
 				System.out.println(e);
@@ -92,17 +89,15 @@ public enum UserDao {
 					e.printStackTrace();
 				}
 			}
-			
-		}
-		else
-		{
-			//update
-		}
-		
 
+		} else {
+			// update
+		}
+
+		return result;
 
 	}
-	
+
 	public User getUserByUsername(String username) {
 
 		User userObj = null;
