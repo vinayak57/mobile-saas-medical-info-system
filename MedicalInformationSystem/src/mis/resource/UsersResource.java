@@ -9,6 +9,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -27,13 +28,13 @@ public class UsersResource {
 	Request request;
 	String id;
 
-//	public UsersResource(UriInfo uriInfo, Request request, String id)
-//	{
-//	    this.uriInfo = uriInfo;
-//	    this.request = request;
-//	    this.id = id;
-//	}
-	
+	// public UsersResource(UriInfo uriInfo, Request request, String id)
+	// {
+	// this.uriInfo = uriInfo;
+	// this.request = request;
+	// this.id = id;
+	// }
+
 	// Return the list of users in the browser
 	@GET
 	@Produces(MediaType.TEXT_XML)
@@ -64,26 +65,31 @@ public class UsersResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response putUser(User user) {
 		String result = "Track saved : " + user.getUsername();
-		//return Response.status(201).entity(result).build();
+		// return Response.status(201).entity(result).build();
 		return putAndGetResponse(user);
 	}
 
 	private Response putAndGetResponse(User user) {
 		Response res;
-//		if (UserDao.instance.getAllUsers().containsKey(user.getUsername())) {
-//			res = Response.noContent().build();
-//		} else {
-//			res = Response.created(uriInfo.getAbsolutePath()).build();
-//		}
-		if(UserDao.instance.putUserDetails(user.getUsername(), user)!=0)
-		{
+		// if (UserDao.instance.getAllUsers().containsKey(user.getUsername())) {
+		// res = Response.noContent().build();
+		// } else {
+		// res = Response.created(uriInfo.getAbsolutePath()).build();
+		// }
+		if (UserDao.instance.putUserDetails(user.getUsername(), user) != 0) {
 			String result = "User inserted";
 			return Response.status(201).entity(result).build();
-		}
-		else
-		{
+		} else {
 			return Response.noContent().build();
 		}
+	}
+
+	@DELETE
+	@Path("{userid}")
+	public void deleteTodo(@PathParam("userid") int userid) {
+		int result = UserDao.instance.removeUser(userid);
+		if (result == 0)
+			throw new RuntimeException("Delete: User with " + userid + " not found");
 	}
 
 }
