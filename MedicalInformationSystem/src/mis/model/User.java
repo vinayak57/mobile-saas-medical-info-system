@@ -6,8 +6,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class User implements Serializable {
+	private int userid;
 	private String username;
 	private String password;
+	private int tenantid;
+	private int roleid;
+	
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public int getUserid() {
+		return userid;
+	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -21,9 +31,21 @@ public class User implements Serializable {
 		return password;
 	}
 	
+	public void setTenantid(int tenantid) {
+		this.tenantid = tenantid;
+	}
+	public int getTenantid() {
+		return tenantid;
+	}
+	public void setRoleid(int roleid) {
+		this.roleid = roleid;
+	}
+	public int getRoleid() {
+		return roleid;
+	}
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + "]";
+		return "User [userid=" + userid + ",username=" + username + ", password=" + password + "]";
 	}
 
 }

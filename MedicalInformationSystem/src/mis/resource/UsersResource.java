@@ -37,31 +37,42 @@ public class UsersResource {
 
 	// Return the list of users in the browser
 	@GET
-	@Produces(MediaType.TEXT_XML)
-	public List<User> getUsersBrowser() {
+	@Path("/{tenantid}")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<User> getUsers(@PathParam("tenantid") int tenantid) {
 		List<User> userObjs = new ArrayList<User>();
-		userObjs.addAll(UserDao.instance.getAllUsers().values());
+		userObjs.addAll(UserDao.instance.getAllUsers(tenantid).values());
 		return userObjs;
 	}
 
 	// Return the list of users for applications
-	@GET
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public List<User> getUsers() {
-		List<User> userObjs = new ArrayList<User>();
-		userObjs.addAll(UserDao.instance.getAllUsers().values());
-		return userObjs;
-	}
+//	@GET
+//	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+//	public List<User> getUsers() {
+//		List<User> userObjs = new ArrayList<User>();
+//		userObjs.addAll(UserDao.instance.getAllUsers().values());
+//		return userObjs;
+//	}
 
 	@GET
-	@Path("{username}")
+	@Path("/{tenantid}/{username}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public User getUser(@PathParam("username") String username) {
+	public User getUser(@PathParam("tenantid") int tenantid, @PathParam("username") String username)
+	{
 
-		return UserDao.instance.getUserByUsername(username);
+		return UserDao.instance.getUserByUsername(username, tenantid);
 	}
+	
+//	@GET
+//	@Path("/{tenantid}/{userid}")
+//	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+//	public User getUserByUserid(@PathParam("tenantid") int tenantid, @PathParam("userid") int userid)
+//	{
+//
+//		return UserDao.instance.getUserByUserid(userid, tenantid);
+//	}
 
-	@POST
+	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response putUser(User user) {
 		String result = "Track saved : " + user.getUsername();
@@ -76,7 +87,7 @@ public class UsersResource {
 		// } else {
 		// res = Response.created(uriInfo.getAbsolutePath()).build();
 		// }
-		if (UserDao.instance.putUserDetails(user.getUsername(), user) != 0) {
+		if (UserDao.instance.putUserDetails(user) != 0) {
 			String result = "User inserted";
 			return Response.status(201).entity(result).build();
 		} else {
