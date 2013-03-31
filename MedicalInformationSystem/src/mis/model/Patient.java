@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Patient implements Serializable{
+public class Patient extends User implements Serializable{
 
 	private int patient_id;
 	private String fname;

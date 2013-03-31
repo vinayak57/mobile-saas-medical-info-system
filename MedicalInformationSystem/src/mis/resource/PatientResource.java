@@ -41,6 +41,7 @@ public class PatientResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response putPatient(Patient patient) {
 		// return Response.status(201).entity(result).build();
+		System.out.println(patient.getUsername());
 		return putAndGetResponse(patient);
 	}
 
