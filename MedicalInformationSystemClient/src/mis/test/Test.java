@@ -63,15 +63,15 @@ public class Test {
 //			     + response.getStatus());
 //		}
  
-		String servicePath = "users/6/" + "master"; 
-		User userobj = service.path("rest").path(servicePath)
-		.accept(MediaType.APPLICATION_JSON).get(User.class);
-		
-		int userid = userobj.getUserid();
-		
-		System.out.println(userid);
-		
-		String input = "{\"fname\":\"master\",\"lname\":\"master\",\"email\":\"a.a@abc.com\",\"gender\":\"female\",\"phone\":\"6131\",\"userid\":\"21\"}";
+//		String servicePath = "users/6/" + "master"; 
+//		User userobj = service.path("rest").path(servicePath)
+//		.accept(MediaType.APPLICATION_JSON).get(User.class);
+//		
+//		int userid = userobj.getUserid();
+//		
+//		System.out.println(userid);
+//		
+		String input = "{\"username\":\"master\",\"password\":\"master\",\"tenantid\":\"6\",\"roleid\":\"11\",\"fname\":\"master\",\"lname\":\"master\",\"email\":\"a.a@abc.com\",\"gender\":\"female\",\"phone\":\"6131\"}";
 		ClientResponse response = service.path("rest").path("patients").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
