@@ -31,13 +31,13 @@ public class Test {
 //		System.out.println(service.path("rest").path("users")
 //				.accept(MediaType.APPLICATION_JSON).get(String.class));
 		// Get JSON for application
-		System.out.println(service.path("rest").path("users")
+		System.out.println(service.path("rest").path("users").path("6")
 				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
 	
 	public static void getUserByUsername(String username)
 	{
-		String servicePath = "user/" + username; 
+		String servicePath = "users/6" + username; 
 		
 		//Get XML
 		// System.out.println(service.path("rest").path("user").accept(MediaType.TEXT_XML).get(String.class));
@@ -49,26 +49,31 @@ public class Test {
 				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
 	
-	public static void insertUser()
+	public static void insertPatient()
 	{
 		try{
-		//Create a User
-//	    Form form = new Form();
-//	    form.add("username", "gao");
-//	    form.add("password", "gao");
-//	    ClientResponse response  = service.path("rest").path("users").type(MediaType.APPLICATION_FORM_URLENCODED).post(ClientResponse.class, form);
-//	    System.out.println("Form response " + response.getEntity(String.class));
-	    
-	    String input = "{\"username\":\"master\",\"password\":\"master\"}";
-	    
-		ClientResponse response = service.path("rest").path("users").type("application/json")
-		   .post(ClientResponse.class, input);
+    
+//	    String input = "{\"username\":\"master\",\"password\":\"master\",\"tenantid\":\"6\",\"roleid\":\"11\"}";
+//
+//		ClientResponse response = service.path("rest").path("users").type("application/json")
+//		   .put(ClientResponse.class, input);
+// 
+//		if (response.getStatus() != 201) {
+//			throw new RuntimeException("Failed : HTTP error code : "
+//			     + response.getStatus());
+//		}
  
-		if (response.getStatus() != 201) {
-			throw new RuntimeException("Failed : HTTP error code : "
-			     + response.getStatus());
-		}
- 
+		String servicePath = "users/6/" + "master"; 
+		User userobj = service.path("rest").path(servicePath)
+		.accept(MediaType.APPLICATION_JSON).get(User.class);
+		
+		int userid = userobj.getUserid();
+		
+		System.out.println(userid);
+		
+		String input = "{\"fname\":\"master\",\"lname\":\"master\",\"email\":\"a.a@abc.com\",\"gender\":\"female\",\"phone\":\"6131\",\"userid\":\"21\"}";
+		ClientResponse response = service.path("rest").path("patients").type("application/json")
+		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
 		String output = response.getEntity(String.class);
 		System.out.println(output);
@@ -88,11 +93,11 @@ public class Test {
 	
 	public static void main(String[] args) {
 		initialize();
-		getAllUsers();
+		//getAllUsers();
 		//getUserByUsername("mandar");
-		//insertUser();
-		deleteUser();
-		getAllUsers();
+		insertPatient();
+		//deleteUser();
+		//getAllUsers();
 		
 	}
 
