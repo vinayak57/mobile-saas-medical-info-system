@@ -18,21 +18,15 @@ import mis.util.DBConnection;
 public enum UserDao {
 	instance;
 
-	private Map<String, User> usersList = new HashMap<String, User>();
+
 	private static int userCount;
 
-	private UserDao() {
+	private UserDao() {}
 
-		intializeUsersList();
-
-	}
-
-	public Map<String, User> getAllUsers() {
-		return usersList;
-	}
-
-	public void intializeUsersList() {
-		userCount = 0;
+	public Map<String, User> getAllUsers(int tenantid) {
+		
+		Map<String, User> usersList = new HashMap<String, User>();
+		
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement prest = null;
@@ -40,7 +34,7 @@ public enum UserDao {
 			con = DBConnection.getConnection();
 			String sqlStatement = SqlConstants.getAllUsers;
 			prest = con.prepareStatement(sqlStatement);
-
+			prest.setInt(1, tenantid);
 			rs = prest.executeQuery();
 			if (rs != null) {
 				List<User> resultList = fetchMultiResults(rs);
@@ -60,7 +54,8 @@ public enum UserDao {
 				e.printStackTrace();
 			}
 		}
-
+		
+		return usersList;
 	}
 
 	public int removeUser(int userid)
@@ -90,12 +85,12 @@ public enum UserDao {
 		return rowsUpdated;
 	}
 	
-	public int putUserDetails(String username, User user) {
+	public int putUserDetails(User user) {
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement prest = null;
 		int result = 0;
-		User obj = getUserByUsername(username);
+		User obj = getUserByUsername(user.getUsername(),user.getTenantid());
 		if (obj == null) {
 			// insert
 			try {
@@ -104,6 +99,9 @@ public enum UserDao {
 				prest = con.prepareStatement(sqlStatement);
 				prest.setString(1, user.getUsername());
 				prest.setString(2, user.getPassword());
+				prest.setInt(3, user.getRoleid());
+				prest.setInt(4, user.getTenantid());
+
 				result = prest.executeUpdate();
 
 			} catch (Exception e) {
@@ -125,7 +123,39 @@ public enum UserDao {
 
 	}
 
-	public User getUserByUsername(String username) {
+	public User getUserByUserid(int userid, int tenantid)
+	{
+		User userObj = null;
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement prest = null;
+		try {
+			con = DBConnection.getConnection();
+			String sqlStatement = SqlConstants.getUserByid;
+			prest = con.prepareStatement(sqlStatement);
+			prest.setInt(1, userid);
+			prest.setInt(2, tenantid);
+			rs = prest.executeQuery();
+			if (rs != null) {
+				userObj = fetchSingleResult(rs);
+
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return userObj;
+	}
+	
+	public User getUserByUsername(String username, int tenantid) {
 
 		User userObj = null;
 		Connection con = null;
@@ -136,6 +166,7 @@ public enum UserDao {
 			String sqlStatement = SqlConstants.getUser;
 			prest = con.prepareStatement(sqlStatement);
 			prest.setString(1, username);
+			prest.setInt(2, tenantid);
 			rs = prest.executeQuery();
 			if (rs != null) {
 				userObj = fetchSingleResult(rs);
@@ -169,6 +200,9 @@ public enum UserDao {
 	protected void populateVO(User dto, ResultSet rs) throws SQLException {
 		dto.setUsername(rs.getString("userName"));
 		dto.setPassword(rs.getString("password"));
+		dto.setRoleid(rs.getInt("roleid"));
+		dto.setTenantid(rs.getInt("tenantid"));
+		dto.setUserid(rs.getInt("userid"));
 	}
 
 	protected List<User> fetchMultiResults(ResultSet rs) throws SQLException {
