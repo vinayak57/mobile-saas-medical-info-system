@@ -2,7 +2,7 @@ package mis.test;
 
 import java.util.Date;
 
-public class Patient{
+public class Patient extends User{
 
 	private int id;
 	private String fname;
