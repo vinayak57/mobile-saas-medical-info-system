@@ -71,7 +71,7 @@ public class Test {
 //		
 //		System.out.println(userid);
 //		
-		String input = "{\"username\":\"master\",\"password\":\"master\",\"tenantid\":\"6\",\"roleid\":\"11\",\"fname\":\"master\",\"lname\":\"master\",\"email\":\"a.a@abc.com\",\"gender\":\"female\",\"phone\":\"6131\"}";
+		String input = "{\"userid\":\"22\",\"username\":\"master\",\"password\":\"master\",\"tenantid\":\"6\",\"roleid\":\"11\",\"patientId\":\"7\",\"fname\":\"master1\",\"lname\":\"master1\",\"email\":\"a.a@abc.com\",\"gender\":\"female\",\"phone\":\"6131\"}";
 		ClientResponse response = service.path("rest").path("patients").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");

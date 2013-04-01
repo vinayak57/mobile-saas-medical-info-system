@@ -1,10 +1,17 @@
 package mis.test;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Patient extends User{
+import javax.xml.bind.annotation.XmlRootElement;
 
-	private int id;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@XmlRootElement
+//@JsonIgnoreProperties(ignoreUnknown = true)
+public class Patient extends User implements Serializable{
+
+	private int patientId;
 	private String fname;
 	private String lname;
 	private String email;
@@ -13,12 +20,12 @@ public class Patient extends User{
 	//private Date dob;
 	
 	private int userid;
-	
-	public void setId(int id) {
-		this.id = id;
+
+	public int getPatientId() {
+		return patientId;
 	}
-	public int getId() {
-		return id;
+	public void setPatientId(int patientId) {
+		this.patientId = patientId;
 	}
 	public void setFname(String fname) {
 		this.fname = fname;
@@ -57,5 +64,8 @@ public class Patient extends User{
 		return userid;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Patient [id =" + patientId + "fname=" + fname + ",lname=" + lname + ", email=" + email + "gender=" + gender + ",phone=" + phone + ", userid=" + userid +"]";
+	}
 }
