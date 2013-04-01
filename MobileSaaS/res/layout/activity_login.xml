@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="250dp"
+        android:layout_height="270dip"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
+        android:background="#70D0D5D9" >
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="80dp"
+            android:hint="Username" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="125dp"
+            android:inputType="textPassword"
+            android:hint="Password" />
+        
+          <Button
+            android:id="@+id/bLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:layout_marginTop="165dp"
+            android:layout_gravity="center_horizontal" />
+
+          <Button
+            android:id="@+id/bSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign up"
+            android:layout_marginTop="215dp"
+            android:layout_gravity="center_horizontal" />
+          
+       <!--  <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password"
+            android:layout_marginTop="215dp"
+            android:layout_gravity="center_horizontal" 
+            android:textColor="#FFFFFF"
+            android:background="#00000000"/>
+         -->
+        
+</FrameLayout>
+
+</LinearLayout>
+

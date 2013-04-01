@@ -1,0 +1,162 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <FrameLayout
+        android:layout_width="280dp"
+        android:layout_height="430dip"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#70D0D5D9" >
+        
+        
+        <EditText
+            android:id="@+id/etfname"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="First Name" />
+
+        <EditText
+            android:id="@+id/etLname"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+            android:hint="Last Name" />
+        
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="75dp"
+            android:hint="Email id" />
+        
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="110dp"
+            android:hint="Phone" />
+		
+        <TextView
+			    android:id="@+id/textView1"
+			    android:layout_width="fill_parent"
+			    android:layout_height="35dp"
+			    android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="150dp"
+			    android:text="Gender" 
+			    android:textAppearance="?android:attr/textAppearanceMedium"/>
+		
+		<RadioGroup
+		    android:id="@+id/Gender"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="horizontal">
+
+			
+		    
+		    <RadioButton
+            android:id="@+id/rbMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="70dp"
+            android:text="Male" />
+        
+        <RadioButton 
+           android:id="@+id/rbfemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="30dp"
+            android:text="Female"/>
+            
+        </RadioGroup>
+        
+		<EditText
+            android:id="@+id/etDOB"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="175dp"
+            android:hint="DOB(MM/DD/YYYY)" />
+		
+		<EditText
+            android:id="@+id/etAddr1"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="210dp"
+            android:hint="Address1" />
+		
+		<EditText
+            android:id="@+id/etAddr2"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="245dp"
+            android:hint="Address2" />
+			
+			<EditText
+            android:id="@+id/etCity"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="280dp"
+            android:hint="City" />
+			
+			<EditText
+            android:id="@+id/etState"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="310dp"
+            android:hint="State" />
+			
+			<EditText
+            android:id="@+id/etZip"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="345dp"
+            android:hint="Zip" />
+			
+			 <Button
+            android:id="@+id/bRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:layout_marginTop="380dp"
+            android:layout_gravity="right" />
+			 
+			  <Button
+            android:id="@+id/bCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_marginTop="380dp"
+            android:layout_gravity="left" />
+			
+        </FrameLayout>
+    
+</LinearLayout>
+
