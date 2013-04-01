@@ -95,12 +95,12 @@ public class UsersResource {
 		}
 	}
 
-	@DELETE
-	@Path("{userid}")
-	public void deleteTodo(@PathParam("userid") int userid) {
-		int result = UserDao.instance.removeUser(userid);
-		if (result == 0)
-			throw new RuntimeException("Delete: User with " + userid + " not found");
-	}
+//	@DELETE
+//	@Path("{userid}")
+//	public void deleteTodo(@PathParam("userid") int userid) {
+//		int result = UserDao.instance.removeUser(userid);
+//		if (result == 0)
+//			throw new RuntimeException("Delete: User with " + userid + " not found");
+//	}
 
 }

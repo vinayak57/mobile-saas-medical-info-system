@@ -5,10 +5,13 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @XmlRootElement
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Patient extends User implements Serializable{
 
-	private int patient_id;
+	private int patientId;
 	private String fname;
 	private String lname;
 	private String email;
@@ -17,12 +20,12 @@ public class Patient extends User implements Serializable{
 	//private Date dob;
 	
 	private int userid;
-	
-	public void setId(int id) {
-		this.patient_id = id;
+
+	public int getPatientId() {
+		return patientId;
 	}
-	public int getId() {
-		return patient_id;
+	public void setPatientId(int patientId) {
+		this.patientId = patientId;
 	}
 	public void setFname(String fname) {
 		this.fname = fname;
@@ -63,6 +66,6 @@ public class Patient extends User implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Patient [id =" + patient_id + "fname=" + fname + ",lname=" + lname + ", email=" + email + "gender=" + gender + ",phone=" + phone + ", userid=" + userid +"]";
+		return "Patient [id =" + patientId + "fname=" + fname + ",lname=" + lname + ", email=" + email + "gender=" + gender + ",phone=" + phone + ", userid=" + userid +"]";
 	}
 }
