@@ -27,21 +27,29 @@ public class PatientResource {
 	Request request;
 	String id;
 	
-//	@GET
-//	@Path("/{tenantid}")
-//	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-//	public List<User> getPatients(@PathParam("tenantid") int tenantid) {
-//		List<User> userObjs = new ArrayList<User>();
-//		userObjs.addAll(UserDao.instance.getAllUsers(tenantid).values());
-//		return userObjs;
-//	}
+	@GET
+	@Path("/{tenantid}")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<Patient> getPatients(@PathParam("tenantid") int tenantid) {
+		List<Patient> patientObjs = new ArrayList<Patient>();
+		patientObjs.addAll(PatientDao.instance.getAllPatients(tenantid).values());
+		return patientObjs;
+	}
 	
+	@GET
+	@Path("/{tenantid}/{patientId}")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public User getUser(@PathParam("tenantid") int tenantid, @PathParam("patientId") int patientId)
+	{
+
+		return PatientDao.instance.getPatientById(patientId, tenantid);
+	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response putPatient(Patient patient) {
 		// return Response.status(201).entity(result).build();
-		System.out.println(patient.getUsername());
+		//System.out.println(patient.getUsername());
 		return putAndGetResponse(patient);
 	}
 
@@ -52,8 +60,9 @@ public class PatientResource {
 		// } else {
 		// res = Response.created(uriInfo.getAbsolutePath()).build();
 		// }
+		System.out.println("here");
 		if (PatientDao.instance.putUserDetails(patient) != 0) {
-			String result = "User inserted";
+			String result = "User updated";
 			return Response.status(201).entity(result).build();
 		} else {
 			return Response.noContent().build();

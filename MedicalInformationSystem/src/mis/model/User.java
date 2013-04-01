@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @XmlRootElement
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
 	private int userid;
 	private String username;
