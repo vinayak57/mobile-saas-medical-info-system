@@ -9,5 +9,6 @@
     <string name="title_activity_signup2">Signup2</string>
     <string name="title_activity_home_patient">Home_patient</string>
     <string name="title_activity_make_appointment">Make Appointment</string>
+    <string name="title_activity_manage_appointment">Manage Appointment</string>
 
 </resources>

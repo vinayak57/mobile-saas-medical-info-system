@@ -58,7 +58,7 @@
         </activity>
         <activity
             android:name=".Manage_appointment"
-            android:label="@string/title_activity_make_appointment" >
+            android:label="@string/title_activity_manage_appointment" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
