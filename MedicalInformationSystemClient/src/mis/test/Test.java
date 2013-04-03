@@ -86,6 +86,43 @@ public class Test {
 		}
 	}
 	
+	public static void insertDrug()
+	{
+		try{
+    
+		String input = "{\"name\":\"crocin\",\"power\":\"10mg\",\"tenantid\":\"6\"}";
+		ClientResponse response = service.path("rest").path("drug").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void insertStaff()
+	{
+		try{
+    
+		String input = "{\"username\":\"swarada\",\"password\":\"swarada\",\"tenantid\":\"6\",\"roleid\":\"12\",\"fname\":\"staff1\",\"lname\":\"staff1\",\"details\":\"physician\",\"speciality\":\"general\"}";
+		ClientResponse response = service.path("rest").path("staff").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public static void deleteUser()
 	{
 		service.path("rest").path("users/5").delete();
@@ -95,10 +132,11 @@ public class Test {
 		initialize();
 		//getAllUsers();
 		//getUserByUsername("mandar");
-		insertPatient();
+		//insertPatient();
 		//deleteUser();
 		//getAllUsers();
-		
+		//insertStaff();
+		insertDrug();
 	}
 
 	private static URI getBaseURI() {
