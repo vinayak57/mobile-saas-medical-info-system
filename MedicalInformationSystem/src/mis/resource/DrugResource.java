@@ -14,14 +14,14 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import mis.dao.PatientDao;
-import mis.dao.UserDao;
-import mis.model.Patient;
+import mis.dao.DrugDao;
+import mis.dao.HospitalStaffDao;
+import mis.model.Drug;
+import mis.model.HospitalStaff;
 import mis.model.User;
 
-
-@Path("/patients")
-public class PatientResource {
+@Path("/drug")
+public class DrugResource {
 
 	UriInfo uriInfo;
 	Request request;
@@ -30,30 +30,30 @@ public class PatientResource {
 	@GET
 	@Path("/{tenantid}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public List<Patient> getPatients(@PathParam("tenantid") int tenantid) {
-		List<Patient> patientObjs = new ArrayList<Patient>();
-		patientObjs.addAll(PatientDao.instance.getAllPatients(tenantid).values());
-		return patientObjs;
+	public List<Drug> getAllDrug(@PathParam("tenantid") int tenantid) {
+		List<Drug> drugObjs = new ArrayList<Drug>();
+		drugObjs.addAll(DrugDao.instance.getAllDrug(tenantid).values());
+		return drugObjs;
 	}
 	
 	@GET
-	@Path("/{tenantid}/{patientId}")
+	@Path("/{tenantid}/{drugid}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public Patient getUser(@PathParam("tenantid") int tenantid, @PathParam("patientId") int userId)
+	public Drug getDrug(@PathParam("tenantid") int tenantid, @PathParam("drugid") int drugid)
 	{
 
-		return PatientDao.instance.getPatientById(userId, tenantid);
+		return DrugDao.instance.getDrugById(drugid, tenantid);
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response putPatient(Patient patient) {
+	public Response putDrug(Drug drug) {
 		// return Response.status(201).entity(result).build();
 		//System.out.println(patient.getUsername());
-		return putAndGetResponse(patient);
+		return putAndGetResponse(drug);
 	}
 
-	private Response putAndGetResponse(Patient patient) {
+	private Response putAndGetResponse(Drug drug) {
 		Response res;
 		// if (UserDao.instance.getAllUsers().containsKey(user.getUsername())) {
 		// res = Response.noContent().build();
@@ -61,13 +61,12 @@ public class PatientResource {
 		// res = Response.created(uriInfo.getAbsolutePath()).build();
 		// }
 		System.out.println("here");
-		if (PatientDao.instance.putPatientDetails(patient) != 0) {
-			String result = "User updated";
+		if (DrugDao.instance.putDrugDetails(drug) != 0) {
+			String result = "Drug updated";
 			return Response.status(201).entity(result).build();
 		} else {
 			return Response.noContent().build();
 		}
 	}
-	
 	
 }

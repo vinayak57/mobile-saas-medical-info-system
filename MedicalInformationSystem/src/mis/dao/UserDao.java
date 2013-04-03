@@ -117,6 +117,25 @@ public enum UserDao {
 
 		} else {
 			// update
+			try {
+				con = DBConnection.getConnection();
+				String sqlStatement = SqlConstants.updatePassword;
+				prest = con.prepareStatement(sqlStatement);
+				prest.setString(1, user.getPassword());
+				prest.setInt(2, user.getUserid());
+
+				result = prest.executeUpdate();
+
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
 		return result;
