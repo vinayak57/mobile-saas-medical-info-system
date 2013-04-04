@@ -28,4 +28,9 @@ public class SqlConstants {
 	public static String getAllLocations="SELECT * FROM medicalinfosystem.location where tenantid=?";
 	public static String insertLocation="INSERT into medicalinfosystem.location(addr1,addr2,city,state,country,zipcode,tenantid) VALUES(?,?,?,?,?,?,?)";
 	public static String getLocationIdByLoc = "SELECT * FROM medicalinfosystem.location where addr1=? and addr2=? and city=? and state=? and zipcode=?";
+	
+	public static String getVisitTypeById="SELECT * FROM medicalinfosystem.visit_type where visit_type_id=?";
+	public static String getAllVisitType="SELECT * FROM medicalinfosystem.visit_type where tenantid=?";
+	public static String putVisitDetails="INSERT into medicalinfosystem.visit_type(visit_type,description,tenantid) VALUES(?,?,?)";
+	public static String getVisitTypeByVisit="SELECT * FROM medicalinfosystem.visit_type where visit_type=? and tenantid=?";
 }
