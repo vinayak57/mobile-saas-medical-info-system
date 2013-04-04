@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 import mis.constants.SqlConstants;
+import mis.model.Location;
 import mis.model.Patient;
 import mis.model.User;
 import mis.util.DBConnection;
+import mis.util.DateConvert;
 
 public enum PatientDao {
 	instance;
@@ -22,7 +24,7 @@ public enum PatientDao {
 	private PatientDao() {
 	}
 
-	public Patient getPatientById(int userId, int tenantid)
+	public Patient getPatientByUserId(int userId, int tenantid)
 	{
 		Patient patientObj = null;
 		Connection con = null;
@@ -115,6 +117,24 @@ public enum PatientDao {
 			if (userobj != null) {
 				// insert
 				try {
+					int location_id=0;
+					Location loc = new Location();
+					loc.setAddr1(patient.getAddr1());
+					loc.setAddr2(patient.getAddr2());
+					loc.setCity(patient.getCity());
+					loc.setState(patient.getState());
+					loc.setCountry(patient.getCountry());
+					loc.setZipcode(patient.getZipcode());
+					System.out.println(patient.getTenantid());
+					loc.setTenantid(patient.getTenantid());
+					
+					location_id=LocationDao.instance.getLocationIdByLoc(loc);
+					if(location_id==0)
+						{
+						 LocationDao.instance.putLocationDetails(loc);
+						 location_id=LocationDao.instance.getLocationIdByLoc(loc);
+						}
+					
 					con = DBConnection.getConnection();
 					String sqlStatement = SqlConstants.insertPatient;
 					prest = con.prepareStatement(sqlStatement);
@@ -123,9 +143,9 @@ public enum PatientDao {
 					prest.setString(3, patient.getEmail());
 					prest.setString(4, patient.getGender());
 					prest.setInt(5, patient.getPhone());
-					// TODO: dob and location id
-					// prest.setInt(6, patient.get);
-					prest.setInt(6, userobj.getUserid());
+					prest.setDate(6, DateConvert.convertUtilToSQLdate(patient.getDob()));
+					prest.setInt(7, location_id);
+					prest.setInt(8, userobj.getUserid());
 					result = prest.executeUpdate();
 
 				} catch (Exception e) {
@@ -145,6 +165,26 @@ public enum PatientDao {
 		else {
 			System.out.println("calling update");
 			try {
+				int location_id=0;
+				Location loc = new Location();
+				loc.setAddr1(patient.getAddr1());
+				loc.setAddr2(patient.getAddr2());
+				loc.setCity(patient.getCity());
+				loc.setState(patient.getState());
+				loc.setCountry(patient.getCountry());
+				loc.setZipcode(patient.getZipcode());
+				System.out.println(patient.getTenantid());
+				loc.setTenantid(patient.getTenantid());
+				
+				location_id=LocationDao.instance.getLocationIdByLoc(loc);
+				if(location_id==0)
+					{
+					 LocationDao.instance.putLocationDetails(loc);
+					 location_id=LocationDao.instance.getLocationIdByLoc(loc);
+					}
+				
+				System.out.println("loc" + location_id);
+				
 				con = DBConnection.getConnection();
 				String sqlStatement = SqlConstants.updatePatient;
 				prest1 = con.prepareStatement(sqlStatement);
@@ -153,13 +193,13 @@ public enum PatientDao {
 				prest1.setString(3, patient.getEmail());
 				prest1.setString(4, patient.getGender());
 				prest1.setInt(5, patient.getPhone());
-				// TODO: dob and location id
-				// prest.setInt(6, patient.get);
-				prest1.setInt(6, patient.getPatientId());
+				prest1.setDate(6, DateConvert.convertUtilToSQLdate(patient.getDob()));
+				//TODO: update location id
+				prest1.setInt(7, location_id);
+				prest1.setInt(8, patient.getPatientId());
 				result = prest1.executeUpdate();
-				System.out.println(patient.toString() + prest1.toString());
 			} catch (Exception e) {
-				System.out.println(e);
+				e.printStackTrace();
 			} finally {
 				try {
 					con.close();
@@ -198,6 +238,8 @@ public enum PatientDao {
 		dto.setGender(rs.getString("gender"));
 		dto.setPhone(rs.getInt("phone"));
 		dto.setUserid(rs.getInt("userid"));
+		dto.setDob(DateConvert.convertSQLToUtilDate(rs.getDate("dob")));
+		dto.setLocation_id(rs.getInt("location_id"));
 	}
 
 	protected List<Patient> fetchMultiResults(ResultSet rs) throws SQLException {

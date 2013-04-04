@@ -37,12 +37,12 @@ public class PatientResource {
 	}
 	
 	@GET
-	@Path("/{tenantid}/{patientId}")
+	@Path("/{tenantid}/{userId}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public Patient getUser(@PathParam("tenantid") int tenantid, @PathParam("patientId") int userId)
+	public Patient getUser(@PathParam("tenantid") int tenantid, @PathParam("userId") int userId)
 	{
 
-		return PatientDao.instance.getPatientById(userId, tenantid);
+		return PatientDao.instance.getPatientByUserId(userId, tenantid);
 	}
 	
 	@PUT

@@ -41,8 +41,7 @@ public class DrugResource {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Drug getDrug(@PathParam("tenantid") int tenantid, @PathParam("drugid") int drugid)
 	{
-
-		return DrugDao.instance.getDrugById(drugid, tenantid);
+		return DrugDao.instance.getDrugById(drugid);
 	}
 	
 	@PUT
@@ -60,7 +59,6 @@ public class DrugResource {
 		// } else {
 		// res = Response.created(uriInfo.getAbsolutePath()).build();
 		// }
-		System.out.println("here");
 		if (DrugDao.instance.putDrugDetails(drug) != 0) {
 			String result = "Drug updated";
 			return Response.status(201).entity(result).build();
