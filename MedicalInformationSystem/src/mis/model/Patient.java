@@ -19,7 +19,7 @@ public class Patient extends User implements Serializable{
 	private String email;
 	private String gender;
 	private int phone;
-	@XmlJavaTypeAdapter(DateAdapter.class)
+	//@XmlJavaTypeAdapter(DateAdapter.class)
 	private Date dob;
 	private String addr1;
 	private String addr2;
