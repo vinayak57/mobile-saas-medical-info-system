@@ -183,7 +183,7 @@ public enum PatientDao {
 					 location_id=LocationDao.instance.getLocationIdByLoc(loc);
 					}
 				
-				System.out.println("loc" + location_id);
+				System.out.println(location_id);
 				
 				con = DBConnection.getConnection();
 				String sqlStatement = SqlConstants.updatePatient;
