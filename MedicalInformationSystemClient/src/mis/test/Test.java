@@ -55,7 +55,7 @@ public class Test {
 		try{
     
 
-		String input = "{\"username\":\"master6\",\"password\":\"master4\",\"tenantid\":\"6\",\"roleid\":\"11\",\"fname\":\"master6\",\"lname\":\"master2\",\"email\":\"a.a@abc.com\",\"gender\":\"female\",\"phone\":\"6131\",\"addr1\":\"201 D 4th Street\",\"addr2\":\"Apt#527\",\"city\":\"san jos\",\"state\":\"CA\",\"country\":\"US\",\"zipcode\":\"95112\",\"dob\":\"2000-12-11\"}";
+		String input = "{\"username\":\"master244\",\"password\":\"master23\",\"tenantid\":\"6\",\"roleid\":\"11\",\"fname\":\"master23\",\"lname\":\"master244\",\"email\":\"a.a@abc.com\",\"gender\":\"female\",\"phone\":\"6131\",\"addr1\":\"201 D 4th Street\",\"addr2\":\"Apt#527\",\"city\":\"san jos\",\"state\":\"CA\",\"country\":\"US\",\"zipcode\":\"95112\",\"dob\":\"2000-01-11\"}";
 		
 		
 		ClientResponse response = service.path("rest").path("patients").type("application/json")
@@ -100,6 +100,24 @@ public class Test {
     
 		String input = "{\"name\":\"combiflam\",\"power\":\"10mg\",\"tenantid\":\"6\"}";
 		ClientResponse response = service.path("rest").path("drug").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void insertVisitType()
+	{
+		try{
+    
+		String input = "{\"visit_type\":\"monthly\",\"description\":\"monthly\",\"tenantid\":\"6\"}";
+		ClientResponse response = service.path("rest").path("visittype").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
 		String output = response.getEntity(String.class);
@@ -166,7 +184,7 @@ public class Test {
 		//insertStaff();
 		//insertDrug();
 		//insertLocation();
-		
+		insertVisitType();
 	}
 
 	private static URI getBaseURI() {
