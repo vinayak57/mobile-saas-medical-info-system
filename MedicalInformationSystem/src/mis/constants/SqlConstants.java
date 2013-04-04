@@ -9,8 +9,8 @@ public class SqlConstants {
 	public static String getUserByid ="SELECT * FROM medicalinfosystem.user where userid=? and tenantid=?";
 	public static String updatePassword = "UPDATE medicalinfosystem.user SET password=?WHERE userid = ?";
 	
-	public static String insertPatient ="INSERT into medicalinfosystem.patient(fname,lname,email,gender,phone,userid) VALUES(?,?,?,?,?,?)";
-	public static String updatePatient = "UPDATE medicalinfosystem.patient SET fname=?,lname=?,email=?,gender=?,phone=? WHERE patient_id = ?";
+	public static String insertPatient ="INSERT into medicalinfosystem.patient(fname,lname,email,gender,phone,dob,location_id,userid) VALUES(?,?,?,?,?,?,?,?)";
+	public static String updatePatient = "UPDATE medicalinfosystem.patient SET fname=?,lname=?,email=?,gender=?,phone=?,dob=?,location_id=? WHERE patient_id = ?";
 	public static String getAllPatients = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and u.tenantid=?;";
 	public static String getPatientByid ="SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and u.userid=?;";
 	
@@ -24,4 +24,8 @@ public class SqlConstants {
 	public static String insertDrug="INSERT into medicalinfosystem.drug(name,power,tenantid) VALUES(?,?,?)";
 	public static String updateDrug="UPDATE medicalinfosystem.drug SET name=?,power=? WHERE drug_id = ?";
 	
+	public static String getLocationByid="SELECT * FROM medicalinfosystem.location where location_id=?";
+	public static String getAllLocations="SELECT * FROM medicalinfosystem.location where tenantid=?";
+	public static String insertLocation="INSERT into medicalinfosystem.location(addr1,addr2,city,state,country,zipcode,tenantid) VALUES(?,?,?,?,?,?,?)";
+	public static String getLocationIdByLoc = "SELECT * FROM medicalinfosystem.location where addr1=? and addr2=? and city=? and state=? and zipcode=?";
 }

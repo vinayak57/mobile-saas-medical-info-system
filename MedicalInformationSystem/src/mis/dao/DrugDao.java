@@ -21,7 +21,7 @@ public enum DrugDao {
 	private DrugDao() {
 	}
 
-	public Drug getDrugById(int drugid, int tenantid) {
+	public Drug getDrugById(int drugid) {
 		Drug drugObj = null;
 		Connection con = null;
 		ResultSet rs = null;
@@ -87,6 +87,7 @@ public enum DrugDao {
 	}
 
 	public int insertDrug(Drug drug) {
+		System.out.println("calling insert");
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement prest = null;
@@ -145,7 +146,7 @@ public enum DrugDao {
 
 	public int putDrugDetails(Drug drug) {
 
-		Drug drugObj = getDrugById(drug.getDrugId(), drug.getTenantid());
+		Drug drugObj = getDrugById(drug.getDrugId());
 		if (drugObj == null) {
 			return insertDrug(drug);
 		} else {
