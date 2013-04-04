@@ -1,6 +1,7 @@
 package mis.test;
 
 import java.net.URI;
+import java.util.Date;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
@@ -53,25 +54,32 @@ public class Test {
 	{
 		try{
     
-//	    String input = "{\"username\":\"master\",\"password\":\"master\",\"tenantid\":\"6\",\"roleid\":\"11\"}";
-//
-//		ClientResponse response = service.path("rest").path("users").type("application/json")
-//		   .put(ClientResponse.class, input);
-// 
-//		if (response.getStatus() != 201) {
-//			throw new RuntimeException("Failed : HTTP error code : "
-//			     + response.getStatus());
-//		}
- 
-//		String servicePath = "users/6/" + "master"; 
-//		User userobj = service.path("rest").path(servicePath)
-//		.accept(MediaType.APPLICATION_JSON).get(User.class);
-//		
-//		int userid = userobj.getUserid();
-//		
-//		System.out.println(userid);
-//		
-		String input = "{\"userid\":\"22\",\"username\":\"master\",\"password\":\"master\",\"tenantid\":\"6\",\"roleid\":\"11\",\"patientId\":\"7\",\"fname\":\"master1\",\"lname\":\"master1\",\"email\":\"a.a@abc.com\",\"gender\":\"female\",\"phone\":\"6131\"}";
+
+		String input = "{\"username\":\"master6\",\"password\":\"master4\",\"tenantid\":\"6\",\"roleid\":\"11\",\"fname\":\"master6\",\"lname\":\"master2\",\"email\":\"a.a@abc.com\",\"gender\":\"female\",\"phone\":\"6131\",\"addr1\":\"201 D 4th Street\",\"addr2\":\"Apt#527\",\"city\":\"san jos\",\"state\":\"CA\",\"country\":\"US\",\"zipcode\":\"95112\",\"dob\":\"2000-12-11\"}";
+		
+		
+		ClientResponse response = service.path("rest").path("patients").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void updatePatient()
+	{
+		try{
+    
+
+		String input = "{\"username\":\"master6\",\"password\":\"master4\",\"tenantid\":\"6\",\"roleid\":\"11\",\"patientId\":\"14\",\"fname\":\"master100\",\"lname\":\"master01\",\"email\":\"a.a@abc.com\",\"gender\":\"female\",\"phone\":\"6131\",\"addr1\":\"201 S 4th Street\",\"addr2\":\"Apt23\",\"city\":\"san jose\",\"state\":\"California\",\"country\":\"US\",\"zipcode\":\"95112\",\"dob\":\"2000-12-11\"}";
+		
+		
 		ClientResponse response = service.path("rest").path("patients").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
@@ -90,7 +98,7 @@ public class Test {
 	{
 		try{
     
-		String input = "{\"name\":\"crocin\",\"power\":\"10mg\",\"tenantid\":\"6\"}";
+		String input = "{\"name\":\"combiflam\",\"power\":\"10mg\",\"tenantid\":\"6\"}";
 		ClientResponse response = service.path("rest").path("drug").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
@@ -123,6 +131,25 @@ public class Test {
 		}
 	}
 	
+	public static void insertLocation()
+	{
+		try{
+    
+		String input = "{\"addr1\":\"201 S 4th Street\",\"addr2\":\"Apt#527\",\"city\":\"san jose\",\"state\":\"CA\",\"country\":\"US\",\"zipcode\":\"95112\",\"location_id\":\"6\"}";
+		ClientResponse response = service.path("rest").path("location").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public static void deleteUser()
 	{
 		service.path("rest").path("users/5").delete();
@@ -133,10 +160,13 @@ public class Test {
 		//getAllUsers();
 		//getUserByUsername("mandar");
 		//insertPatient();
+		//updatePatient();
 		//deleteUser();
 		//getAllUsers();
 		//insertStaff();
-		insertDrug();
+		//insertDrug();
+		//insertLocation();
+		
 	}
 
 	private static URI getBaseURI() {
