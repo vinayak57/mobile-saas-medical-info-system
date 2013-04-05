@@ -6,11 +6,14 @@ import java.util.Date;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 
+import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
+
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.api.json.JSONConfiguration;
 import com.sun.jersey.api.representation.Form;
 
 public class Test {
@@ -20,6 +23,8 @@ public class Test {
 
 	public static void initialize() {
 		config = new DefaultClientConfig();
+		config.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+		//config.getClasses().add(JacksonConfigurator.class); 
 		client = Client.create(config);
 		service = client.resource(getBaseURI());
 	}
@@ -130,6 +135,24 @@ public class Test {
 		}
 	}
 	
+	public static void insertAppointmentDetails()
+	{
+		try{
+    
+		String input = "{\"visit_type_id\":\"1\",\"hospital_staff_id\":\"2\",\"location_id\":\"3\",\"appointment_date\":\"2011-02-01T20:27:05\",\"tenantid\":\"6\"}";
+		ClientResponse response = service.path("rest").path("appointments").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public static void insertStaff()
 	{
 		try{
@@ -184,7 +207,10 @@ public class Test {
 		//insertStaff();
 		//insertDrug();
 		//insertLocation();
-		insertVisitType();
+		//insertVisitType();
+		insertAppointmentDetails();
+//		System.out.println(service.path("rest").path("appointments").path("6")
+//				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
 
 	private static URI getBaseURI() {
