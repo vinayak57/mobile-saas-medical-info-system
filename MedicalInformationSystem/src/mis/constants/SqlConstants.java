@@ -1,5 +1,7 @@
 package mis.constants;
 
+import mis.util.DateConvert;
+
 public class SqlConstants {
 
 	public static String getAllUsers="SELECT * FROM medicalinfosystem.user where tenantid=?";
@@ -33,4 +35,9 @@ public class SqlConstants {
 	public static String getAllVisitType="SELECT * FROM medicalinfosystem.visit_type where tenantid=?";
 	public static String putVisitDetails="INSERT into medicalinfosystem.visit_type(visit_type,description,tenantid) VALUES(?,?,?)";
 	public static String getVisitTypeByVisit="SELECT * FROM medicalinfosystem.visit_type where visit_type=? and tenantid=?";
+	
+	public static String getAllAppointment="SELECT * FROM medicalinfosystem.appointment_details where tenantid=?";
+	public static String getAppointmentByid="SELECT * FROM medicalinfosystem.appointment_details where appointment_id=?";
+	public static String insertAppointment="INSERT into medicalinfosystem.appointment_details(hospital_staff_id,location_id,visit_type_id, tenantid, appointment_date) VALUES(?,?,?,?,?)";
+public static String getAllAppointmentByStaff="SELECT * FROM medicalinfosystem.appointment_details where tenantid=? and hospital_staff_id=?";
 }
