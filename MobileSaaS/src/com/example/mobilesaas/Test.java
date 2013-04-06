@@ -8,6 +8,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Test extends Activity {
 	Button submit;
@@ -47,7 +49,7 @@ public class Test extends Activity {
     	
     	HttpClient httpclient = new DefaultHttpClient();  
     	
-        String q="http://10.0.2.2:8080/MedicalInformationSystem/rest/users/mandar";
+        String q="http://10.0.2.2:8080/MedicalInformationSystem/rest/users/6/swar";
         
         HttpGet request = new HttpGet(q);
         request.addHeader("Accept","application/json");
@@ -58,9 +60,19 @@ public class Test extends Activity {
         	res=httpclient.execute(request);
         	HttpEntity entity=res.getEntity();
         	result=EntityUtils.toString(entity);
+        	
         	int code=res.getStatusLine().getStatusCode();
+        	Toast toast = Toast.makeText(getApplicationContext(), "my codee"+code,
+	   				 Toast.LENGTH_LONG);
+	   				 toast.show();
         	//System.out.println(result);
+        	
         	result=result+"  my codeee"+code;
+        	
+        	//JSONObject json = new JSONObject(result);
+			//String pass=(String)json.get("password");
+			
+			//result = result+  "my pass " + pass;
         	httpclient.getConnectionManager().shutdown();
         	
         	//Log.d("msg",result);
@@ -75,5 +87,11 @@ public class Test extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_test, menu);
         return true;
+    }
+    public void click(View v)
+    {
+    	Toast toast = Toast.makeText(getApplicationContext(), "i clicked you monkey",
+  				 Toast.LENGTH_LONG);
+  				 toast.show();
     }
 }
