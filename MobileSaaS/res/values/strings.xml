@@ -10,5 +10,10 @@
     <string name="title_activity_home_patient">Home_patient</string>
     <string name="title_activity_make_appointment">Make Appointment</string>
     <string name="title_activity_manage_appointment">Manage Appointment</string>
+    <string name="title_activity_view_appointment">View_appointment</string>
+    <string name="title_activity_view_medical_history">View_medical_history</string>
+    <string name="title_activity_map">Your Location</string>
+    <string name="title_activity_home_clinical">Home_Clinical</string>
+    <string name="title_activity_list_images">List of Images</string>
 
 </resources>
