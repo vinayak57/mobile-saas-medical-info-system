@@ -77,6 +77,29 @@ public class Test {
 		}
 	}
 	
+	
+	public static void changePassword()
+	{
+		try{
+    
+
+		String input = "{\"userid\":\"32\",\"username\":\"master244\",\"password\":\"adfsd\",\"tenantid\":\"6\",\"roleid\":\"11\"}";
+		
+		
+		ClientResponse response = service.path("rest").path("users").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public static void updatePatient()
 	{
 		try{
@@ -139,7 +162,7 @@ public class Test {
 	{
 		try{
     
-		String input = "{\"visit_type_id\":\"1\",\"hospital_staff_id\":\"2\",\"location_id\":\"3\",\"appointment_date\":\"2011-02-01T20:27:05\",\"tenantid\":\"6\"}";
+		String input = "{\"visit_type_id\":\"1\",\"hospital_staff_id\":\"1\",\"location_id\":\"3\",\"appointment_date\":\"2011-03-01T20:27:05\",\"tenantid\":\"6\"}";
 		ClientResponse response = service.path("rest").path("appointments").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
@@ -191,6 +214,44 @@ public class Test {
 		}
 	}
 	
+	public static void insertPrescription()
+	{
+		try{
+    
+		String input = "{\"drug_id\":\"1\",\"dose\":\"normal\",\"start_date\":\"2013-04-01\",\"end_date\":\"2013-05-01\",\"instruction\":\"instruction\",\"appointment_id\":\"17\",\"tenantid\":\"6\"}";
+		ClientResponse response = service.path("rest").path("prescription").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void insertPatientMedInfo()
+	{
+		try{
+    
+		String input = "{\"appointment_id\":\"16\",\"prescription_id\":\"4\",\"allergies\":\"viral\",\"warning\":\"no ice cream\",\"side_effects\":\"cold\",\"patient_id\":\"5\"}";
+		ClientResponse response = service.path("rest").path("patientmedicalinfo").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public static void deleteUser()
 	{
 		service.path("rest").path("users/5").delete();
@@ -208,7 +269,10 @@ public class Test {
 		//insertDrug();
 		//insertLocation();
 		//insertVisitType();
-		insertAppointmentDetails();
+		//insertAppointmentDetails();
+		//changePassword();
+		//insertPrescription();
+		insertPatientMedInfo();
 //		System.out.println(service.path("rest").path("appointments").path("6")
 //				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
