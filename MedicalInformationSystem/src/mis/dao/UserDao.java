@@ -93,6 +93,7 @@ public enum UserDao {
 		User obj = getUserByUsername(user.getUsername(),user.getTenantid());
 		if (obj == null) {
 			// insert
+			System.out.println("calling insert user");
 			try {
 				con = DBConnection.getConnection();
 				String sqlStatement = SqlConstants.insertUser;
@@ -118,6 +119,7 @@ public enum UserDao {
 		} else {
 			// update
 			try {
+				System.out.println("calling udate user");
 				con = DBConnection.getConnection();
 				String sqlStatement = SqlConstants.updatePassword;
 				prest = con.prepareStatement(sqlStatement);
@@ -125,7 +127,7 @@ public enum UserDao {
 				prest.setInt(2, user.getUserid());
 
 				result = prest.executeUpdate();
-
+System.out.println(result);
 			} catch (Exception e) {
 				System.out.println(e);
 			} finally {

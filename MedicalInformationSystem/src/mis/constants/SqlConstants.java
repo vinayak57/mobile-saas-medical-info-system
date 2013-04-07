@@ -9,7 +9,7 @@ public class SqlConstants {
 	public static String insertUser = "INSERT into medicalinfosystem.user(username,password,roleid,tenantid) VALUES(?,?,?,?)";
 	public static String deleteUser = "DELETE from medicalinfosystem.user where userid = ?";
 	public static String getUserByid ="SELECT * FROM medicalinfosystem.user where userid=? and tenantid=?";
-	public static String updatePassword = "UPDATE medicalinfosystem.user SET password=?WHERE userid = ?";
+	public static String updatePassword = "UPDATE medicalinfosystem.user SET password=? WHERE userid = ?";
 	
 	public static String insertPatient ="INSERT into medicalinfosystem.patient(fname,lname,email,gender,phone,dob,location_id,userid) VALUES(?,?,?,?,?,?,?,?)";
 	public static String updatePatient = "UPDATE medicalinfosystem.patient SET fname=?,lname=?,email=?,gender=?,phone=?,dob=?,location_id=? WHERE patient_id = ?";
@@ -39,5 +39,13 @@ public class SqlConstants {
 	public static String getAllAppointment="SELECT * FROM medicalinfosystem.appointment_details where tenantid=?";
 	public static String getAppointmentByid="SELECT * FROM medicalinfosystem.appointment_details where appointment_id=?";
 	public static String insertAppointment="INSERT into medicalinfosystem.appointment_details(hospital_staff_id,location_id,visit_type_id, tenantid, appointment_date) VALUES(?,?,?,?,?)";
-public static String getAllAppointmentByStaff="SELECT * FROM medicalinfosystem.appointment_details where tenantid=? and hospital_staff_id=?";
+	public static String getAllAppointmentByStaff="SELECT * FROM medicalinfosystem.appointment_details where tenantid=? and hospital_staff_id=?";
+	
+	public static String getAllPrescription = "SELECT * FROM medicalinfosystem.prescription_details where tenantid=?";
+	public static String getPrescriptionById = "SELECT * FROM medicalinfosystem.prescription_details where prescription_id=?";
+	public static String insertPrescriptionDetails = "INSERT into medicalinfosystem.prescription_details(drug_id,dose,start_date,end_date,instruction,appointment_id,tenantid) VALUES(?,?,?,?,?,?,?)";
+	
+	public static String getAllPatientMedInfo="SELECT * FROM medicalinfosystem.patient_medical_info where patient_id=?";
+	public static String getAllPatientMedInfoById="SELECT * FROM medicalinfosystem.patient_medical_info where patient_med_info_id=?";
+	public static String insertPatientMedInfoDetails="INSERT into medicalinfosystem.patient_medical_info(appointment_id, prescription_id, allergies, warning, side_effects, patient_id) VALUES(?,?,?,?,?,?)";
 }

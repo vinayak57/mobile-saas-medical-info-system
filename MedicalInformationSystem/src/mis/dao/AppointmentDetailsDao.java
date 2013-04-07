@@ -71,7 +71,7 @@ public enum AppointmentDetailsDao {
 			String sqlStatement = SqlConstants.getAllAppointmentByStaff;
 			prest = con.prepareStatement(sqlStatement);
 			prest.setInt(1, tenantid);
-			prest.setInt(1, hospital_staff_id);
+			prest.setInt(2, hospital_staff_id);
 			rs = prest.executeQuery();
 			if (rs != null) {
 				List<AppointmentDetail> resultList = fetchMultiResults(rs);
@@ -82,7 +82,7 @@ public enum AppointmentDetailsDao {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		} finally {
 			try {
 				con.close();
