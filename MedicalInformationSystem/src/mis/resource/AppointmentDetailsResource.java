@@ -44,16 +44,17 @@ public class AppointmentDetailsResource {
 		return AppointmentDetailsDao.instance.getAppointmentById(appointment_id);
 	}
 	
-//	@GET
-//	@Path("/{tenantid}/{hospital_staff_id}")
-//	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-//	public List<AppointmentDetail> getAppointmentByStaff(@PathParam("tenantid") int tenantid, @PathParam("hospital_staff_id") int hospital_staff_id)
-//	{
-//		List<AppointmentDetail> appointmentObjs = new ArrayList<AppointmentDetail>();
-//		appointmentObjs.addAll(AppointmentDetailsDao.instance.getAllAppointmentByStaff(tenantid, hospital_staff_id).values());
-//		return appointmentObjs;
-//		//return AppointmentDetailsDao.instance.getAppointmentById(appointment_id);
-//	}
+	@GET
+	@Path("/{tenantid}/{hospital_staff_id}/appointment")
+
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<AppointmentDetail> getAppointmentByStaff(@PathParam("tenantid") int tenantid, @PathParam("hospital_staff_id") int hospital_staff_id)
+	{
+		List<AppointmentDetail> appointmentObjs = new ArrayList<AppointmentDetail>();
+		appointmentObjs.addAll(AppointmentDetailsDao.instance.getAllAppointmentByStaff(tenantid, hospital_staff_id).values());
+		return appointmentObjs;
+		//return AppointmentDetailsDao.instance.getAppointmentById(appointment_id);
+	}
 	
 	
 	@PUT

@@ -2,9 +2,6 @@ package mis.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import mis.util.CustomDateSerializer;
-import mis.util.CustomJsonDateDeserializer;
-import mis.util.DateAdapter;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
