@@ -36,6 +36,15 @@ public class AppointmentDetailsResource {
 	}
 	
 	@GET
+	@Path("/{tenantid}/{patientid}/weekly")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<AppointmentDetail> getAppointmentByPatientIdWeekly(@PathParam("patientid") int patientid) {
+		List<AppointmentDetail> appointmentObjs = new ArrayList<AppointmentDetail>();
+		appointmentObjs.addAll(AppointmentDetailsDao.instance.getAppointmentByPatientIdWeekly(patientid).values());
+		return appointmentObjs;
+	}
+	
+	@GET
 	@Path("/{tenantid}/{patientid}/{appointment_id}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public AppointmentDetail getAppointment(@PathParam("patientid") int patientid, @PathParam("appointment_id") int appointment_id)
@@ -56,6 +65,18 @@ public class AppointmentDetailsResource {
 		//return AppointmentDetailsDao.instance.getAppointmentById(appointment_id);
 	}
 	
+	
+	@GET
+	@Path("/{tenantid}/{hospital_staff_id}/appointment/weekly")
+
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<AppointmentDetail> getAppointmentByStaffWeekly(@PathParam("tenantid") int tenantid, @PathParam("hospital_staff_id") int hospital_staff_id)
+	{
+		List<AppointmentDetail> appointmentObjs = new ArrayList<AppointmentDetail>();
+		appointmentObjs.addAll(AppointmentDetailsDao.instance.getAllAppointmentByStaffWeekly(tenantid, hospital_staff_id).values());
+		return appointmentObjs;
+		//return AppointmentDetailsDao.instance.getAppointmentById(appointment_id);
+	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
