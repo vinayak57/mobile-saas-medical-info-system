@@ -104,12 +104,15 @@ public enum PatientMedInfoDao {
 				con = DBConnection.getConnection();
 				String sqlStatement = SqlConstants.insertPatientMedInfoDetails;
 				prest = con.prepareStatement(sqlStatement);
-				prest.setInt(1, presc.getAppointment_id());
-				prest.setInt(2, presc.getPrescription_id());
-				prest.setString(3, presc.getAllergies());
-				prest.setString(4, presc.getWarning());
-				prest.setString(5, presc.getSide_effects());
-				prest.setInt(6, presc.getPatient_id());
+
+				prest.setString(1, presc.getAllergies());
+				prest.setString(2, presc.getPrecautions());
+				prest.setString(3, presc.getSide_effects());
+				prest.setInt(4, presc.getPatient_id());
+				prest.setString(5, presc.getBloodgroup());
+				prest.setInt(6, presc.getWeight());
+				prest.setInt(7, presc.getHeight());
+				
 				result = prest.executeUpdate();
 
 			} catch (Exception e) {
@@ -138,11 +141,11 @@ public enum PatientMedInfoDao {
 	}
 
 	protected void populateVO(PatientMedInfo dto, ResultSet rs) throws SQLException {
-		dto.setAppointment_id(rs.getInt("appointment_id"));
-		dto.setPrescription_id(rs.getInt("prescription_id"));
-
+		dto.setWeight(rs.getInt("weight"));
+		dto.setHeight(rs.getInt("height"));
+		dto.setAllergies(rs.getString("bloodgroup"));
 		dto.setAllergies(rs.getString("allergies"));
-		dto.setWarning(rs.getString("warning"));
+		dto.setPrecautions(rs.getString("precautions"));
 		dto.setSide_effects(rs.getString("side_effects"));
 		dto.setPatient_med_info_id(rs.getInt("patient_med_info_id"));
 		dto.setPatient_id(rs.getInt("patient_id"));

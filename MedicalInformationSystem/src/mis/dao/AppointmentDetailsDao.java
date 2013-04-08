@@ -90,7 +90,7 @@ public enum AppointmentDetailsDao {
 		return apmntList;
 	}
 	
-	public Map<String, AppointmentDetail> getAllAppointmentDetails(int tenantid) {
+	public Map<String, AppointmentDetail> getAllAppointmentDetailsByPatient(int patientid) {
 
 		Map<String, AppointmentDetail> apmntList = new HashMap<String, AppointmentDetail>();
 
@@ -101,7 +101,7 @@ public enum AppointmentDetailsDao {
 			con = DBConnection.getConnection();
 			String sqlStatement = SqlConstants.getAllAppointment;
 			prest = con.prepareStatement(sqlStatement);
-			prest.setInt(1, tenantid);
+			prest.setInt(1, patientid);
 			rs = prest.executeQuery();
 			if (rs != null) {
 				List<AppointmentDetail> resultList = fetchMultiResults(rs);
@@ -140,9 +140,12 @@ public enum AppointmentDetailsDao {
 			prest.setInt(2, apmnt.getLocation_id());
 			prest.setInt(3, apmnt.getVisit_type_id());
 			prest.setInt(4, apmnt.getTenantid());
+
 			
 			System.out.println(apmnt.getAppointment_date().toString());
 			prest.setTimestamp(5, new Timestamp(apmnt.getAppointment_date().getTime()));
+			prest.setInt(6, apmnt.getPatient_id());
+			prest.setInt(7, apmnt.getPrescription_id());
 			result = prest.executeUpdate();
 
 		} catch (Exception e) {

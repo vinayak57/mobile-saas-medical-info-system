@@ -18,6 +18,9 @@ public class AppointmentDetail implements Serializable {
 	//private String appointment_time;
 	private int location_id;
 	private int tenantid;
+	private int patient_id;
+	private int prescription_id;
+	
 	
 	public int getAppointment_id() {
 		return appointment_id;
@@ -65,6 +68,18 @@ public class AppointmentDetail implements Serializable {
 	}
 	public void setTenantid(int tenantid) {
 		this.tenantid = tenantid;
+	}
+	public int getPatient_id() {
+		return patient_id;
+	}
+	public void setPatient_id(int patient_id) {
+		this.patient_id = patient_id;
+	}
+	public int getPrescription_id() {
+		return prescription_id;
+	}
+	public void setPrescription_id(int prescription_id) {
+		this.prescription_id = prescription_id;
 	}
 
 	

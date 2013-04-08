@@ -8,10 +8,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PatientMedInfo implements Serializable{
 
 	private int patient_med_info_id;
-	private int appointment_id;
-	private int prescription_id;
+private int height;
+private int weight;
+private String bloodgroup;
+
 	private String allergies;
-	private String warning;
+	private String precautions;
 	private String side_effects;
 	private int patient_id;
 	
@@ -21,29 +23,18 @@ public class PatientMedInfo implements Serializable{
 	public void setPatient_med_info_id(int patient_med_info_id) {
 		this.patient_med_info_id = patient_med_info_id;
 	}
-	public int getAppointment_id() {
-		return appointment_id;
-	}
-	public void setAppointment_id(int appointment_id) {
-		this.appointment_id = appointment_id;
-	}
-	public int getPrescription_id() {
-		return prescription_id;
-	}
-	public void setPrescription_id(int prescription_id) {
-		this.prescription_id = prescription_id;
-	}
+	
 	public String getAllergies() {
 		return allergies;
 	}
 	public void setAllergies(String allergies) {
 		this.allergies = allergies;
 	}
-	public String getWarning() {
-		return warning;
+	public String getPrecautions() {
+		return precautions;
 	}
-	public void setWarning(String warning) {
-		this.warning = warning;
+	public void setPrecautions(String precautions) {
+		this.precautions = precautions;
 	}
 	public String getSide_effects() {
 		return side_effects;
@@ -56,6 +47,24 @@ public class PatientMedInfo implements Serializable{
 	}
 	public void setPatient_id(int patient_id) {
 		this.patient_id = patient_id;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	public String getBloodgroup() {
+		return bloodgroup;
+	}
+	public void setBloodgroup(String bloodgroup) {
+		this.bloodgroup = bloodgroup;
 	}
 	
 	

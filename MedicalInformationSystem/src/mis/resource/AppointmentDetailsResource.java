@@ -27,18 +27,18 @@ public class AppointmentDetailsResource {
 	String id;
 	
 	@GET
-	@Path("/{tenantid}")
+	@Path("/{tenantid}/{patientid}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public List<AppointmentDetail> getAppointments(@PathParam("tenantid") int tenantid) {
+	public List<AppointmentDetail> getAppointments(@PathParam("patientid") int patientid) {
 		List<AppointmentDetail> appointmentObjs = new ArrayList<AppointmentDetail>();
-		appointmentObjs.addAll(AppointmentDetailsDao.instance.getAllAppointmentDetails(tenantid).values());
+		appointmentObjs.addAll(AppointmentDetailsDao.instance.getAllAppointmentDetailsByPatient(patientid).values());
 		return appointmentObjs;
 	}
 	
 	@GET
-	@Path("/{tenantid}/{appointment_id}")
+	@Path("/{tenantid}/{patientid}/{appointment_id}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public AppointmentDetail getAppointment(@PathParam("tenantid") int tenantid, @PathParam("appointment_id") int appointment_id)
+	public AppointmentDetail getAppointment(@PathParam("patientid") int patientid, @PathParam("appointment_id") int appointment_id)
 	{
 
 		return AppointmentDetailsDao.instance.getAppointmentById(appointment_id);

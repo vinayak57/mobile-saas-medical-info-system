@@ -14,7 +14,6 @@ public class Prescription implements Serializable{
 	private Date start_date;
 	private Date end_date;
 	private String instruction;
-	private int appointment_id;
 	private int tenantid;
 	
 	
@@ -54,12 +53,7 @@ public class Prescription implements Serializable{
 	public void setInstruction(String instruction) {
 		this.instruction = instruction;
 	}
-	public int getAppointment_id() {
-		return appointment_id;
-	}
-	public void setAppointment_id(int appointment_id) {
-		this.appointment_id = appointment_id;
-	}
+	
 	public int getTenantid() {
 		return tenantid;
 	}
