@@ -162,7 +162,7 @@ public class Test {
 	{
 		try{
     
-		String input = "{\"visit_type_id\":\"1\",\"hospital_staff_id\":\"1\",\"location_id\":\"3\",\"appointment_date\":\"2011-03-01T20:27:05\",\"tenantid\":\"6\"}";
+		String input = "{\"visit_type_id\":\"1\",\"hospital_staff_id\":\"1\",\"location_id\":\"3\",\"appointment_date\":\"2011-03-01T20:27:05\",\"tenantid\":\"6\",\"patient_id\":\"4\",\"prescription_id\":\"6\"}";
 		ClientResponse response = service.path("rest").path("appointments").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
@@ -237,7 +237,7 @@ public class Test {
 	{
 		try{
     
-		String input = "{\"appointment_id\":\"16\",\"prescription_id\":\"4\",\"allergies\":\"viral\",\"warning\":\"no ice cream\",\"side_effects\":\"cold\",\"patient_id\":\"5\"}";
+		String input = "{\"bloodgroup\":\"O+\",\"weight\":\"16\",\"height\":\"4\",\"allergies\":\"viral\",\"precautions\":\"no ice cream\",\"side_effects\":\"cold\",\"patient_id\":\"5\"}";
 		ClientResponse response = service.path("rest").path("patientmedicalinfo").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
@@ -269,10 +269,10 @@ public class Test {
 		//insertDrug();
 		//insertLocation();
 		//insertVisitType();
-		//insertAppointmentDetails();
+		insertAppointmentDetails();
 		//changePassword();
 		//insertPrescription();
-		insertPatientMedInfo();
+		//insertPatientMedInfo();
 //		System.out.println(service.path("rest").path("appointments").path("6")
 //				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
