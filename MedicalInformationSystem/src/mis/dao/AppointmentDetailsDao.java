@@ -54,6 +54,43 @@ public enum AppointmentDetailsDao {
 		return apmntObj;
 	}
 
+	
+	
+	public Map<String, AppointmentDetail> getAllAppointmentByStaffWeekly(int tenantid, int hospital_staff_id)
+	{
+		Map<String, AppointmentDetail> apmntList = new HashMap<String, AppointmentDetail>();
+
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement prest = null;
+		try {
+			con = DBConnection.getConnection();
+			String sqlStatement = SqlConstants.getAllAppointmentByStaffWeekly;
+			prest = con.prepareStatement(sqlStatement);
+			prest.setInt(1, hospital_staff_id);
+			rs = prest.executeQuery();
+			if (rs != null) {
+				List<AppointmentDetail> resultList = fetchMultiResults(rs);
+
+				for (AppointmentDetail appmnt : resultList)
+					apmntList.put(String.valueOf(userCount++), appmnt);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return apmntList;
+	}
+	
 	public Map<String, AppointmentDetail> getAllAppointmentByStaff(int tenantid, int hospital_staff_id)
 	{
 		Map<String, AppointmentDetail> apmntList = new HashMap<String, AppointmentDetail>();
@@ -89,6 +126,43 @@ public enum AppointmentDetailsDao {
 
 		return apmntList;
 	}
+	
+	
+	public Map<String, AppointmentDetail> getAppointmentByPatientIdWeekly(int patientid) {
+
+		Map<String, AppointmentDetail> apmntList = new HashMap<String, AppointmentDetail>();
+
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement prest = null;
+		try {
+			con = DBConnection.getConnection();
+			String sqlStatement = SqlConstants.getAllAppointmentsWeekly;
+			prest = con.prepareStatement(sqlStatement);
+			prest.setInt(1, patientid);
+			rs = prest.executeQuery();
+			if (rs != null) {
+				List<AppointmentDetail> resultList = fetchMultiResults(rs);
+
+				for (AppointmentDetail appmnt : resultList)
+					apmntList.put(String.valueOf(userCount++), appmnt);
+
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return apmntList;
+	}
+	
 	
 	public Map<String, AppointmentDetail> getAllAppointmentDetailsByPatient(int patientid) {
 
