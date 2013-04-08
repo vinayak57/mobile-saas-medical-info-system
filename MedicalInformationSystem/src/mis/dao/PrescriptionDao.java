@@ -108,9 +108,7 @@ public enum PrescriptionDao {
 				prest.setTimestamp(3, new Timestamp(presc.getStart_date().getTime()));
 				prest.setTimestamp(4, new Timestamp(presc.getEnd_date().getTime()));
 				prest.setString(5, presc.getInstruction());
-				System.out.println(presc.getAppointment_id());
-				prest.setInt(6, presc.getAppointment_id());
-				prest.setInt(7, presc.getTenantid());
+				prest.setInt(6, presc.getTenantid());
 				result = prest.executeUpdate();
 
 			} catch (Exception e) {
@@ -145,7 +143,6 @@ public enum PrescriptionDao {
 		dto.setStart_date(new Date(rs.getTimestamp("start_date").getTime()));
 		dto.setEnd_date(new Date(rs.getTimestamp("end_date").getTime()));
 		dto.setInstruction(rs.getString("instruction"));
-		dto.setAppointment_id(rs.getInt("appointment_id"));
 		dto.setTenantid(rs.getInt("tenantid"));
 
 	}
