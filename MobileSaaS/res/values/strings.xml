@@ -15,5 +15,13 @@
     <string name="title_activity_map">Your Location</string>
     <string name="title_activity_home_clinical">Home_Clinical</string>
     <string name="title_activity_list_images">List of Images</string>
+    <string name="title_activity_edit_profile">Edit Profile</string>
+    <string name="title_activity_change_password">Change Password</string>
+    <string name="title_activity_update_profile">Update Profile</string>
+    <string name="title_activity_view_data">View Details</string>
+    <string name="title_activity_list_appointments">List of Appointments</string>
+    <string name="title_activity_home_doctor">Home Doctor</string>
+    <string name="title_activity_doctor_appointment">Manage Appointment</string>
+    <string name="title_activity_personal_hostory">Personal Data</string>
 
 </resources>
