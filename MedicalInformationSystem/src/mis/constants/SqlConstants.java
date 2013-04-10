@@ -38,14 +38,16 @@ public class SqlConstants {
 	
 	public static String getAllAppointment="SELECT * FROM medicalinfosystem.appointment_details where patient_id=?";
 	public static String getAppointmentByid="SELECT * FROM medicalinfosystem.appointment_details where appointment_id=?";
-	public static String insertAppointment="INSERT into medicalinfosystem.appointment_details(hospital_staff_id,location_id,visit_type_id, tenantid, appointment_date, patient_id, prescription_id) VALUES(?,?,?,?,?,?,?)";
+	public static String insertAppointment="INSERT into medicalinfosystem.appointment_details(hospital_staff_id,location_id,visit_type_id, tenantid, appointment_date, patient_id) VALUES(?,?,?,?,?,?)";
 	public static String getAllAppointmentByStaff="SELECT * FROM medicalinfosystem.appointment_details where tenantid=? and hospital_staff_id=?";
 	public static String getAllAppointmentsWeekly="SELECT * FROM medicalinfosystem.appointment_details where  patient_id=? and appointment_date >= CURDATE() and appointment_date < DATE_ADD(CURDATE(), INTERVAL 7 DAY);";
 	public static String getAllAppointmentByStaffWeekly="SELECT * FROM medicalinfosystem.appointment_details where  hospital_staff_id=? and appointment_date >= CURDATE() and appointment_date < DATE_ADD(CURDATE(), INTERVAL 7 DAY);";
+	public static String updateAppointment="UPDATE medicalinfosystem.appointment_details SET hospital_staff_id = ?,location_id = ?,visit_type_id = ?, tenantid = ?, appointment_date=?, patient_id=? WHERE appointment_id =?";
 	
 	public static String getAllPrescription = "SELECT * FROM medicalinfosystem.prescription_details where tenantid=?";
 	public static String getPrescriptionById = "SELECT * FROM medicalinfosystem.prescription_details where prescription_id=?";
-	public static String insertPrescriptionDetails = "INSERT into medicalinfosystem.prescription_details(drug_id,dose,start_date,end_date,instruction,tenantid) VALUES(?,?,?,?,?,?)";
+	public static String insertPrescriptionDetails = "INSERT into medicalinfosystem.prescription_details(drug_id,dose,start_date,end_date,instruction,tenantid,appointment_id) VALUES(?,?,?,?,?,?,?)";
+	public static String getAllPrescriptionByAppointment = "SELECT * FROM medicalinfosystem.prescription_details where appointment_id=?";
 	
 	public static String getAllPatientMedInfo="SELECT * FROM medicalinfosystem.patient_medical_info where patient_id=?";
 	public static String getAllPatientMedInfoById="SELECT * FROM medicalinfosystem.patient_medical_info where patient_med_info_id=?";

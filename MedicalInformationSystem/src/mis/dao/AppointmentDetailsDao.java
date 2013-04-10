@@ -219,7 +219,7 @@ public enum AppointmentDetailsDao {
 			System.out.println(apmnt.getAppointment_date().toString());
 			prest.setTimestamp(5, new Timestamp(apmnt.getAppointment_date().getTime()));
 			prest.setInt(6, apmnt.getPatient_id());
-			prest.setInt(7, apmnt.getPrescription_id());
+			//prest.setInt(7, apmnt.getPrescription_id());
 			result = prest.executeUpdate();
 
 		} catch (Exception e) {
@@ -236,9 +236,43 @@ public enum AppointmentDetailsDao {
 		return result;
 	}
 
-	public int updateAppointment(AppointmentDetail appointment)
+	public int updateAppointment(AppointmentDetail apmnt)
 	{
-		return 0;
+		System.out.println("calling update");
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement prest = null;
+		int result = 0;
+
+		try {
+			con = DBConnection.getConnection();
+			String sqlStatement = SqlConstants.updateAppointment;
+			prest = con.prepareStatement(sqlStatement);
+			prest.setInt(1, apmnt.getHospital_staff_id());
+			prest.setInt(2, apmnt.getLocation_id());
+			prest.setInt(3, apmnt.getVisit_type_id());
+			prest.setInt(4, apmnt.getTenantid());
+
+			
+			//System.out.println(apmnt.getAppointment_date().toString());
+			prest.setTimestamp(5, new Timestamp(apmnt.getAppointment_date().getTime()));
+			prest.setInt(6, apmnt.getPatient_id());
+			//prest.setInt(7, apmnt.getPrescription_id());
+			prest.setInt(7, apmnt.getAppointment_id());
+			result = prest.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return result;
 	}
 
 	public int putAppointmentDetails(AppointmentDetail appointment) {
@@ -268,6 +302,7 @@ public enum AppointmentDetailsDao {
 		dto.setHospital_staff_id(rs.getInt("hospital_staff_id"));
 		dto.setLocation_id(rs.getInt("location_id"));
 		dto.setVisit_type_id(rs.getInt("visit_type_id"));
+		dto.setPatient_id(rs.getInt("patient_id"));
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //		java.util.Date utilDate = new java.util.Date();
 //		try {
@@ -279,7 +314,7 @@ public enum AppointmentDetailsDao {
 		
 		dto.setAppointment_date(new Date(rs.getTimestamp("appointment_date").getTime()));
 		dto.setTenantid(rs.getInt("tenantid"));
-		System.out.println(dto.getAppointment_date().toString());
+		//System.out.println(dto.getAppointment_date().toString());
 		
 	}
 
