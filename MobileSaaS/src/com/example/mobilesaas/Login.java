@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +44,7 @@ public class Login extends Activity {
 				uname=username.getText().toString();
 				pwd=password.getText().toString();
 				
+			
 							
 				HttpClient httpclient = new DefaultHttpClient();  
 		    	
@@ -62,11 +64,22 @@ public class Login extends Activity {
 					
 					if(code==200)
 					{
+						
+				   				 
 						JSONObject json = new JSONObject(result);
 						String pass=(String)json.get("password");
 						String userid=(String)json.get("userid");
-						if(pass.equalsIgnoreCase(pwd))
+						pass=pass.toString();
+						
+						Toast toast1 = Toast.makeText(getApplicationContext(), result,
+				   				 Toast.LENGTH_LONG);
+				   				 toast1.show();
+						Log.i(pwd, "pass");
+						Log.i(pass, "pass11");
+						
+						if(pass.toString().equalsIgnoreCase(pwd))
 						{
+							
 							Intent browserIntent = new Intent(getApplicationContext(),Home_patient.class);
 							browserIntent.putExtra("username", uname);
 							browserIntent.putExtra("userid", userid);

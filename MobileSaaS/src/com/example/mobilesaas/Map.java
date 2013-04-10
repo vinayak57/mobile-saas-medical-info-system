@@ -1,9 +1,19 @@
 package com.example.mobilesaas;
 import java.util.List;
+import java.util.Locale;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -24,6 +34,8 @@ public class Map extends MapActivity implements LocationListener {
 	private String provider;
 	private LocationManager locationManager;
 	private Location location;
+	String userid,user;
+	String add="";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,17 +81,68 @@ public class Map extends MapActivity implements LocationListener {
 		GeoPoint point = new GeoPoint((int) (location.getLatitude() * 1E6),
 				(int) (location.getLongitude() * 1E6));
 
+		Geocoder geoCoder =new Geocoder(getBaseContext(),Locale.getDefault());
+		try
+		{
+			List<Address> addresses =geoCoder.getFromLocation(point.getLatitudeE6()/ 1E6, point.getLongitudeE6() / 1E6, 1);
+			
+			if (addresses.size() > 0) 
+            {
+                for (int i=0; i<addresses.get(0).getMaxAddressLineIndex(); 
+                     i++)
+                   add += addresses.get(0).getAddressLine(i) + "\n";
+            }
+
+            Toast.makeText(getBaseContext(), add, Toast.LENGTH_LONG).show();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		// Display the longitude and lattitude on the screen using Toast.
 		Toast.makeText(
 				getBaseContext(),
 				"Latitude: " + location.getLatitude() + " Longitude: "
 						+ location.getLongitude(), Toast.LENGTH_SHORT).show();
 
-		//rest calls.
 		
+		user=getIntent().getExtras().getString("username");
+		userid=getIntent().getExtras().getString("userid");
 		
+		String json="{\"userid\":\""+userid+"\",\"emergancy_location\":\""+add+"\",\"longitude\":\""+location.getLongitude()+"\",\"lattitude\":\""+location.getLatitude()+"\" }";
 		
+		HttpClient httpClient = new DefaultHttpClient();
+
+	    try {
+	        HttpPut request = new HttpPut("http://10.0.2.2:8080/MedicalInformationSystem/rest/emergancy");
+	        StringEntity params =new StringEntity(json);
+	        request.addHeader("Content-Type", "application/json");
+	        request.setEntity(params);
+	        HttpResponse httpResponse = httpClient.execute(request);
 		
+	        if(httpResponse.getStatusLine().getStatusCode() == 201)
+	        {
+	        	Toast toast = Toast.makeText(getApplicationContext(), "Medical Care is on the way",
+		   				 Toast.LENGTH_LONG);
+		   				 toast.show();
+				/*Intent browserIntent = new Intent(getApplicationContext(), Login.class);
+				//browserIntent.putExtra("username", uname);
+				startActivity(browserIntent);*/
+	        }
+	        else
+	        {
+	        	Toast toast = Toast.makeText(getApplicationContext(), "Some Error!!",
+		   				 Toast.LENGTH_LONG);
+		   				 toast.show();
+	        	
+	        }
+	        
+	    }
+	    catch(Exception e)
+	    {
+	    	e.printStackTrace();
+	    }
+
 		mapController.animateTo(point);
 		mapController.setZoom(16);
 		mapView.invalidate();
