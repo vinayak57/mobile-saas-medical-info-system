@@ -43,6 +43,16 @@ public class PrescriptionResource {
 		return PrescriptionDao.instance.getPrescriptionById(prescription_id);
 	}
 	
+	@GET
+	@Path("/{tenantid}/{appointment_id}/appointment")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<Prescription> getPrescriptionByAppointment(@PathParam("tenantid") int tenantid, @PathParam("appointment_id") int appointment_id)
+	{
+		List<Prescription> prescObjs = new ArrayList<Prescription>();
+		prescObjs.addAll(PrescriptionDao.instance.getPrescriptionByAppointmentId(appointment_id).values());
+		return prescObjs;
+			}
+	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response putPrescription(Prescription prescription) {

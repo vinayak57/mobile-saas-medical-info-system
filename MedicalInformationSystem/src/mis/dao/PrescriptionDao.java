@@ -26,6 +26,42 @@ public enum PrescriptionDao {
 	private PrescriptionDao() {
 	}
 	
+	
+	
+	public Map<String, Prescription> getPrescriptionByAppointmentId(int appointment_id) {
+		Map<String, Prescription> prescList = new HashMap<String, Prescription>();
+		
+		Prescription prescObj = null;
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement prest = null;
+		try {
+			con = DBConnection.getConnection();
+			String sqlStatement = SqlConstants.getAllPrescriptionByAppointment;
+			prest = con.prepareStatement(sqlStatement);
+			prest.setInt(1, appointment_id);
+			rs = prest.executeQuery();
+			if (rs != null) {
+				List<Prescription> resultList = fetchMultiResults(rs);
+
+				for (Prescription medInfo : resultList)
+					prescList.put(String.valueOf(userCount++), medInfo);
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return prescList;
+	}
+	
 	public Map<String, Prescription> getAllPrescription(int tenantid) {
 		Map<String, Prescription> prescList = new HashMap<String, Prescription>();
 		
@@ -109,6 +145,7 @@ public enum PrescriptionDao {
 				prest.setTimestamp(4, new Timestamp(presc.getEnd_date().getTime()));
 				prest.setString(5, presc.getInstruction());
 				prest.setInt(6, presc.getTenantid());
+				prest.setInt(7, presc.getAppointment_id());
 				result = prest.executeUpdate();
 
 			} catch (Exception e) {
@@ -144,6 +181,7 @@ public enum PrescriptionDao {
 		dto.setEnd_date(new Date(rs.getTimestamp("end_date").getTime()));
 		dto.setInstruction(rs.getString("instruction"));
 		dto.setTenantid(rs.getInt("tenantid"));
+		dto.setAppointment_id(rs.getInt("appointment_id"));
 
 	}
 
