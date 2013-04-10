@@ -23,46 +23,41 @@
         android:layout_gravity="center|top"
         android:textSize="23sp"        />
     
-    <Button
-            android:id="@+id/bMedicalHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Medical history"
-            android:layout_marginTop="50dp" 
-            android:layout_gravity="left"/>
-    
+      
     <Button
             android:id="@+id/bAllergies"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Allergies"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="right" /> 
+            android:layout_marginTop="120dp"
+            android:layout_gravity="center_horizontal" /> 
             
        <Button
             android:id="@+id/bSideEffects"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Side Effects"
-            android:layout_marginTop="100dp" 
-            android:layout_gravity="right"/>
+            android:layout_marginTop="170dp" 
+            android:layout_gravity="center_horizontal"/>
     
     <Button
             android:id="@+id/bPrecautions"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Precaustions"
-            android:layout_marginTop="100dp"
-            android:layout_gravity="left" />
+            android:text="Precautions"
+            android:layout_marginTop="220dp"
+            android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:id="@+id/tvDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Large Text"
-        android:layout_marginTop="170dp"
-        android:layout_gravity="center_horizontal"
-        />
+     <Button
+            android:id="@+id/bPerson"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="View History"
+            android:layout_marginTop="270dp"
+            android:layout_gravity="center_horizontal" /> 
+  
+    
+ 
     
             </FrameLayout>
 </LinearLayout>

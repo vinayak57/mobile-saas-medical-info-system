@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="30dp"
+        android:background="#70D0D5D9" >
+
+
+	<Button 
+	    android:id="@+id/bChangePassword"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Change Password"
+	    android:textSize="15sp"
+	    android:layout_gravity="center_horizontal"
+	    android:layout_marginTop="130dp"
+	    
+	    />
+	
+	<Button 
+	    android:id="@+id/bUpdateProfile"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Update Profile"
+	    android:textSize="15sp"
+	    android:layout_gravity="center_horizontal"
+	    android:layout_marginTop="190dp"
+	    
+	    />
+
+
+
+
+
+</FrameLayout>
+</LinearLayout>
+
