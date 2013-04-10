@@ -16,7 +16,7 @@
         
         
         <EditText
-            android:id="@+id/etfname"
+            android:id="@+id/etufname"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -25,7 +25,7 @@
             android:hint="First Name" />
 
         <EditText
-            android:id="@+id/etLname"
+            android:id="@+id/etuLname"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -34,7 +34,7 @@
             android:hint="Last Name" />
         
         <EditText
-            android:id="@+id/etEmail"
+            android:id="@+id/etuEmail"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -43,7 +43,7 @@
             android:hint="Email id" />
         
         <EditText
-            android:id="@+id/etPhone"
+            android:id="@+id/etuPhone"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -62,7 +62,7 @@
 			    android:textAppearance="?android:attr/textAppearanceMedium"/>
 		
 		<RadioGroup
-		    android:id="@+id/Gender"
+		    android:id="@+id/uGender"
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:orientation="horizontal">
@@ -70,7 +70,7 @@
 			
 		    
 		    <RadioButton
-            android:id="@+id/rbMale"
+            android:id="@+id/rbuMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="140dp"
@@ -78,7 +78,7 @@
             android:text="Male" />
         
         <RadioButton 
-           android:id="@+id/rbfemale"
+           android:id="@+id/rbufemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="140dp"
@@ -88,7 +88,7 @@
         </RadioGroup>
         
 		<EditText
-            android:id="@+id/etDOB"
+            android:id="@+id/etuDOB"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -97,7 +97,7 @@
             android:hint="DOB(YYYY-MM-DD)" />
 		
 		<EditText
-            android:id="@+id/etAddr1"
+            android:id="@+id/etuAddr1"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -106,7 +106,7 @@
             android:hint="Address1" />
 		
 		<EditText
-            android:id="@+id/etAddr2"
+            android:id="@+id/etuAddr2"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -115,7 +115,7 @@
             android:hint="Address2" />
 			
 		<EditText
-            android:id="@+id/etCity"
+            android:id="@+id/etuCity"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -124,7 +124,7 @@
             android:hint="City" />
 			
 		<EditText
-            android:id="@+id/etState"
+            android:id="@+id/etuState"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -133,7 +133,7 @@
             android:hint="State" />
 			
 			<EditText
-            android:id="@+id/etZip"
+            android:id="@+id/etuZip"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -142,15 +142,15 @@
             android:hint="Zip" />
 			
 			 <Button
-            android:id="@+id/bRegister"
+            android:id="@+id/bUpdateDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="Update"
             android:layout_marginTop="380dp"
             android:layout_gravity="right" />
 			 
 			  <Button
-            android:id="@+id/bCancel"
+            android:id="@+id/bUpdateDetailsCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
