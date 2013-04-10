@@ -10,29 +10,29 @@ import java.util.List;
 import java.util.Map;
 
 import mis.constants.SqlConstants;
+import mis.model.Hospital;
 import mis.model.HospitalStaff;
 import mis.model.User;
 import mis.util.DBConnection;
 
-public enum HospitalStaffDao {
+public enum HospitalDao {
+
 	instance;
 	private static int userCount;
-
-	private HospitalStaffDao() {
-	}
 	
+	HospitalDao(){}
 	
-	public HospitalStaff getStaffById(int userid, int tenantid)
+	public Hospital getHospitalById(int hospital_id)
 	{
-		HospitalStaff staffObj = null;
+		Hospital staffObj = null;
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement prest = null;
 		try {
 			con = DBConnection.getConnection();
-			String sqlStatement = SqlConstants.getStaffByid;
+			String sqlStatement = SqlConstants.getHospitalByid;
 			prest = con.prepareStatement(sqlStatement);
-			prest.setInt(1, userid);
+			prest.setInt(1, hospital_id);
 			//prest.setInt(2, tenantid);
 			rs = prest.executeQuery();
 			if (rs != null) {
@@ -54,24 +54,23 @@ public enum HospitalStaffDao {
 		return staffObj;
 	}
 	
-	
-	public Map<String, HospitalStaff> getAllStaff(int tenantid) {
+	public Map<String, Hospital> getAllHospital(int tenantid) {
 
-		Map<String, HospitalStaff> staffList = new HashMap<String, HospitalStaff>();
+		Map<String, Hospital> staffList = new HashMap<String, Hospital>();
 
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement prest = null;
 		try {
 			con = DBConnection.getConnection();
-			String sqlStatement = SqlConstants.getAllStaff;
+			String sqlStatement = SqlConstants.getAllHospital;
 			prest = con.prepareStatement(sqlStatement);
 			prest.setInt(1, tenantid);
 			rs = prest.executeQuery();
 			if (rs != null) {
-				List<HospitalStaff> resultList = fetchMultiResults(rs);
+				List<Hospital> resultList = fetchMultiResults(rs);
 
-				for (HospitalStaff staff : resultList)
+				for (Hospital staff : resultList)
 					staffList.put(String.valueOf(userCount++), staff);
 
 			}
@@ -91,8 +90,7 @@ public enum HospitalStaffDao {
 	}
 	
 	
-	
-	public int putStaffDetails(HospitalStaff staff) {
+	public int putHospitalDetails(Hospital hospital) {
 
 		Connection con = null;
 		ResultSet rs = null;
@@ -100,32 +98,22 @@ public enum HospitalStaffDao {
 		PreparedStatement prest1 = null;
 		int result = 0;
 
-		User user = new User();
-		user.setUsername(staff.getUsername());
-		user.setPassword(staff.getPassword());
-		user.setRoleid(staff.getRoleid());
-		user.setTenantid(staff.getTenantid());
-		System.out.println(user.getUsername() + user.getTenantid());
-		if (UserDao.instance.getUserByUsername(user.getUsername(),
-				user.getTenantid()) == null) {
-			System.out.println("calling insert");
-			UserDao.instance.putUserDetails(user);
-			User userobj = UserDao.instance.getUserByUsername(
-					user.getUsername(), user.getTenantid());
-			if (userobj != null) {
+//		Hospital obj = new Hospital();
+//		obj.setHospital_name(hospital.getHospital_name());
+//		obj.setLocation_id(hospital.getLocation_id());
+//		obj.setTenantid(hospital.getTenantid());
+//		
+		
+			Hospital hospobj = getHospitalById(hospital.getHospital_id());
+			if (hospobj == null) {
 				// insert
 				try {
 					con = DBConnection.getConnection();
-					String sqlStatement = SqlConstants.insertStaff;
+					String sqlStatement = SqlConstants.insertHospital;
 					prest = con.prepareStatement(sqlStatement);
-					prest.setString(1, staff.getFname());
-					prest.setString(2, staff.getLname());
-					prest.setString(3, staff.getDetails());
-					prest.setString(4, staff.getSpeciality());
-					// TODO: dob and location id
-					
-					prest.setInt(5, userobj.getUserid());
-					prest.setInt(6, staff.getHospital_id());
+					prest.setString(1, hospital.getHospital_name());
+					prest.setInt(2, hospital.getLocation_id());
+					prest.setInt(3, hospital.getTenantid());
 					result = prest.executeUpdate();
 
 				} catch (Exception e) {
@@ -140,7 +128,6 @@ public enum HospitalStaffDao {
 				}
 
 			}
-		}
 
 		else {
 			System.out.println("calling update");
@@ -148,14 +135,10 @@ public enum HospitalStaffDao {
 				con = DBConnection.getConnection();
 				String sqlStatement = SqlConstants.updateStaff;
 				prest1 = con.prepareStatement(sqlStatement);
-				prest1.setString(1, staff.getFname());
-				prest1.setString(2, staff.getLname());
-				prest1.setString(3, staff.getDetails());
-				prest1.setString(4, staff.getSpeciality());
-				// TODO: dob and location id
-				prest1.setInt(5, staff.getHospital_id());
-				prest1.setInt(6, staff.getHospitalStaffId());
-				
+				prest1.setString(1, hospital.getHospital_name());
+				prest1.setInt(2, hospital.getLocation_id());
+				prest1.setInt(3, hospital.getTenantid());
+				prest1.setInt(4, hospital.getHospital_id());
 				result = prest1.executeUpdate();
 			} catch (Exception e) {
 				System.out.println(e);
@@ -173,9 +156,10 @@ public enum HospitalStaffDao {
 
 	}
 	
-	protected HospitalStaff fetchSingleResult(ResultSet rs) throws SQLException {
+	
+	protected Hospital fetchSingleResult(ResultSet rs) throws SQLException {
 		if (rs.next()) {
-			HospitalStaff dto = new HospitalStaff();
+			Hospital dto = new Hospital();
 			populateVO(dto, rs);
 			return dto;
 		} else {
@@ -183,23 +167,17 @@ public enum HospitalStaffDao {
 		}
 	}
 
-	protected void populateVO(HospitalStaff dto, ResultSet rs) throws SQLException {
-		dto.setUsername(rs.getString("userName"));
-		dto.setPassword(rs.getString("password"));
-		dto.setRoleid(rs.getInt("roleid"));
+	protected void populateVO(Hospital dto, ResultSet rs) throws SQLException {
+		dto.setHospital_name(rs.getString("hospital_name"));
+		dto.setHospital_id(rs.getInt("hospital_id"));
 		dto.setTenantid(rs.getInt("tenantid"));
-		dto.setHospitalStaffId(rs.getInt("hospital_staff_id"));
-		dto.setFname(rs.getString("fname"));
-		dto.setLname(rs.getString("lname"));
-		dto.setDetails(rs.getString("details"));
-		dto.setSpeciality(rs.getString("speciality"));
-		dto.setUserid(rs.getInt("userid"));
+		dto.setLocation_id(rs.getInt("location_id"));
 	}
 
-	protected List<HospitalStaff> fetchMultiResults(ResultSet rs) throws SQLException {
-		List<HospitalStaff> resultList = new ArrayList<HospitalStaff>();
+	protected List<Hospital> fetchMultiResults(ResultSet rs) throws SQLException {
+		List<Hospital> resultList = new ArrayList<Hospital>();
 		while (rs.next()) {
-			HospitalStaff dto = new HospitalStaff();
+			Hospital dto = new Hospital();
 			populateVO(dto, rs);
 			resultList.add(dto);
 		}

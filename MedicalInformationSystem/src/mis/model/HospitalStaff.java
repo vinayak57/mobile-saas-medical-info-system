@@ -7,14 +7,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class HospitalStaff  extends User implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int hospitalStaffId;
 	private String fname;
 	private String lname;
 	private String details;
 	private String speciality;
 	private int userId;
+	private int hospital_id;
 	
 	
+	public int getHospital_id() {
+		return hospital_id;
+	}
+	public void setHospital_id(int hospital_id) {
+		this.hospital_id = hospital_id;
+	}
 	public int getHospitalStaffId() {
 		return hospitalStaffId;
 	}

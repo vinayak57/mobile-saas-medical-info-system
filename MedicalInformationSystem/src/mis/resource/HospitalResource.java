@@ -14,14 +14,14 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import mis.dao.HospitalDao;
 import mis.dao.HospitalStaffDao;
-import mis.dao.PatientDao;
+import mis.model.Hospital;
 import mis.model.HospitalStaff;
-import mis.model.Patient;
 import mis.model.User;
 
-@Path("/staff")
-public class HospitalStaffResource {
+@Path("/hospital")
+public class HospitalResource {
 
 	UriInfo uriInfo;
 	Request request;
@@ -30,30 +30,31 @@ public class HospitalStaffResource {
 	@GET
 	@Path("/{tenantid}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public List<HospitalStaff> getAllStaff(@PathParam("tenantid") int tenantid) {
-		List<HospitalStaff> hospitalObjs = new ArrayList<HospitalStaff>();
-		hospitalObjs.addAll(HospitalStaffDao.instance.getAllStaff(tenantid).values());
+	public List<Hospital> getAllHospital(@PathParam("tenantid") int tenantid) {
+		List<Hospital> hospitalObjs = new ArrayList<Hospital>();
+		hospitalObjs.addAll(HospitalDao.instance.getAllHospital(tenantid).values());
 		return hospitalObjs;
 	}
 	
-	@GET
-	@Path("/{tenantid}/{userid}")
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public User getUser(@PathParam("tenantid") int tenantid, @PathParam("userid") int userid)
-	{
-
-		return HospitalStaffDao.instance.getStaffById(userid, tenantid);
-	}
+//	@GET
+//	@Path("/{tenantid}/{location_id}")
+//	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+//	public List<Hospital> getAllHospitalByLocation(@PathParam("tenantid") int tenantid, @PathParam("location_id") int location_id)
+//	{
+//		List<Hospital> hospitalObjs = new ArrayList<Hospital>();
+//		hospitalObjs.addAll(HospitalDao.instance.getAllHospitalByLocation(tenantid,location_id).values());
+//		return hospitalObjs;
+//	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response putStaff(HospitalStaff staff) {
+	public Response putHospital(Hospital hospital) {
 		// return Response.status(201).entity(result).build();
 		//System.out.println(patient.getUsername());
-		return putAndGetResponse(staff);
+		return putAndGetResponse(hospital);
 	}
 
-	private Response putAndGetResponse(HospitalStaff staff) {
+	private Response putAndGetResponse(Hospital hospital) {
 		Response res;
 		// if (UserDao.instance.getAllUsers().containsKey(user.getUsername())) {
 		// res = Response.noContent().build();
@@ -61,13 +62,12 @@ public class HospitalStaffResource {
 		// res = Response.created(uriInfo.getAbsolutePath()).build();
 		// }
 		System.out.println("here");
-		if (HospitalStaffDao.instance.putStaffDetails(staff) != 0) {
+		if (HospitalDao.instance.putHospitalDetails(hospital) != 0) {
 			String result = "User updated";
 			return Response.status(201).entity(result).build();
 		} else {
 			return Response.noContent().build();
 		}
 	}
-	
 	
 }
