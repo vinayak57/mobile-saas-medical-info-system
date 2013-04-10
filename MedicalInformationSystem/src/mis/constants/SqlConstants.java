@@ -16,10 +16,15 @@ public class SqlConstants {
 	public static String getAllPatients = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and u.tenantid=?;";
 	public static String getPatientByid ="SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and u.userid=?;";
 	
-	public static String getStaffByid = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and s.hospital_staff_id=?;";
+	public static String getStaffByid = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and u.userid=?;";
 	public static String getAllStaff = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and u.tenantid=?;";
-	public static String insertStaff ="INSERT into medicalinfosystem.hospital_staff(fname,lname,details,speciality,userid) VALUES(?,?,?,?,?)";
-	public static String updateStaff = "UPDATE medicalinfosystem.hospital_staff SET fname=?,lname=?,details=?,speciality=? WHERE hospital_staff_id = ?";
+	public static String insertStaff ="INSERT into medicalinfosystem.hospital_staff(fname,lname,details,speciality,userid, hospital_id) VALUES(?,?,?,?,?,?)";
+	public static String updateStaff = "UPDATE medicalinfosystem.hospital_staff SET fname=?,lname=?,details=?,speciality=?, hospital_id=? WHERE hospital_staff_id = ?";
+	
+	public static String getAllHospital = "SELECT * FROM medicalinfosystem.hospital where tenantid=?";
+	public static String getHospitalByid = "SELECT * FROM medicalinfosystem.hospital where hospital_id=?";
+	public static String insertHospital = "INSERT into medicalinfosystem.hospital(hospital_name,location_id,tenantid) VALUES(?,?,?)";
+	public static String updateHospital = "UPDATE medicalinfosystem.hospital SET hospital_name=? , location_id =? ,tenantid = ? WHERE hospital_id = ?";
 	
 	public static String getDrugByid="SELECT * FROM medicalinfosystem.drug where drug_id=?";
 	public static String getAllDrug="SELECT * FROM medicalinfosystem.drug where tenantid=?";
