@@ -50,6 +50,8 @@ public class Signup2 extends Activity {
         male=(RadioButton)findViewById(R.id.rbMale);
         female=(RadioButton)findViewById(R.id.rbfemale);
         
+        male.setChecked(true);
+        
         cancel=(Button)findViewById(R.id.bCancel);
         register=(Button)findViewById(R.id.bRegister);
         
@@ -102,9 +104,12 @@ public class Signup2 extends Activity {
 					gender1="female";
 				
 				
-				if(false) //check for validations
+				if(fname1.equalsIgnoreCase("") || lname1.equalsIgnoreCase("") || email1.equalsIgnoreCase("") || phone12.equalsIgnoreCase("") || dob1.equalsIgnoreCase("") || 
+						addr11.equalsIgnoreCase("") || addr21.equalsIgnoreCase("") || city1.equalsIgnoreCase("") || state1.equalsIgnoreCase("") || zip12.equalsIgnoreCase("")) //check for validations
 				{
-					
+					Toast toast = Toast.makeText(getApplicationContext(), "Fields can not be empty",
+			   				 Toast.LENGTH_LONG);
+			   				 toast.show();
 				}
 				else
 				{
@@ -145,8 +150,8 @@ public class Signup2 extends Activity {
 				        	Toast toast = Toast.makeText(getApplicationContext(), "Object Created!!",
 					   				 Toast.LENGTH_LONG);
 					   				 toast.show();
-							Intent browserIntent = new Intent(getApplicationContext(), Home_patient.class);
-							browserIntent.putExtra("username", uname);
+							Intent browserIntent = new Intent(getApplicationContext(), Login.class);
+							//browserIntent.putExtra("username", uname);
 							startActivity(browserIntent);
 				        }
 				        else
@@ -164,7 +169,7 @@ public class Signup2 extends Activity {
 				    }
 					
 					
-				}//else
+				}// end of else
 				
 				
 			}
