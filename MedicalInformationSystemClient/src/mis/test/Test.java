@@ -140,6 +140,24 @@ public class Test {
 		}
 	}
 	
+	public static void insertHospital()
+	{
+		try{
+    
+		String input = "{\"hospital_name\":\"Kaiser Sunnyvale\",\"location_id\":\"7\",\"tenantid\":\"6\"}";
+		ClientResponse response = service.path("rest").path("hospital").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public static void insertVisitType()
 	{
 		try{
@@ -162,7 +180,25 @@ public class Test {
 	{
 		try{
     
-		String input = "{\"visit_type_id\":\"1\",\"hospital_staff_id\":\"1\",\"location_id\":\"3\",\"appointment_date\":\"2011-03-01T20:27:05\",\"tenantid\":\"6\",\"patient_id\":\"4\",\"prescription_id\":\"6\"}";
+		String input = "{\"visit_type_id\":\"1\",\"hospital_staff_id\":\"1\",\"location_id\":\"3\",\"appointment_date\":\"2011-03-01T20:27:05\",\"tenantid\":\"6\",\"patient_id\":\"4\"}";
+		ClientResponse response = service.path("rest").path("appointments").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void updateAppointmentDetails()
+	{
+		try{
+    
+		String input = "{\"appointment_id\":\"16\",\"visit_type_id\":\"1\",\"hospital_staff_id\":\"2\",\"location_id\":\"3\",\"appointment_date\":\"2012-01-01T20:27:05\",\"tenantid\":\"6\",\"patient_id\":\"4\"}";
 		ClientResponse response = service.path("rest").path("appointments").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
@@ -180,7 +216,7 @@ public class Test {
 	{
 		try{
     
-		String input = "{\"username\":\"swarada\",\"password\":\"swarada\",\"tenantid\":\"6\",\"roleid\":\"12\",\"fname\":\"staff1\",\"lname\":\"staff1\",\"details\":\"physician\",\"speciality\":\"general\"}";
+		String input = "{\"username\":\"newdoc\",\"password\":\"newdoc\",\"tenantid\":\"6\",\"roleid\":\"12\",\"fname\":\"staff3\",\"lname\":\"staff3\",\"details\":\"physician\",\"speciality\":\"general\",\"hospital_id\":\"1\"}";
 		ClientResponse response = service.path("rest").path("staff").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
@@ -265,14 +301,16 @@ public class Test {
 		//updatePatient();
 		//deleteUser();
 		//getAllUsers();
-		//insertStaff();
+		insertStaff();
 		//insertDrug();
 		//insertLocation();
 		//insertVisitType();
-		insertAppointmentDetails();
+		//insertAppointmentDetails();
+		//updateAppointmentDetails();
 		//changePassword();
 		//insertPrescription();
 		//insertPatientMedInfo();
+		//insertHospital();
 //		System.out.println(service.path("rest").path("appointments").path("6")
 //				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
