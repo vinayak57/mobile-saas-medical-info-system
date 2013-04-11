@@ -29,7 +29,7 @@ public class AppointmentDetailsResource {
 	@GET
 	@Path("/{tenantid}/{patientid}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public List<AppointmentDetail> getAppointments(@PathParam("patientid") int patientid) {
+	public List<AppointmentDetail> getAppointments(@PathParam("tenantid") int tenantid, @PathParam("patientid") int patientid) {
 		List<AppointmentDetail> appointmentObjs = new ArrayList<AppointmentDetail>();
 		appointmentObjs.addAll(AppointmentDetailsDao.instance.getAllAppointmentDetailsByPatient(patientid).values());
 		return appointmentObjs;

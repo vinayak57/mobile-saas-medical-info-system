@@ -22,6 +22,37 @@ public enum HospitalStaffDao {
 	}
 	
 	
+	public List<HospitalStaff> getStaffByHospitalId(int tenantid, int hospital_id) {
+
+		List<HospitalStaff> staffList = new ArrayList<HospitalStaff>();
+
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement prest = null;
+		try {
+			con = DBConnection.getConnection();
+			String sqlStatement = SqlConstants.getAllStaffByHospital;
+			prest = con.prepareStatement(sqlStatement);
+			prest.setInt(1, tenantid);
+			prest.setInt(2, hospital_id);
+			rs = prest.executeQuery();
+			if (rs != null) {
+				staffList = fetchMultiResults(rs);
+				}
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return staffList;
+	}
 	public HospitalStaff getStaffById(int userid, int tenantid)
 	{
 		HospitalStaff staffObj = null;
@@ -194,6 +225,7 @@ public enum HospitalStaffDao {
 		dto.setDetails(rs.getString("details"));
 		dto.setSpeciality(rs.getString("speciality"));
 		dto.setUserid(rs.getInt("userid"));
+		dto.setHospital_id(rs.getInt("hospital_id"));
 	}
 
 	protected List<HospitalStaff> fetchMultiResults(ResultSet rs) throws SQLException {

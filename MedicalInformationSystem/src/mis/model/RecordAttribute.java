@@ -30,11 +30,11 @@ public class RecordAttribute implements Serializable{
 	private String severity;
 	
 	@Indexed(value=IndexDirection.ASC, name="dateCreated_1", background= true) 
-	private String dateCreated;
+	private Date dateCreated;
 	
 	
 	@Indexed(value=IndexDirection.ASC, name="dateModified_1", background= true) 
-	private String dateModified;
+	private Date dateModified;
 	
 	public RecordAttribute() {
 		super();
@@ -42,7 +42,7 @@ public class RecordAttribute implements Serializable{
 	}
 
 	public RecordAttribute(String diagnostic_area, String issue,
-			String severity, String dateCreated, String dateModified) {
+			String severity, Date dateCreated, Date dateModified) {
 		super();
 		this.diagnostic_area = diagnostic_area;
 		this.issue = issue;
@@ -86,19 +86,19 @@ public class RecordAttribute implements Serializable{
 //		this.id = id;
 //	}
 
-	public String getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(String dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public String getDateModified() {
+	public Date getDateModified() {
 		return dateModified;
 	}
 
-	public void setDateModified(String dateModified) {
+	public void setDateModified(Date dateModified) {
 		this.dateModified = dateModified;
 	}
 	

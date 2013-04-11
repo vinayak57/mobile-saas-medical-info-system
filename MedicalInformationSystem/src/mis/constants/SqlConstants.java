@@ -21,11 +21,12 @@ public class SqlConstants {
 	public static String getAllStaff = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and u.tenantid=?;";
 	public static String insertStaff ="INSERT into medicalinfosystem.hospital_staff(fname,lname,details,speciality,userid, hospital_id) VALUES(?,?,?,?,?,?)";
 	public static String updateStaff = "UPDATE medicalinfosystem.hospital_staff SET fname=?,lname=?,details=?,speciality=?, hospital_id=? WHERE hospital_staff_id = ?";
+	public static String getAllStaffByHospital = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and u.tenantid=? and s.hospital_id=?";
 	
 	public static String getAllHospital = "SELECT * FROM medicalinfosystem.hospital where tenantid=?";
 	public static String getHospitalByid = "SELECT * FROM medicalinfosystem.hospital where hospital_id=?";
-	public static String insertHospital = "INSERT into medicalinfosystem.hospital(hospital_name,location_id,tenantid) VALUES(?,?,?)";
-	public static String updateHospital = "UPDATE medicalinfosystem.hospital SET hospital_name=? , location_id =? ,tenantid = ? WHERE hospital_id = ?";
+	public static String insertHospital = "INSERT into medicalinfosystem.hospital(hospital_name,location,tenantid) VALUES(?,?,?)";
+	public static String updateHospital = "UPDATE medicalinfosystem.hospital SET hospital_name=? , location =? ,tenantid = ? WHERE hospital_id = ?";
 	
 	public static String getDrugByid="SELECT * FROM medicalinfosystem.drug where drug_id=?";
 	public static String getAllDrug="SELECT * FROM medicalinfosystem.drug where tenantid=?";
@@ -58,4 +59,8 @@ public class SqlConstants {
 	public static String getAllPatientMedInfo="SELECT * FROM medicalinfosystem.patient_medical_info where patient_id=?";
 	public static String getAllPatientMedInfoById="SELECT * FROM medicalinfosystem.patient_medical_info where patient_med_info_id=?";
 	public static String insertPatientMedInfoDetails="INSERT into medicalinfosystem.patient_medical_info(allergies, precautions, side_effects, patient_id,bloodgroup,weight, height) VALUES(?,?,?,?,?,?,?)";
+	
+	public static String getAllOpenEmergencyReq = "SELECT * FROM medicalinfosystem.emergency_request where tenantid=? and status='open'";
+	public static String getAllEmergencyReq = "SELECT * FROM medicalinfosystem.emergency_request where tenantid=? and status='open'";
+	
 }

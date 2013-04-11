@@ -112,7 +112,7 @@ public enum HospitalDao {
 					String sqlStatement = SqlConstants.insertHospital;
 					prest = con.prepareStatement(sqlStatement);
 					prest.setString(1, hospital.getHospital_name());
-					prest.setInt(2, hospital.getLocation_id());
+					prest.setString(2, hospital.getLocation());
 					prest.setInt(3, hospital.getTenantid());
 					result = prest.executeUpdate();
 
@@ -136,7 +136,7 @@ public enum HospitalDao {
 				String sqlStatement = SqlConstants.updateStaff;
 				prest1 = con.prepareStatement(sqlStatement);
 				prest1.setString(1, hospital.getHospital_name());
-				prest1.setInt(2, hospital.getLocation_id());
+				prest1.setString(2, hospital.getLocation());
 				prest1.setInt(3, hospital.getTenantid());
 				prest1.setInt(4, hospital.getHospital_id());
 				result = prest1.executeUpdate();
@@ -171,7 +171,7 @@ public enum HospitalDao {
 		dto.setHospital_name(rs.getString("hospital_name"));
 		dto.setHospital_id(rs.getInt("hospital_id"));
 		dto.setTenantid(rs.getInt("tenantid"));
-		dto.setLocation_id(rs.getInt("location_id"));
+		dto.setLocation(rs.getString("location"));
 	}
 
 	protected List<Hospital> fetchMultiResults(ResultSet rs) throws SQLException {
