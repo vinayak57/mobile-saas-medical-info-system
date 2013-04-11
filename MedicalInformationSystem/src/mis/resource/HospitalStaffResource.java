@@ -45,6 +45,14 @@ public class HospitalStaffResource {
 		return HospitalStaffDao.instance.getStaffById(userid, tenantid);
 	}
 	
+	@GET
+	@Path("/hospital/{tenantid}/{hospital_id}")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<HospitalStaff> getStaffByHospital(@PathParam("tenantid") int tenantid, @PathParam("hospital_id") int hospital_id)
+	{
+		return HospitalStaffDao.instance.getStaffByHospitalId(tenantid, hospital_id);
+	}
+	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response putStaff(HospitalStaff staff) {

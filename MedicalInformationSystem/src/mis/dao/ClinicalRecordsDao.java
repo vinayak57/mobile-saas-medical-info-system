@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.code.morphia.Datastore;
@@ -22,6 +25,7 @@ public enum ClinicalRecordsDao {
 
 	instance;
 	MongoDBHelper helper = new MongoDBHelper();
+	private static int count;
 	
 	private ClinicalRecordsDao() {
 	}
@@ -53,8 +57,17 @@ public enum ClinicalRecordsDao {
 		xray.setName("Xray1");
 		xray.setImage(imageBytes);
 
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = null;
+		try {
+			date = formatter.parse("2012-04-04 20:27:05");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		RecordAttribute attr = new RecordAttribute("leg bone", "broken",
-				"high", "2012-04-04T20:27:05", null);
+				"high",date , null);
 
 		xray.setAttr(attr);
 		Datastore ds = helper.getConnection();
@@ -70,8 +83,17 @@ public enum ClinicalRecordsDao {
 		mri.setName("MRIscan1");
 		mri.setImage(imageBytes);
 
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = null;
+		try {
+			date = formatter.parse("2013-02-01 20:27:05");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		RecordAttribute attr = new RecordAttribute("leg Bone", "fracture",
-				"High", "2013-02-01T20:27:05", null);
+				"High", date, null);
 
 		mri.setAttr(attr);
 		Datastore ds = helper.getConnection();
@@ -117,35 +139,64 @@ public enum ClinicalRecordsDao {
 		return (List<ClinicalRecords>) ds.find(ClinicalRecords.class).filter("hospital_staff_id = ", hospital_staff_id).asList();
 	}
 	
-	public List<ClinicalRecords> getAllClinicalRecordsByDiagnosticArea(String diagnostic_area)
+	public List<ClinicalRecords> getAllXRayRecordsByDiagnosticArea(String diagnostic_area)
 	{
-		//List<ClinicalRecords> recordList = new ArrayList<ClinicalRecords>();
-		
 		Datastore ds = helper.getConnection();
-		Query q = ds.createQuery(XRayRecords.class).filter("attr.diagnostic_area =", "leg bone");
-		//XRayRecords filterXray = (XRayRecords) ds.find(XRayRecords.class).filter("attr.diagnostic_area =","fracture").get();
-
-		//XRayRecords filterXray = new XRayRecords();
+		Query<XRayRecords> q = ds.createQuery(XRayRecords.class).filter("attr.diagnostic_area =", diagnostic_area);
 		XRayRecords filterXray = (XRayRecords) q.get();
-		
-		//filterXray.getName();
-		System.out.println(filterXray.getName());
-		
+		if(filterXray == null) return new ArrayList<ClinicalRecords>();
 		//Query<ClinicalRecords> query =  ds.createQuery(ClinicalRecords.class).filter("xray elem",BasicDBObjectBuilder.start())
 		
-		//ds.find
 		return (List<ClinicalRecords>) ds.find(ClinicalRecords.class).field("xray").hasThisElement(filterXray).asList();
-		
-		
+	}
+	
+	public List<ClinicalRecords> getAllXRayRecordsByIssue(String issue)
+	{
+		Datastore ds = helper.getConnection();
+		Query<XRayRecords> q = ds.createQuery(XRayRecords.class).filter("attr.issue =", issue);
+		XRayRecords filterXray = (XRayRecords) q.get();
+		if(filterXray == null) return new ArrayList<ClinicalRecords>();
+		return (List<ClinicalRecords>) ds.find(ClinicalRecords.class).field("xray").hasThisElement(filterXray).asList();
+	}
+	
+	public List<ClinicalRecords> getAllXRayRecordsBySeverity(String severity)
+	{
+		Datastore ds = helper.getConnection();
+		Query<XRayRecords> q = ds.createQuery(XRayRecords.class).filter("attr.severity =", severity);
+		XRayRecords filterXray = (XRayRecords) q.get();
+		if(filterXray == null) return new ArrayList<ClinicalRecords>();
+		return (List<ClinicalRecords>) ds.find(ClinicalRecords.class).field("xray").hasThisElement(filterXray).asList();
+	}
+	
+	public List<ClinicalRecords> getAllXRayRecordsByDateCreatedRange(Date start, Date end)
+	{
+		Datastore ds = helper.getConnection();
+		Query<XRayRecords> q = ds.createQuery(XRayRecords.class).filter("attr.dateCreated >=", start).filter("attr.dateCreated <=", end);
+		XRayRecords filterXray = (XRayRecords) q.get();
+		if(filterXray == null) return new ArrayList<ClinicalRecords>();
+		return (List<ClinicalRecords>) ds.find(ClinicalRecords.class).field("xray").hasThisElement(filterXray).asList();
 	}
 	
 	public static void main(String args[])
 	{
 		//ClinicalRecordsDao.instance.insertClinicalRecords();
 		
-		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllClinicalRecordsByPatient(4);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date start = null;
+		Date end = null;
+		try {
+			start = formatter.parse("2012-02-01 20:27:05");
+			end = formatter.parse("2012-03-01 20:27:05");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllClinicalRecordsByDiagnosticArea("leg Bone");
+		
+		
+		List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDiagnosticArea("leg bone");
+		
+		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDateCreatedRange(start, end);
 		System.out.println(recordList.size());
 		for(ClinicalRecords obj : recordList )
 		{

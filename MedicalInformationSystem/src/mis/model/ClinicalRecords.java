@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.google.code.morphia.annotations.*;
 
 import org.bson.types.ObjectId;
 
 @Entity("clinicalrecords")
+@XmlRootElement
 public class ClinicalRecords  implements Serializable{
 
 	/**
