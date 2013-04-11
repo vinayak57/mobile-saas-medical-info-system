@@ -15,6 +15,7 @@ public class SqlConstants {
 	public static String updatePatient = "UPDATE medicalinfosystem.patient SET fname=?,lname=?,email=?,gender=?,phone=?,dob=?,location_id=? WHERE patient_id = ?";
 	public static String getAllPatients = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and u.tenantid=?;";
 	public static String getPatientByid ="SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and u.userid=?;";
+	public static String getAllPatientsByName = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and (u.tenantid=? and p.fname=? and p.lname=?)";
 	
 	public static String getStaffByid = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and u.userid=?;";
 	public static String getAllStaff = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and u.tenantid=?;";
