@@ -56,6 +56,43 @@ public enum PatientDao {
 		return patientObj;
 	}
 	
+	public Map<String, Patient> getAllPatientsByName(int tenantid, String fname, String lname) {
+
+		Map<String, Patient> patientsList = new HashMap<String, Patient>();
+
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement prest = null;
+		try {
+			con = DBConnection.getConnection();
+			String sqlStatement = SqlConstants.getAllPatientsByName;
+			prest = con.prepareStatement(sqlStatement);
+			prest.setInt(1, tenantid);
+			prest.setString(2, fname);
+			prest.setString(3, lname);
+			rs = prest.executeQuery();
+			if (rs != null) {
+				List<Patient> resultList = fetchMultiResults(rs);
+
+				for (Patient patient : resultList)
+					patientsList.put(String.valueOf(userCount++), patient);
+
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return patientsList;
+	}
+	
 	public Map<String, Patient> getAllPatients(int tenantid) {
 
 		Map<String, Patient> patientsList = new HashMap<String, Patient>();

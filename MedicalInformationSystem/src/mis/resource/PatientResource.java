@@ -37,6 +37,15 @@ public class PatientResource {
 	}
 	
 	@GET
+	@Path("/search/{tenantid}/{fname}/{lname}")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<Patient> getPatientsByName(@PathParam("tenantid") int tenantid, @PathParam("fname") String fname, @PathParam("lname") String lname) {
+		List<Patient> patientObjs = new ArrayList<Patient>();
+		patientObjs.addAll(PatientDao.instance.getAllPatientsByName(tenantid,fname,lname).values());
+		return patientObjs;
+	}
+	
+	@GET
 	@Path("/{tenantid}/{userId}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Patient getUser(@PathParam("tenantid") int tenantid, @PathParam("userId") int userId)
