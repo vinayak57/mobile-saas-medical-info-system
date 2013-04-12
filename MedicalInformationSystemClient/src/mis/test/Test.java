@@ -287,6 +287,26 @@ public class Test {
 			e.printStackTrace();
 		}
 	}
+
+	public static void insertEmergencyRequest()
+	{
+		try{
+    
+		String input = "{\"userid\":\"10\",\"emergencylocation\":\"201 S 4th Street San Jose CA 95112\",\"latitude\":\"1.999930940\",\"longitude\":\"-245.9540588\",\"tenantid\":\"6\"}";
+		ClientResponse response = service.path("rest").path("emergency").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public static void deleteUser()
 	{
@@ -301,7 +321,7 @@ public class Test {
 		//updatePatient();
 		//deleteUser();
 		//getAllUsers();
-		insertStaff();
+		//insertStaff();
 		//insertDrug();
 		//insertLocation();
 		//insertVisitType();
@@ -311,6 +331,7 @@ public class Test {
 		//insertPrescription();
 		//insertPatientMedInfo();
 		//insertHospital();
+		insertEmergencyRequest();
 //		System.out.println(service.path("rest").path("appointments").path("6")
 //				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
