@@ -193,8 +193,8 @@ public enum ClinicalRecordsDao {
 		}
 		
 		
-		
-		List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDiagnosticArea("leg bone");
+		List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllClinicalRecordsByPatient(4);
+		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDiagnosticArea("FrontNeck");
 		
 		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDateCreatedRange(start, end);
 		System.out.println(recordList.size());
