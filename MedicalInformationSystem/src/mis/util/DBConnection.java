@@ -10,7 +10,8 @@ public class DBConnection {
 	final static String driver = "com.mysql.jdbc.Driver";
 	final static String userName = "root";
 	final static String password = "root";
-
+	//final static String password = "Amazon222";
+	
 	public static Connection getConnection() throws Exception {
 		Class.forName(driver).newInstance();
 		Connection conn = DriverManager.getConnection(url + dbName, userName,
