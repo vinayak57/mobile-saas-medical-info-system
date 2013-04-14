@@ -22,6 +22,8 @@
     <string name="title_activity_list_appointments">List of Appointments</string>
     <string name="title_activity_home_doctor">Home Doctor</string>
     <string name="title_activity_doctor_appointment">Manage Appointment</string>
-    <string name="title_activity_personal_hostory">Personal Data</string>
+    <string name="title_activity_personal_history">Personal Data</string>
+    <string name="title_activity_view_prescription_patient">View Prescription</string>
+    <string name="title_activity_list_prescription">List Drugs</string>
 
 </resources>
