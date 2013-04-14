@@ -181,9 +181,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Personal_history" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".Personal_hostory"
-            android:label="@string/title_activity_personal_hostory" >
+            android:name=".View_prescription_patient"
+            android:label="@string/title_activity_view_prescription_patient" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ListPrescription"
+            android:label="@string/title_activity_list_prescription" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
