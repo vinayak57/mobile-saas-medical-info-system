@@ -34,7 +34,8 @@ public class Map extends MapActivity implements LocationListener {
 	private String provider;
 	private LocationManager locationManager;
 	private Location location;
-	String userid,user;
+	String user;
+	int userid;
 	String add="";
 
 	@Override
@@ -107,14 +108,15 @@ public class Map extends MapActivity implements LocationListener {
 
 		
 		user=getIntent().getExtras().getString("username");
-		userid=getIntent().getExtras().getString("userid");
+		userid=getIntent().getExtras().getInt("userid");
 		
-		String json="{\"userid\":\""+userid+"\",\"emergancy_location\":\""+add+"\",\"longitude\":\""+location.getLongitude()+"\",\"lattitude\":\""+location.getLatitude()+"\" }";
+			
+		String json="{\"userid\":\""+userid+"\",\"tenantid\": \"6\",\"emergency_location\":\""+add+"\",\"longitude\":\""+location.getLongitude()+"\",\"lattitude\":\""+location.getLatitude()+"\" }";
 		
 		HttpClient httpClient = new DefaultHttpClient();
 
 	    try {
-	        HttpPut request = new HttpPut("http://10.0.2.2:8080/MedicalInformationSystem/rest/emergancy");
+	        HttpPut request = new HttpPut("http://10.0.2.2:8080/MedicalInformationSystem/rest/emergency/6");
 	        StringEntity params =new StringEntity(json);
 	        request.addHeader("Content-Type", "application/json");
 	        request.setEntity(params);

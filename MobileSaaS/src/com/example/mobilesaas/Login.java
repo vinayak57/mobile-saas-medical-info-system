@@ -44,8 +44,6 @@ public class Login extends Activity {
 				uname=username.getText().toString();
 				pwd=password.getText().toString();
 				
-			
-							
 				HttpClient httpclient = new DefaultHttpClient();  
 		    	
 		        String url="http://10.0.2.2:8080/MedicalInformationSystem/rest/users/6/"+uname;
@@ -53,51 +51,49 @@ public class Login extends Activity {
 		        HttpGet request = new HttpGet(url);
 		        request.addHeader("Accept","application/json");
 		        HttpResponse response;
-				HttpEntity entity;
+				
 				try {
 
 					response=httpclient.execute(request);
-					entity=response.getEntity();
+					HttpEntity entity=response.getEntity();
 					result=EntityUtils.toString(entity);
 					
 					code=response.getStatusLine().getStatusCode();
 					
+								
 					if(code==200)
 					{
 						
-				   				 
+						 
 						JSONObject json = new JSONObject(result);
 						String pass=(String)json.get("password");
-						String userid=(String)json.get("userid");
-						pass=pass.toString();
+						int userid = (Integer) json.get("userid");
+						//String userid=(String)json.get("userid");
+					
 						
-						Toast toast1 = Toast.makeText(getApplicationContext(), result,
-				   				 Toast.LENGTH_LONG);
-				   				 toast1.show();
-						Log.i(pwd, "pass");
-						Log.i(pass, "pass11");
 						
-						if(pass.toString().equalsIgnoreCase(pwd))
+				   				 
+				   		if(pass.equalsIgnoreCase(pwd))
 						{
-							
-							Intent browserIntent = new Intent(getApplicationContext(),Home_patient.class);
-							browserIntent.putExtra("username", uname);
-							browserIntent.putExtra("userid", userid);
-							startActivity(browserIntent);
-						}
+								Intent browserIntent = new Intent(getApplicationContext(),Home_patient.class);
+								browserIntent.putExtra("username", uname);
+								browserIntent.putExtra("userid", userid);
+								startActivity(browserIntent);
+								
+							}
+						
 					}
 					else
 					{
 						Toast toast = Toast.makeText(getApplicationContext(), "Invalid Username/Password!!",
 				   				 Toast.LENGTH_LONG);
 				   				 toast.show();
-				   				 //System.out.println(result);
-				   				 
-						//display that username does not exists
+				   				
 					}
 					
 				} catch (Exception e) {
 					// TODO: handle exception
+					e.printStackTrace();
 				}
 				
 				
