@@ -5,14 +5,14 @@ import android.app.Activity;
 import android.view.Menu;
 import android.widget.TextView;
 
-public class Personal_hostory extends Activity {
+public class Personal_history extends Activity {
 
 	TextView blood,datablood,height,dataheight,weight,dataweight;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_hostory);
+        setContentView(R.layout.activity_personal_history);
         
         blood=(TextView)findViewById(R.id.tvBlood);
         datablood=(TextView)findViewById(R.id.tvDataBlood);
@@ -22,9 +22,9 @@ public class Personal_hostory extends Activity {
         dataweight=(TextView)findViewById(R.id.tvDataWeight);
         
         
-        datablood.setText("");
-        dataweight.setText("");
-        dataheight.setText("");
+        datablood.setText(getIntent().getExtras().getString("bloodgroup"));
+        dataweight.setText(getIntent().getExtras().getInt("height")+"");
+        dataheight.setText(getIntent().getExtras().getInt("weight")+"");
         
         
         
@@ -32,7 +32,7 @@ public class Personal_hostory extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_personal_hostory, menu);
+        getMenuInflater().inflate(R.menu.activity_personal_history, menu);
         return true;
     }
 }

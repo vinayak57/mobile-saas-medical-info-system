@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Home_patient extends Activity {
 
@@ -24,8 +25,8 @@ public class Home_patient extends Activity {
 	TextView welcome;
 	Button signout;
 	String user,temp,result;
-	String userid;
-	String patientid;
+	int userid;
+	int patientid;
 	int code;
    
 	@Override
@@ -33,10 +34,10 @@ public class Home_patient extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_patient);
         
-        userid=getIntent().getExtras().getString("userid");
+        userid=getIntent().getExtras().getInt("userid");
         user=getIntent().getExtras().getString("username");
-        
-        
+ 
+		
         
         HttpClient httpclient = new DefaultHttpClient();  
     	
@@ -57,7 +58,11 @@ public class Home_patient extends Activity {
 			if(code==200)
 			{
 				JSONObject json = new JSONObject(result);
-				patientid=(String)json.get("patientId");
+				patientid= (Integer)json.get("patientId");
+				
+				Toast toast = Toast.makeText(getApplicationContext(),"sfsdfdsfds   "+ patientid,
+		   				 Toast.LENGTH_LONG);
+		   				 toast.show();
 				
 			}
 		}
@@ -68,20 +73,7 @@ public class Home_patient extends Activity {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+         
         appointment=(ImageView)findViewById(R.id.ivAppointment);
         medical=(ImageView)findViewById(R.id.ivMedical);
         prescription=(ImageView)findViewById(R.id.ivPrescription);
@@ -168,6 +160,19 @@ public class Home_patient extends Activity {
 				browserIntent.putExtra("patientid", patientid);
 				startActivity(browserIntent);
 				
+			}
+		});
+        
+        prescription.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent browserIntent = new Intent(getApplicationContext(),ListAppointments.class);
+				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("userid", userid);
+				browserIntent.putExtra("patientid", patientid);
+				startActivity(browserIntent);
 			}
 		});
         

@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 public class View_data extends Activity {
 
-	String data,title,user,userid;
+	String data,title,user;
+	int userid,patientid;
 	TextView tvTitle, tvData;
 	Button back;
 	
@@ -22,7 +23,8 @@ public class View_data extends Activity {
         data=getIntent().getExtras().getString("data");
         title=getIntent().getExtras().getString("title");
         user=getIntent().getExtras().getString("username");
-        userid=getIntent().getExtras().getString("userid");
+        userid=getIntent().getExtras().getInt("userid");
+        patientid=getIntent().getExtras().getInt("patientid");
         
         tvTitle=(TextView)findViewById(R.id.tvTitle);
         tvData=(TextView)findViewById(R.id.tvDisplay);
@@ -41,6 +43,7 @@ public class View_data extends Activity {
 				
 				browserIntent.putExtra("userid", userid);
 				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("patientid", patientid);
 				startActivity(browserIntent);
 			}
 		});

@@ -8,6 +8,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.os.Bundle;
@@ -48,8 +49,8 @@ public class Test extends Activity {
     	
     	
     	HttpClient httpclient = new DefaultHttpClient();  
-    	
-        String q="http://10.0.2.2:8080/MedicalInformationSystem/rest/users/6/swar";
+    	String uname="mandar";
+        String q="http://10.0.2.2:8080/MedicalInformationSystem/rest/patientmedicalinfo/5";
         
         HttpGet request = new HttpGet(q);
         request.addHeader("Accept","application/json");
@@ -69,10 +70,24 @@ public class Test extends Activity {
         	
         	result=result+"  my codeee"+code;
         	
+        	
+        	
+        	
+        	
         	//JSONObject json = new JSONObject(result);
-			//String pass=(String)json.get("password");
+			//String pass=(String)json.get("allergies");
 			
-			//result = result+  "my pass " + pass;
+        	JSONArray start_object=new JSONArray(result);
+			JSONObject jObject = start_object.getJSONObject(0);
+			String pass= jObject.getString("allergies");
+        	
+			result = result+  "my pass " + pass;
+			
+			
+			
+			
+			
+			
         	httpclient.getConnectionManager().shutdown();
         	
         	//Log.d("msg",result);

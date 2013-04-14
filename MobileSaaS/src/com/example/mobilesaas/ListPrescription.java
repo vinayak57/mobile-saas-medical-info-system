@@ -3,9 +3,7 @@ package com.example.mobilesaas;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.logging.SimpleFormatter;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -29,14 +27,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ListAppointments extends ListActivity {
+public class ListPrescription extends ListActivity {
 
-	int userid,patientid,code;
+	int userid,patientid,code,app_id;
+	
 	String user,result;
-	List<String> appointment = new ArrayList<String>();
-	List<Integer> appointment_id =new ArrayList<Integer>();
-	List<String> rawappointment= new ArrayList<String>();
-	private static int save= -1;
+	String extra_start_date,extra_end_date,extra_dose,extra_instruction;
+	int extra_drug_id;
+	private static int save = -1;
+	
+	List<String> start_date = new ArrayList<String>();
+	List<String> end_date =new ArrayList<String>();
+	List<String> instruction= new ArrayList<String>();
+	List<String> dose= new ArrayList<String>();
+	List<Integer> drug_id= new ArrayList<Integer>();
+	List<String> display = new ArrayList<String>();
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,15 +51,18 @@ public class ListAppointments extends ListActivity {
         userid=getIntent().getExtras().getInt("userid");
         user=getIntent().getExtras().getString("username");
         patientid=getIntent().getExtras().getInt("patientid");
+        app_id=getIntent().getExtras().getInt("appid");
+        
         
         
         callrest(); 
 		 
 		this.setListAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, appointment));
+				android.R.layout.simple_list_item_1, display));
 
 		ListView listView = getListView();
 
+		
 		listView.setCacheColorHint(0);
 		listView.setBackgroundResource(R.drawable.background);
 		
@@ -67,7 +75,6 @@ public class ListAppointments extends ListActivity {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				
-				
 				parent.getChildAt(position).setBackgroundColor(Color.parseColor("#70D0D5D9"));
 				
 				if(save!=-1 && save!=position)
@@ -77,26 +84,34 @@ public class ListAppointments extends ListActivity {
 				save=position;
 				
 				int apid=0, i=0;
-				
-				
 				try {
 					String product = ((TextView) view).getText().toString();
-					for(String s: appointment)
+					for(String s: display)
 					{
 						if(s.equalsIgnoreCase(product));
 						{
-							 i= appointment.indexOf(product);
-							 apid = appointment_id.get(i);
+							 i= display.indexOf(product);
+							 extra_dose=dose.get(i);
+							 extra_end_date=end_date.get(i);
+							 extra_start_date=start_date.get(i);
+							 extra_instruction=instruction.get(i);
+							 extra_drug_id=drug_id.get(i);
+							
 							break;
 						}
 						
 					}
-					Intent browserIntent = new Intent(getApplicationContext(),ListPrescription.class);
+					Intent browserIntent = new Intent(getApplicationContext(),View_prescription_patient.class);
 					
 					browserIntent.putExtra("userid", userid);
 					browserIntent.putExtra("username", user);
 					browserIntent.putExtra("patientid", patientid);
 					browserIntent.putExtra("appid", apid);
+					browserIntent.putExtra("extra_dose", extra_dose);
+					browserIntent.putExtra("extra_end_date", extra_end_date);
+					browserIntent.putExtra("extra_start_date", extra_start_date);
+					browserIntent.putExtra("extra_instruction", extra_instruction);
+					browserIntent.putExtra("extra_drug_id", extra_drug_id);
 					startActivity(browserIntent);
 				
 					
@@ -113,7 +128,7 @@ public class ListAppointments extends ListActivity {
 		{
 			HttpClient httpclient = new DefaultHttpClient();  
 	    	
-	        String url="http://10.0.2.2:8080/MedicalInformationSystem/rest/appointments/6/"+patientid;
+	        String url="http://10.0.2.2:8080/MedicalInformationSystem/rest/prescription/6/"+app_id+"/appointment";
 	        
 	        HttpGet request = new HttpGet(url);
 	        request.addHeader("Accept","application/json");
@@ -129,30 +144,51 @@ public class ListAppointments extends ListActivity {
 				
 				if(code==200)
 				{
+					
+					
 					JSONArray start_object = new JSONArray(result);
 					int count=start_object.length();
 					JSONObject json;
+					
 				
-					long rawdate;
-					Date appdate;
-					SimpleDateFormat sf;
-					String newappdate;
-					String newtime;
+
+			   		long rawdate;
+			   		SimpleDateFormat sf;
+			   		Date tempdate;
+			   		String sdate,edate;
+			   		String presc=null;
+			   		
 					for (int i = 0; i < count; i++) {
 						
 						json = start_object.getJSONObject(i);
 						
-						rawdate=Long.valueOf(json.getString("appointment_date"));
-						appdate=new Date(rawdate);
+						//json.getInt("prescription_id");
+						
+						drug_id.add(json.getInt("drug_id"));
+						
+					
+						
+						dose.add(json.getString("dose"));
+						instruction.add(json.getString("instruction"));
+						
+						rawdate=Long.valueOf(json.getString("start_date"));
+						tempdate=new Date(rawdate);
 						sf=new SimpleDateFormat("yyyy-mm-dd");
-						newappdate = sf.format(appdate);
-						sf =new SimpleDateFormat("HH:mm:ss");
-						newtime=sf.format(appdate);
+						sdate = sf.format(tempdate);
 						
-						appointment.add("Date: "+newappdate+" Time :"+newtime);
-						rawappointment.add(json.getString("appointment_date"));
+						start_date.add(sdate);
 						
-						appointment_id.add(Integer.valueOf((json.getInt("appointment_id"))));
+						rawdate=Long.valueOf(json.getString("end_date"));
+						tempdate=new Date(rawdate);
+						sf=new SimpleDateFormat("yyyy-mm-dd");
+						edate = sf.format(tempdate);
+						
+						end_date.add(edate);
+					
+						presc="Prescription "+(i+1);
+						
+						display.add(presc);
+						
 						
 					}
 					
@@ -169,7 +205,5 @@ public class ListAppointments extends ListActivity {
 				e.printStackTrace();
 			}
 		}
-		
-
-   
+    
 }

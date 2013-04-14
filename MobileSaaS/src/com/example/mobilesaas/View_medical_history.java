@@ -6,6 +6,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.os.Bundle;
@@ -20,8 +21,9 @@ import android.widget.Toast;
 public class View_medical_history extends Activity {
 
 	Button  allergies,precautions,sideeffects,personaldata;
-	String user, userid,patientid;
-	String allergy,precaustion,sideeffect;
+	String user;
+	int userid,patientid,height,weight;
+	String allergy,precaustion,sideeffect,bloodgroup;
 	String result;
 	int code;
 	
@@ -29,11 +31,11 @@ public class View_medical_history extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_medical_history);
-        String result;
+       
         
         user=getIntent().getExtras().getString("username");
-        userid=getIntent().getExtras().getString("userid");
-        patientid=getIntent().getExtras().getString("patientid");
+        userid=getIntent().getExtras().getInt("userid");
+        patientid=getIntent().getExtras().getInt("patientid");
         
         
         
@@ -50,9 +52,13 @@ public class View_medical_history extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent browserIntent = new Intent(getApplicationContext(),View_data.class);
-				//browserIntent.putExtra("title", userid);
-				//browserIntent.putExtra("username", user);
+				Intent browserIntent = new Intent(getApplicationContext(),Personal_history.class);
+				browserIntent.putExtra("height", height);
+				browserIntent.putExtra("weight", weight);
+				browserIntent.putExtra("bloodgroup", bloodgroup);
+				browserIntent.putExtra("userid", userid);
+				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("patientid", patientid);
 				startActivity(browserIntent);
 			}
 		});
@@ -67,6 +73,7 @@ public class View_medical_history extends Activity {
 				browserIntent.putExtra("data", allergy);
 				browserIntent.putExtra("userid", userid);
 				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("patientid", patientid);
 				startActivity(browserIntent);
 			}
 		});
@@ -81,6 +88,7 @@ public class View_medical_history extends Activity {
 				browserIntent.putExtra("data", precaustion);
 				browserIntent.putExtra("userid", userid);
 				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("patientid", patientid);
 				startActivity(browserIntent);
 			}
 		});
@@ -95,6 +103,7 @@ public class View_medical_history extends Activity {
 				browserIntent.putExtra("data", sideeffect);
 				browserIntent.putExtra("userid", userid);
 				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("patientid", patientid);
 				startActivity(browserIntent);
 			}
 		});
@@ -117,15 +126,31 @@ public class View_medical_history extends Activity {
 			response=httpclient.execute(request);
 			entity=response.getEntity();
 			result=EntityUtils.toString(entity);
-			
+			Toast toast1 = Toast.makeText(getApplicationContext(), result,
+	   				 Toast.LENGTH_LONG);
+	   				 toast1.show();
 			code=response.getStatusLine().getStatusCode();
 			
 			if(code==200)
 			{
-				JSONObject json = new JSONObject(result);
-				allergy=(String)json.get("allergies");
-				sideeffect=(String)json.get("side_effects");
-				precaustion=(String)json.get("precautions");
+				Toast toast = Toast.makeText(getApplicationContext(), "in 200 bocha",
+		   				 Toast.LENGTH_LONG);
+		   				 toast.show();
+		   				 
+				//JSONObject json = new JSONObject(result);
+				
+				JSONArray start_object = new JSONArray(result);
+				JSONObject json = start_object.getJSONObject(0);
+				
+				allergy = (String) json.getString("allergies");
+				sideeffect = (String) json.getString("side_effects");
+				precaustion = (String) json.getString("precautions");
+				height = (Integer) json.get("height");
+				weight = (Integer) json.get("weight");
+				bloodgroup = (String) json.getString("bloodgroup");
+				if(bloodgroup==null)
+					bloodgroup="O+";
+			
 			}
 			else
 			{
