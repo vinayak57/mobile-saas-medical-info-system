@@ -1,5 +1,7 @@
 package mis.resource;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -67,9 +69,28 @@ public class ClinicalRecordsResource {
 	@GET
 	@Path("/xray/searchbydatecreated/{startdate}/{enddate}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public List<ClinicalRecords> getClinicalRecordsByStartDate(@PathParam("startdate") Date start, @PathParam("enddate") Date end) {
+	public List<ClinicalRecords> getClinicalRecordsByStartDate(@PathParam("startdate") String start, @PathParam("enddate") String end) {
+		start = start.replace("%20", " ");
+		end = end.replace("%20", " ");
+		
+		System.out.println(start + end);
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date startDate = null;
+		Date endDate = null;
+		try {
+			startDate = formatter.parse(start);
+			endDate = formatter.parse(end);
+			
+			//formatter.format(start);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		List<ClinicalRecords> objs = new ArrayList<ClinicalRecords>();
-		objs.addAll(ClinicalRecordsDao.instance.getAllXRayRecordsByDateCreatedRange(start, end));
+		objs.addAll(ClinicalRecordsDao.instance.getAllXRayRecordsByDateCreatedRange(startDate, endDate));
 		return objs;
 	}
 	
