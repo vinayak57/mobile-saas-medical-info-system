@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mobilesaas"
     android:versionCode="1"
@@ -8,7 +9,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Test"
+            android:name="com.example.mobilesaas.Test"
             android:label="@string/title_activity_test" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login"
+            android:name="com.example.mobilesaas.Login"
             android:label="@string/title_activity_login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Signup1"
+            android:name="com.example.mobilesaas.Signup1"
             android:label="@string/title_activity_signup1" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Signup2"
+            android:name="com.example.mobilesaas.Signup2"
             android:label="@string/title_activity_signup2" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Home_patient"
+            android:name="com.example.mobilesaas.Home_patient"
             android:label="@string/title_activity_home_patient" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,7 +54,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Manage_appointment"
+            android:name="com.example.mobilesaas.Manage_appointment"
             android:label="@string/title_activity_manage_appointment" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,7 +63,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Make_appointment"
+            android:name="com.example.mobilesaas.Make_appointment"
             android:label="@string/title_activity_make_appointment" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,7 +72,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View_appointment"
+            android:name="com.example.mobilesaas.View_appointment"
             android:label="@string/title_activity_view_appointment" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -80,7 +81,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View_medical_history"
+            android:name="com.example.mobilesaas.View_medical_history"
             android:label="@string/title_activity_view_medical_history" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -89,7 +90,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Map"
+            android:name="com.example.mobilesaas.Map"
             android:label="@string/title_activity_map" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -101,7 +102,7 @@
         <uses-library android:name="com.google.android.maps" />
 
         <activity
-            android:name=".Home_clinical"
+            android:name="com.example.mobilesaas.Home_clinical"
             android:label="@string/title_activity_home_clinical" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -110,7 +111,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListImages"
+            android:name="com.example.mobilesaas.ListImages"
             android:label="@string/title_activity_list_images" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -119,7 +120,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Edit_profile"
+            android:name="com.example.mobilesaas.Edit_profile"
             android:label="@string/title_activity_edit_profile" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -128,7 +129,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Change_password"
+            android:name="com.example.mobilesaas.Change_password"
             android:label="@string/title_activity_change_password" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -137,7 +138,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Update_profile"
+            android:name="com.example.mobilesaas.Update_profile"
             android:label="@string/title_activity_update_profile" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -146,7 +147,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View_data"
+            android:name="com.example.mobilesaas.View_data"
             android:label="@string/title_activity_view_data" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -155,7 +156,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListAppointments"
+            android:name="com.example.mobilesaas.ListAppointments"
             android:label="@string/title_activity_list_appointments" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -164,7 +165,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Home_doctor"
+            android:name="com.example.mobilesaas.Home_doctor"
             android:label="@string/title_activity_home_doctor" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -173,7 +174,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Doctor_appointment"
+            android:name="com.example.mobilesaas.Doctor_appointment"
             android:label="@string/title_activity_doctor_appointment" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -181,7 +182,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Personal_history" >
+        <activity android:name="com.example.mobilesaas.Personal_history" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -189,7 +190,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View_prescription_patient"
+            android:name="com.example.mobilesaas.View_prescription_patient"
             android:label="@string/title_activity_view_prescription_patient" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -198,13 +199,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListPrescription"
+            android:name="com.example.mobilesaas.ListPrescription"
             android:label="@string/title_activity_list_prescription" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.mobilesaas.Prescribe_Drug"
+            android:label="@string/title_activity_prescribe__drug" >
+        </activity>
+        <activity
+            android:name="com.example.mobilesaas.ListAppointmentsStaff"
+            android:label="@string/title_activity_list_appointments_staff" >
         </activity>
     </application>
 
