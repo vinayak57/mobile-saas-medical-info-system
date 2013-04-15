@@ -192,18 +192,20 @@ public enum ClinicalRecordsDao {
 			e.printStackTrace();
 		}
 		
-		
-		List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllClinicalRecordsByPatient(4);
+		for(int i = 1 ; i<900;i++)
+		{
+		List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllClinicalRecordsByPatient(i);
 		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDiagnosticArea("FrontNeck");
 		
 		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDateCreatedRange(start, end);
-		System.out.println(recordList.size());
+		//System.out.println(recordList.size());
 		for(ClinicalRecords obj : recordList )
 		{
-			System.out.println(obj.getDescription() + obj.getPatient_id() + obj.getHospital_staff_id());
-			System.out.println(obj.getXray().size());
+			//System.out.println(obj.getDescription() + obj.getPatient_id() + obj.getHospital_staff_id());
+			//System.out.println(obj.getXray().get(0).getAttr().getDateCreated().toString());
 			System.out.println(obj.getMriscan().size());
 			
+		}
 		}
 		
 	}
