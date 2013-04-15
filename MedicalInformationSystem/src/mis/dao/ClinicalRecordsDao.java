@@ -143,38 +143,70 @@ public enum ClinicalRecordsDao {
 	{
 		Datastore ds = helper.getConnection();
 		Query<XRayRecords> q = ds.createQuery(XRayRecords.class).filter("attr.diagnostic_area =", diagnostic_area);
-		XRayRecords filterXray = (XRayRecords) q.get();
+		List<XRayRecords> filterXray = (List<XRayRecords>) q.asList();
 		if(filterXray == null) return new ArrayList<ClinicalRecords>();
-		//Query<ClinicalRecords> query =  ds.createQuery(ClinicalRecords.class).filter("xray elem",BasicDBObjectBuilder.start())
 		
-		return (List<ClinicalRecords>) ds.find(ClinicalRecords.class).field("xray").hasThisElement(filterXray).asList();
+		List<ClinicalRecords> list = new ArrayList<ClinicalRecords>();
+		
+		for(XRayRecords xray: filterXray)
+		{
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
+			list.addAll(query.asList());
+		}
+		return list;
 	}
 	
 	public List<ClinicalRecords> getAllXRayRecordsByIssue(String issue)
 	{
 		Datastore ds = helper.getConnection();
 		Query<XRayRecords> q = ds.createQuery(XRayRecords.class).filter("attr.issue =", issue);
-		XRayRecords filterXray = (XRayRecords) q.get();
+		List<XRayRecords> filterXray = (List<XRayRecords>) q.asList();
 		if(filterXray == null) return new ArrayList<ClinicalRecords>();
-		return (List<ClinicalRecords>) ds.find(ClinicalRecords.class).field("xray").hasThisElement(filterXray).asList();
+		
+		List<ClinicalRecords> list = new ArrayList<ClinicalRecords>();
+		
+		for(XRayRecords xray: filterXray)
+		{
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
+			list.addAll(query.asList());
+		}
+		return list;
 	}
 	
 	public List<ClinicalRecords> getAllXRayRecordsBySeverity(String severity)
 	{
 		Datastore ds = helper.getConnection();
 		Query<XRayRecords> q = ds.createQuery(XRayRecords.class).filter("attr.severity =", severity);
-		XRayRecords filterXray = (XRayRecords) q.get();
+		List<XRayRecords> filterXray = (List<XRayRecords>) q.asList();
 		if(filterXray == null) return new ArrayList<ClinicalRecords>();
-		return (List<ClinicalRecords>) ds.find(ClinicalRecords.class).field("xray").hasThisElement(filterXray).asList();
+		
+		List<ClinicalRecords> list = new ArrayList<ClinicalRecords>();
+		
+		for(XRayRecords xray: filterXray)
+		{
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
+			list.addAll(query.asList());
+		}
+		return list;
 	}
 	
 	public List<ClinicalRecords> getAllXRayRecordsByDateCreatedRange(Date start, Date end)
 	{
+		//System.out.println(start.toString() + end.toString());
+		
 		Datastore ds = helper.getConnection();
 		Query<XRayRecords> q = ds.createQuery(XRayRecords.class).filter("attr.dateCreated >=", start).filter("attr.dateCreated <=", end);
-		XRayRecords filterXray = (XRayRecords) q.get();
+		List<XRayRecords> filterXray = (List<XRayRecords>) q.asList();
 		if(filterXray == null) return new ArrayList<ClinicalRecords>();
-		return (List<ClinicalRecords>) ds.find(ClinicalRecords.class).field("xray").hasThisElement(filterXray).asList();
+		
+		List<ClinicalRecords> list = new ArrayList<ClinicalRecords>();
+		
+		for(XRayRecords xray: filterXray)
+		{
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
+			list.addAll(query.asList());
+		}
+		return list;
 	}
 	
 	public static void main(String args[])
@@ -192,20 +224,20 @@ public enum ClinicalRecordsDao {
 			e.printStackTrace();
 		}
 		
-		for(int i = 1 ; i<900;i++)
+		for(int i = 1 ; i<1;i++)
 		{
-		List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllClinicalRecordsByPatient(i);
+		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllClinicalRecordsByPatient(i);
 		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDiagnosticArea("FrontNeck");
 		
 		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDateCreatedRange(start, end);
 		//System.out.println(recordList.size());
-		for(ClinicalRecords obj : recordList )
-		{
-			//System.out.println(obj.getDescription() + obj.getPatient_id() + obj.getHospital_staff_id());
-			//System.out.println(obj.getXray().get(0).getAttr().getDateCreated().toString());
-			System.out.println(obj.getMriscan().size());
-			
-		}
+//		for(ClinicalRecords obj : recordList )
+//		{
+//			//System.out.println(obj.getDescription() + obj.getPatient_id() + obj.getHospital_staff_id());
+//			//System.out.println(obj.getXray().get(0).getAttr().getDateCreated().toString());
+//			System.out.println(obj.getXray().get(0).getAttr().getSeverity());
+//			
+//		}
 		}
 		
 	}
