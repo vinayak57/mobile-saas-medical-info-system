@@ -79,7 +79,7 @@ public class ListPrescription extends ListActivity {
 				
 				if(save!=-1 && save!=position)
 				{
-					parent.getChildAt(position).setBackgroundColor(Color.GREEN);
+					//parent.getChildAt(position).setBackgroundColor(Color.GREEN);
 				}
 				save=position;
 				

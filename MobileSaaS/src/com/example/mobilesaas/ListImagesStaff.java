@@ -17,7 +17,6 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,49 +24,41 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
-import android.R;
 
-public class ListImages extends ListActivity {
+public class ListImagesStaff extends ListActivity {
 
-	//ListView listView;
+	String user,cr,result;
+	int userid,staffid;
+	int code,flag;
 	
-	int userid,patientid,code;
-	String result;
-	String user,clinicaldata,temp;
-	
-	String extra_image, extra_diago, extra_issue, extra_sev, extra_datec, extra_datem;
-	
+	List<String> display = new ArrayList<String>();
+    
 	List<String> xdiagno = new ArrayList<String>();
 	List<String> xissue = new ArrayList<String>();
 	List<String> xsev = new ArrayList<String>();
 	List<String> xdatec = new ArrayList<String>();
 	List<String> ximage = new ArrayList<String>();
 	List<String> xdatem = new ArrayList<String>();
-	List<String> display = new ArrayList<String>();
 	
-    @Override
+	
+	
+	
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       //setContentView(R.layout.activity_list_images);
-         
+        //setContentView(R.layout.activity_list_images_staff);
         
         user=getIntent().getExtras().getString("username");
         userid=getIntent().getExtras().getInt("userid");
-        patientid=getIntent().getExtras().getInt("patientid");
-        temp=getIntent().getExtras().getString("clinicaldata");
-        
-        if(temp.equalsIgnoreCase("View Xrays"))
-        	clinicaldata="xray";
-        else if(temp.equalsIgnoreCase("View MRI scans"))
-        	clinicaldata="mriscan";
+        staffid=getIntent().getExtras().getInt("staffid");
+        cr=getIntent().getExtras().getString("cr");
+        flag=getIntent().getExtras().getInt("flag");
         
         
-         
-        callrest(); 
+        callrest();
         
         
-        
+
         this.setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,display));
         
         //listView=(ListView)findViewById(R.id.lvTest);
@@ -75,61 +66,48 @@ public class ListImages extends ListActivity {
         ListView listView= getListView();
         
 		listView.setTextFilterEnabled(true);
-		
+        
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-		
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) {
-				// TODO Auto-generated method stub
-				try{
-					String product = ((TextView) view).getText().toString();
-					
-			   				 
-			   		int i=0;
-			   		for(String s : display)
-			   		{
-			   			if(s.equalsIgnoreCase(product))
-			   			{
-			   				i=display.indexOf(product);
-			   				extra_image=ximage.get(i);
-			   				extra_diago=xdiagno.get(i);
-			   				extra_issue=xissue.get(i);
-			   				extra_sev=xsev.get(i);
-			   				extra_datec=xdatec.get(i);
-			   				extra_datem=xdatem.get(i);
-			   				break;
-			   				
-			   			}
-			   		}
-			   		
-			   		Intent browserIntent = new Intent(getApplicationContext(),Image_details.class);
-					
-					browserIntent.putExtra("userid", userid);
-					browserIntent.putExtra("username", user);
-					browserIntent.putExtra("patientid", patientid);
-					browserIntent.putExtra("extra_image",extra_image );
-					browserIntent.putExtra("extra_diago",extra_diago );
-					browserIntent.putExtra("extra_issue",extra_issue );
-					browserIntent.putExtra("extra_sev",extra_sev );
-					browserIntent.putExtra("extra_datec",extra_datec );
-					browserIntent.putExtra("extra_datem",extra_datem );
-					browserIntent.putExtra("clinicaldata",clinicaldata );
-					startActivity(browserIntent);
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-				}
-		});
+        
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			// TODO Auto-generated method stub
+			try{
+				String product = ((TextView) view).getText().toString();
+				Toast toast = Toast.makeText(getApplicationContext(), product,
+		   				 Toast.LENGTH_LONG);
+		   				 toast.show();
+			}
+			catch(Exception e)
+			{
+			}
+		}
+	});
+	
+        
+        
     }
+
     public void callrest()
     {
+    	
     	HttpClient httpclient = new DefaultHttpClient();  
     	
-        String url="http://10.0.2.2:8080/MedicalInformationSystem/rest/clinicalrecords/patient/"+patientid;
-        
+    	boolean xrayflag=true;
+    	
+        String url="";
+        if(flag==0)
+        {
+        	url="http://10.0.2.2:8080/MedicalInformationSystem/rest/clinicalrecords/xray/searchbyissue/"+cr;
+        }
+        else if(flag==1)
+        {
+        	url="http://10.0.2.2:8080/MedicalInformationSystem/rest/clinicalrecords/xray/searchbyseverity/"+cr;
+        }
+        else if(flag==2)
+        {
+        	
+        }
         HttpGet request = new HttpGet(url);
         request.addHeader("Accept","application/json");
         HttpResponse response;
@@ -144,14 +122,12 @@ public class ListImages extends ListActivity {
 			
 			if(code==200)
 			{
-				
-				
 				JSONArray start_object = new JSONArray(result);
 				int count=start_object.length();
 				
 				JSONObject mainobj;
 				
-				for (int i = 0; i < count; i++) {
+				for (int i = 0; i < 10; i++) {
 					
 					mainobj=start_object.getJSONObject(i);
 	        		
@@ -168,7 +144,7 @@ public class ListImages extends ListActivity {
 					int mriscancount= mriscanarray.length();
 					
 					
-					if(xraycount!=0 && clinicaldata.equalsIgnoreCase("xray"))
+					if(xraycount!=0 && xrayflag==true)//&& clinicaldata.equalsIgnoreCase("xray"))
 					{
 					
 						if(xraycount==0)
@@ -212,7 +188,7 @@ public class ListImages extends ListActivity {
 							
 						}
 					}
-					else if (mriscancount!=0 && clinicaldata.equalsIgnoreCase("mriscan"))
+					else if (mriscancount!=0 && xrayflag==false)//clinicaldata.equalsIgnoreCase("mriscan"))
 					{
 						if(mriscancount==0)
 						{
@@ -233,6 +209,7 @@ public class ListImages extends ListActivity {
 					
 					
 				}//main for
+
 				
 			}
 			else
@@ -244,9 +221,9 @@ public class ListImages extends ListActivity {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			
 		}
     }
-   }
-
-
+    
+    
+}

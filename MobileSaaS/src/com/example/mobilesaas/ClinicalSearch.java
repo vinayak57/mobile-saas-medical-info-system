@@ -44,6 +44,7 @@ public class ClinicalSearch extends Activity {
 				browserIntent.putExtra("userid", userid);
 				browserIntent.putExtra("username", user);
 				browserIntent.putExtra("staffid", staffid);
+				browserIntent.putExtra("navigation", "sev");
 				startActivity(browserIntent);
 			}
 		});
@@ -59,6 +60,7 @@ public class ClinicalSearch extends Activity {
 				browserIntent.putExtra("userid", userid);
 				browserIntent.putExtra("username", user);
 				browserIntent.putExtra("staffid", staffid);
+				browserIntent.putExtra("navigation", "issue");
 				startActivity(browserIntent);
 			}
 		});

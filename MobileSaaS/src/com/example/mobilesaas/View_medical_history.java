@@ -126,16 +126,12 @@ public class View_medical_history extends Activity {
 			response=httpclient.execute(request);
 			entity=response.getEntity();
 			result=EntityUtils.toString(entity);
-			Toast toast1 = Toast.makeText(getApplicationContext(), result,
-	   				 Toast.LENGTH_LONG);
-	   				 toast1.show();
+			
 			code=response.getStatusLine().getStatusCode();
 			
 			if(code==200)
 			{
-				Toast toast = Toast.makeText(getApplicationContext(), "in 200 bocha",
-		   				 Toast.LENGTH_LONG);
-		   				 toast.show();
+				
 		   				 
 				//JSONObject json = new JSONObject(result);
 				
