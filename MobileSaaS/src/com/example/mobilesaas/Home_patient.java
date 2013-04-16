@@ -123,6 +123,7 @@ public class Home_patient extends Activity {
 				Intent browserIntent = new Intent(getApplicationContext(),Home_clinical.class);
 				browserIntent.putExtra("userid", userid);
 				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("patientid", patientid);
 				startActivity(browserIntent);
 				
 			}

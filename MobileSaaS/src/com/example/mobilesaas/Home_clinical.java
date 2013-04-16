@@ -17,46 +17,41 @@ public class Home_clinical extends Activity {
 
 	Button cancel, viewdata;
 	Spinner appointment;
-	String userid;
+	int userid,patientid;
+	String user;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_clinical);
         
-       // userid=getIntent().getExtras().getString("userid");
+      
         
         cancel=(Button)findViewById(R.id.bCancel);
         viewdata=(Button)findViewById(R.id.bViewData);
-        
         appointment=(Spinner)findViewById(R.id.spChooseAppoint);
         
+        user=getIntent().getExtras().getString("username");
+        userid=getIntent().getExtras().getInt("userid");
+        patientid=getIntent().getExtras().getInt("patientid");
        
+        
+        callrest();
         
         // make a get call to get all appointments of the user
         // then make a Array of string or List and then set it to spinner
         
         
-        final String[] test = new String[] { "Apple", "Avocado", "Banana",
-        		"Blueberry", "Coconut", "Sugar-apple" };
+        final String[] test = new String[] { "View Xrays", "View MRI scans" };
         
-        List<String> list = new ArrayList<String>();
+        /*List<String> list = new ArrayList<String>();
     	list.add("list 1");
     	list.add("list 2");
-    	list.add("list 3");
+    	list.add("list 3");*/
         	
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, test);
 		
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		appointment.setAdapter(dataAdapter);
-        
-        
-        
-       
-        
-        
-        
-        
-        
         
         viewdata.setOnClickListener(new View.OnClickListener() {
 			
@@ -73,7 +68,13 @@ public class Home_clinical extends Activity {
 		   				 Toast.LENGTH_LONG);
 		   				 toast.show();
 				
-				// set the appoint id and send to listimages
+		   				 
+		   				Intent browserIntent = new Intent(getApplicationContext(), ListImages.class);
+						browserIntent.putExtra("userid", userid);
+						browserIntent.putExtra("username", user);
+						browserIntent.putExtra("patientid", patientid);
+						browserIntent.putExtra("clinicaldata", p);
+						startActivity(browserIntent);
 				
 			}
 		});
@@ -87,6 +88,8 @@ public class Home_clinical extends Activity {
 				
 				Intent browserIntent = new Intent(getApplicationContext(), Home_patient.class);
 				browserIntent.putExtra("userid", userid);
+				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("patientid", patientid);
 				startActivity(browserIntent);
 			}
 		});
@@ -97,5 +100,11 @@ public class Home_clinical extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_home_clinical, menu);
         return true;
+    }
+    
+    
+    public void callrest()
+    {
+    	
     }
 }
