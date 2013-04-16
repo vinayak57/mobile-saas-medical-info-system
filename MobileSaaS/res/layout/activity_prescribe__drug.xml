@@ -5,14 +5,83 @@
     android:background="@drawable/background"
     android:orientation="vertical" >
 
-    <FrameLayout
+   <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp"
         android:background="#70D0D5D9" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Select a Drug from List: "
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/spChooseDrug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp" />
+
+        <EditText
+            android:id="@+id/etdose"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="120dp"
+            android:hint="Dose" />
+
+        <EditText
+            android:id="@+id/etstartDate"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="180dp"
+            android:hint="Start Date(YYYY-MM-DD)" />
+
+        <EditText
+            android:id="@+id/etendDate"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="240dp"
+            android:hint="End Date(YYYY-MM-DD)" />
+
+        <EditText
+            android:id="@+id/etinstruction"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="320dp"
+            android:hint="Instruction" />
+
+        <Button
+            android:id="@+id/bPrescribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="360dp"
+            android:text="Prescribe" />
+
+        <Button
+            android:id="@+id/bPrescribeCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="360dp"
+            android:text="Cancel" />
     </FrameLayout>
 
 </LinearLayout>
