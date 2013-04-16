@@ -26,5 +26,12 @@
         android:onClick="click"
         android:text="click"/>
   
+  <ImageView
+      android:id="@+id/ivYeda"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="170dp"
+  ></ImageView>
+  
 </LinearLayout>
 
