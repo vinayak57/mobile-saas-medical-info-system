@@ -261,6 +261,26 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.example.mobilesaas.ListAppointmentDetails"
+            android:label="@string/title_activity_list_appointment_details" >
+        </activity>
+        <activity
+            android:name="com.example.mobilesaas.PatientMedicalHistory"
+            android:label="@string/title_activity_patient_medical_history" >
+        </activity>
+        <activity
+            android:name="com.example.mobilesaas.ListPatients"
+            android:label="@string/title_activity_list_patients" >
+        </activity>
+        <activity
+            android:name="com.example.mobilesaas.ViewPatientMedInfo"
+            android:label="@string/title_activity_view_patient_med_info" >
+        </activity>
+        <activity
+            android:name="com.example.mobilesaas.ListMedicalInfo"
+            android:label="@string/title_activity_list_medical_info" >
+        </activity>
+        <activity
             android:name=".ListImagesStaff"
             android:label="@string/title_activity_list_images_staff" >
             <intent-filter>
