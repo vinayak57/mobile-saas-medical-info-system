@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -41,7 +42,7 @@ public class ListAppointmentsStaff extends ListActivity {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_list_appointments_staff);
 		
-		  userid=getIntent().getExtras().getInt("userid");
+		  userid=23;//getIntent().getExtras().getInt("userid");
 		  hospital_staff_id = 1;//getIntent().getExtras().getInt("hospital_staff_id");
 		  
 		  
@@ -117,7 +118,6 @@ public class ListAppointmentsStaff extends ListActivity {
 	{
 		HttpClient httpclient = new DefaultHttpClient();  
         String url="http://10.0.2.2:8080/MedicalInformationSystem/rest/appointments/6/"+hospital_staff_id + "/appointment/weekly";
-        
         HttpGet request = new HttpGet(url);
         request.addHeader("Accept","application/json");
         HttpResponse response;
@@ -142,7 +142,6 @@ public class ListAppointmentsStaff extends ListActivity {
 				String newappdate;
 				String newtime;
 				for (int i = 0; i < count; i++) {
-					
 					json = start_object.getJSONObject(i);
 					
 					rawdate=Long.valueOf(json.getString("appointment_date"));
@@ -152,7 +151,7 @@ public class ListAppointmentsStaff extends ListActivity {
 					sf =new SimpleDateFormat("HH:mm:ss");
 					newtime=sf.format(appdate);
 					
-					appointment.add("Date: "+newappdate+" Time :"+newtime);
+					appointment.add((i+1) + ") " + "Date: "+newappdate+" Time :"+newtime);
 					rawappointment.add(json.getString("appointment_date"));
 					
 					appointment_id.add(Integer.valueOf((json.getInt("appointment_id"))));
