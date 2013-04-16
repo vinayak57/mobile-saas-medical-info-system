@@ -68,6 +68,8 @@ public class Login extends Activity {
 						JSONObject json = new JSONObject(result);
 						String pass=(String)json.get("password");
 						int userid = (Integer) json.get("userid");
+						int roleid =(Integer)json.get("roleid");
+						
 						//String userid=(String)json.get("userid");
 					
 						
@@ -75,11 +77,25 @@ public class Login extends Activity {
 				   				 
 				   		if(pass.equalsIgnoreCase(pwd))
 						{
-								Intent browserIntent = new Intent(getApplicationContext(),Home_patient.class);
+								
+				   				if(roleid==11)
+				   				{
+				   				Intent browserIntent = new Intent(getApplicationContext(),Home_patient.class);
 								browserIntent.putExtra("username", uname);
 								browserIntent.putExtra("userid", userid);
 								startActivity(browserIntent);
-								
+				   				}
+				   				if(roleid==12)
+				   				{
+				   					Intent browserIntent = new Intent(getApplicationContext(),Home_doctor.class);
+									browserIntent.putExtra("username", uname);
+									browserIntent.putExtra("userid", userid);
+									startActivity(browserIntent);
+				   				}
+				   				if(roleid==13)
+				   				{
+				   					// call admin
+				   				}
 							}
 						
 					}
