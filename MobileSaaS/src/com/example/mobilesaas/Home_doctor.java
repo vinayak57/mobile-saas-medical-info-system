@@ -91,7 +91,11 @@ public class Home_doctor extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				Intent browserIntent = new Intent(getApplicationContext(),PatientMedicalHistory.class);
+				browserIntent.putExtra("userid", userid);
+//				browserIntent.putExtra("username",user );
+//				browserIntent.putExtra("staffid",staffid );
+				startActivity(browserIntent);
 				
 			}
 		});
@@ -100,7 +104,11 @@ public class Home_doctor extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				Intent browserIntent = new Intent(getApplicationContext(),ListAppointmentsStaff.class);
+				browserIntent.putExtra("hospital_staff_id", staffid);
+				browserIntent.putExtra("userid", userid);
+				browserIntent.putExtra("isAppointment", "true");
+				startActivity(browserIntent);
 				
 			}
 		});
@@ -112,6 +120,7 @@ public class Home_doctor extends Activity {
 				Intent browserIntent = new Intent(getApplicationContext(),ListAppointmentsStaff.class);
 				browserIntent.putExtra("hospital_staff_id", staffid);
 				browserIntent.putExtra("userid", userid);
+				browserIntent.putExtra("isAppointment", "false");
 				startActivity(browserIntent);
 				
 			}
