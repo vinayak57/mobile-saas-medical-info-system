@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">MobileSaaS</string>
@@ -32,5 +33,11 @@
     <string name="title_activity_prescribe__drug">Prescribe Medicine</string>
     <string name="title_activity_list_appointments_staff">List Appointments for Staff</string>
     <string name="title_activity_list_images_staff">List Images</string>
+    <string name="title_activity_list_appointment_details">ListAppointmentDetails</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_patient_medical_history">PatientMedicalHistory</string>
+    <string name="title_activity_list_patients">ListPatients</string>
+    <string name="title_activity_view_patient_med_info">ViewPatientMedInfo</string>
+    <string name="title_activity_list_medical_info">ListMedicalInfo</string>
 
 </resources>
