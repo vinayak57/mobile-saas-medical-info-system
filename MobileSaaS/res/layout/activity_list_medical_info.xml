@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/tvdTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="center_horizontal"
+       	android:textSize="24sp"
+       	android:layout_marginTop="20dp"
+        android:text="Patient Medical Information" />
+       
+        <TextView
+        android:id="@+id/tvdBlood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="20sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="70dp"
+        android:text="Blood Group :" />
+        
+         <TextView
+        android:id="@+id/tvdDataBlood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	
+       	android:textSize="20sp"
+       	android:layout_marginLeft="160dp"
+       	android:layout_marginTop="70dp"
+        android:text="" />
+         
+      <TextView
+        android:id="@+id/tvdHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="20sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="110dp"
+        android:text="Height :" />
+        
+         <TextView
+        android:id="@+id/tvdDataHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	
+       	android:textSize="20sp"
+       	android:layout_marginLeft="160dp"
+       	android:layout_marginTop="110dp"
+        android:text="" />
+         
+         <TextView
+        android:id="@+id/tvdWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="20sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="150dp"
+        android:text="Weight :" />
+        
+         <TextView
+        android:id="@+id/tvdDataWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     
+       	android:textSize="20sp"
+       	android:layout_marginLeft="160dp"
+       	android:layout_marginTop="150dp"
+        android:text="" />
+</LinearLayout>
