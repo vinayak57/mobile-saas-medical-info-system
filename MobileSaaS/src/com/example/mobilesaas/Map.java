@@ -18,6 +18,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.Toast;
 
@@ -58,7 +59,11 @@ public class Map extends MapActivity implements LocationListener {
 		Criteria criteria = new Criteria();
 		provider = locationManager.getBestProvider(criteria, false);
 		location = locationManager.getLastKnownLocation(provider);
-
+		location= new Location(provider);
+		location.setLatitude(37.422006);
+		location.setLongitude(-122.084095);
+		
+		
 		if (location != null) {
 			System.out.println("Provider " + provider + " has been selected.");
 			onLocationChanged(location);
@@ -91,7 +96,7 @@ public class Map extends MapActivity implements LocationListener {
             {
                 for (int i=0; i<addresses.get(0).getMaxAddressLineIndex(); 
                      i++)
-                   add += addresses.get(0).getAddressLine(i) + "\n";
+                   add += addresses.get(0).getAddressLine(i)+" ";
             }
 
             Toast.makeText(getBaseContext(), add, Toast.LENGTH_LONG).show();
@@ -110,18 +115,20 @@ public class Map extends MapActivity implements LocationListener {
 		user=getIntent().getExtras().getString("username");
 		userid=getIntent().getExtras().getInt("userid");
 		
-			
-		String json="{\"userid\":\""+userid+"\",\"tenantid\": \"6\",\"emergency_location\":\""+add+"\",\"longitude\":\""+location.getLongitude()+"\",\"lattitude\":\""+location.getLatitude()+"\" }";
+		
+		String json="{\"userid\":\""+String.valueOf(userid)+"\",\"emergencylocation\":\""+add+"\",\"latitude\":\""+String.valueOf(location.getLatitude())+"\",\"longitude\":\""+String.valueOf(location.getLongitude())+"\",\"tenantid\":\"6\",\"requestDate\":\"2013-01-01T20:27:05\"}";
+	
 		
 		HttpClient httpClient = new DefaultHttpClient();
 
 	    try {
-	        HttpPut request = new HttpPut("http://10.0.2.2:8080/MedicalInformationSystem/rest/emergency/6");
+	        HttpPut request = new HttpPut("http://10.0.2.2:8080/MedicalInformationSystem/rest/emergency");
 	        StringEntity params =new StringEntity(json);
 	        request.addHeader("Content-Type", "application/json");
 	        request.setEntity(params);
 	        HttpResponse httpResponse = httpClient.execute(request);
 		
+	        
 	        if(httpResponse.getStatusLine().getStatusCode() == 201)
 	        {
 	        	Toast toast = Toast.makeText(getApplicationContext(), "Medical Care is on the way",
