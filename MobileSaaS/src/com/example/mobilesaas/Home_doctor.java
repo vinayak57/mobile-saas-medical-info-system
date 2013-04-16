@@ -109,7 +109,10 @@ public class Home_doctor extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				Intent browserIntent = new Intent(getApplicationContext(),ListAppointmentsStaff.class);
+				browserIntent.putExtra("hospital_staff_id", staffid);
+				browserIntent.putExtra("userid", userid);
+				startActivity(browserIntent);
 				
 			}
 		});

@@ -29,5 +29,6 @@
     <string name="title_activity_view_image">View Image</string>
     <string name="title_activity_clinical_search">Clinical Search</string>
     <string name="title_activity_search_selection">Select Search Crieteria</string>
-
+<string name="title_activity_prescribe__drug">Prescribe Medicine</string>
+<string name="title_activity_list_appointments_staff">List Appointments for Staff</string>
 </resources>
