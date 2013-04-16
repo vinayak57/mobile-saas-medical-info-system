@@ -60,10 +60,6 @@ public class Home_patient extends Activity {
 				JSONObject json = new JSONObject(result);
 				patientid= (Integer)json.get("patientId");
 				
-				Toast toast = Toast.makeText(getApplicationContext(),"sfsdfdsfds   "+ patientid,
-		   				 Toast.LENGTH_LONG);
-		   				 toast.show();
-				
 			}
 		}
 		catch(Exception e)
