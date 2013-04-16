@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -137,6 +138,7 @@ public enum EmergencyRequestDao {
 			prest.setString(4, emergency.getLongitude());
 			prest.setInt(5, emergency.getTenantid());
 			prest.setString(6, "open");
+			prest.setTimestamp(7, new Timestamp(emergency.getRequestDate().getTime()));
 			result = prest.executeUpdate();
 
 		} catch (Exception e) {
@@ -211,6 +213,7 @@ public enum EmergencyRequestDao {
 		dto.setUserid(rs.getInt("userid"));
 		dto.setTenantid(rs.getInt("tenantid"));
 		dto.setStatus(rs.getString("status"));
+		dto.setRequestDate(new Date(rs.getTimestamp("requestdate").getTime()));
 	}
 
 	protected List<EmergencyRequest> fetchMultiResults(ResultSet rs)

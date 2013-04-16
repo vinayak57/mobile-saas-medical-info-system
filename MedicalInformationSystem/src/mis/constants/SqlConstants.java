@@ -63,6 +63,6 @@ public class SqlConstants {
 	public static String getEmergencyByid ="SELECT * FROM medicalinfosystem.emergency_request where emergency_request_id=?";
 	public static String getAllOpenEmergencyReq = "SELECT * FROM medicalinfosystem.emergency_request where tenantid=? and status='open'";
 	public static String getAllEmergencyReq = "SELECT * FROM medicalinfosystem.emergency_request where tenantid=?";
-	public static String insertEmergency = "INSERT into medicalinfosystem.emergency_request(userid, emergencylocation, latitude, longitude, tenantid, status)VALUES (?,?,?,?,?)";
+	public static String insertEmergency = "INSERT into medicalinfosystem.emergency_request(userid, emergencylocation, latitude, longitude, tenantid, status, requestdate)VALUES (?,?,?,?,?,?,?)";
 	public static String updateEmergency = "UPDATE medicalinfosystem.emergency_request SET status=? WHERE emergency_request_id =?";
 }

@@ -1,6 +1,7 @@
 package mis.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -17,9 +18,16 @@ public class EmergencyRequest implements Serializable{
 	private String latitude;
 	private String longitude;
 	private String status;
+	
 	private int tenantid;
+	private Date requestDate;
 	
-	
+	public Date getRequestDate() {
+		return requestDate;
+	}
+	public void setRequestDate(Date requestDate) {
+		this.requestDate = requestDate;
+	}
 	public int getEmergency_request_id() {
 		return emergency_request_id;
 	}
