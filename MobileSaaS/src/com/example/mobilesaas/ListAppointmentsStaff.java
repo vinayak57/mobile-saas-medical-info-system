@@ -42,8 +42,8 @@ public class ListAppointmentsStaff extends ListActivity {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_list_appointments_staff);
 		
-		  userid=23;//getIntent().getExtras().getInt("userid");
-		  hospital_staff_id = 1;//getIntent().getExtras().getInt("hospital_staff_id");
+		  userid=getIntent().getExtras().getInt("userid");
+		  hospital_staff_id = getIntent().getExtras().getInt("hospital_staff_id");
 		  
 		  
 		  callrest(); 
@@ -93,7 +93,7 @@ public class ListAppointmentsStaff extends ListActivity {
 						
 						browserIntent.putExtra("userid", userid);
 						//browserIntent.putExtra("username", user);
-						browserIntent.putExtra("hospital_staff_id", hospital_staff_id);
+						//browserIntent.putExtra("hospital_staff_id", hospital_staff_id);
 						browserIntent.putExtra("appid", apid);
 						startActivity(browserIntent);
 					
