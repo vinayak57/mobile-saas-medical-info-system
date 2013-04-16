@@ -162,8 +162,32 @@ public enum EmergencyRequestDao {
 		}
 		else
 		{
-			//update
-			return 0;
+			System.out.println("calling update");
+			Connection con = null;
+			ResultSet rs = null;
+			PreparedStatement prest = null;
+			int result = 0;
+
+			try {
+				con = DBConnection.getConnection();
+				String sqlStatement = SqlConstants.updateEmergency;
+				prest = con.prepareStatement(sqlStatement);
+				prest.setString(1, req.getStatus());
+				prest.setInt(2, req.getEmergency_request_id());
+				result = prest.executeUpdate();
+
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			return result;
 		}
 		
 	}
