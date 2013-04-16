@@ -1,8 +1,7 @@
 package com.example.mobilesaas;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -24,32 +23,38 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ListAppointmentsStaff extends ListActivity {
+public class ListPatients extends ListActivity {
 
-	int userid,hospital_staff_id,code;
-	String user,result,isAppointment;
-	List<String> appointment = new ArrayList<String>();
-	List<Integer> appointment_id =new ArrayList<Integer>();
-	List<String> rawappointment= new ArrayList<String>();
+	int userid,hospital_staff_id, code;
+	String result,fname,lname;
+	Button bSearchPatient, bSearchCancel;
+	EditText etdfname,etdlname;
+	List<String> patientList;//= new ArrayList<String>();
+	List<String> patientRawList = new ArrayList<String>();
+	HashMap<String, Integer> patientMap = new HashMap<String, Integer>();
 	private static int save= -1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_list_appointments_staff);
+		//setContentView(R.layout.activity_list_patients);
+		patientList = new ArrayList<String>();
 		
-		  userid=getIntent().getExtras().getInt("userid");
-		  hospital_staff_id = getIntent().getExtras().getInt("hospital_staff_id");
-		  isAppointment = getIntent().getExtras().getString("isAppointment");
-		  
-		  callrest(); 
-		  
-		  this.setListAdapter(new ArrayAdapter<String>(this,
-					android.R.layout.simple_list_item_1, appointment));
+		//patientList.removeAll(patientList);
+		userid=getIntent().getExtras().getInt("userid");
+		fname=getIntent().getExtras().getString("fname");
+		lname=getIntent().getExtras().getString("lname");
+		//Colelcti.removeAll(arg0)
+		callrest(fname, lname);
+		
+		 this.setListAdapter(new ArrayAdapter<String>(this,
+					android.R.layout.simple_list_item_1, patientList));
 		  
 		  ListView listView = getListView();
 
@@ -79,39 +84,21 @@ public class ListAppointmentsStaff extends ListActivity {
 					
 					try {
 						String product = ((TextView) view).getText().toString();
-						for(String s: appointment)
-						{
-							if(s.equalsIgnoreCase(product));
-							{
-								 i= appointment.indexOf(product);
-								 apid = appointment_id.get(i);
-								break;
-							}
-							
-						}
+						Log.d("selected text" , product);
 						
-						if(isAppointment.equals("false"))
-						{
-						Intent browserIntent = new Intent(getApplicationContext(),Prescribe_Drug.class);
+						int patientId = patientMap.get(product).intValue();
 						
-						browserIntent.putExtra("userid", userid);
-						//browserIntent.putExtra("username", user);
-						//browserIntent.putExtra("hospital_staff_id", hospital_staff_id);
-						browserIntent.putExtra("appid", apid);
-						startActivity(browserIntent);
-						}
-						else
-						{
-							//Show appointment details instead going to prescribe drug
-							Intent browserIntent = new Intent(getApplicationContext(),Prescribe_Drug.class);
+						Log.d("selected " , String.valueOf(patientId));
+						
+							Intent browserIntent = new Intent(getApplicationContext(),ListMedicalInfo.class);
 							
 							browserIntent.putExtra("userid", userid);
 							//browserIntent.putExtra("username", user);
 							//browserIntent.putExtra("hospital_staff_id", hospital_staff_id);
-							browserIntent.putExtra("appid", apid);
+							browserIntent.putExtra("patientid", patientId);
 							startActivity(browserIntent);
 							
-						}
+					
 						
 						
 					} catch (Exception e) {
@@ -119,20 +106,17 @@ public class ListAppointmentsStaff extends ListActivity {
 					}
 				}
 			});
-		  
+		
+		//callrest(fname, lname);
+		
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.list_appointments_staff, menu);
-		return true;
-	}
-	
-	public void callrest()
+	public void callrest(String fname, String lname)
 	{
 		HttpClient httpclient = new DefaultHttpClient();  
-        String url="http://10.0.2.2:8080/MedicalInformationSystem/rest/appointments/6/"+hospital_staff_id + "/appointment/weekly";
+    	
+        String url="http://10.0.2.2:8080/MedicalInformationSystem/rest/patients/search/6/" + fname + "/" + lname;
+        
         HttpGet request = new HttpGet(url);
         request.addHeader("Accept","application/json");
         HttpResponse response;
@@ -147,31 +131,43 @@ public class ListAppointmentsStaff extends ListActivity {
 			
 			if(code==200)
 			{
+				//patientList.clear();
 				JSONArray start_object = new JSONArray(result);
 				int count=start_object.length();
-				JSONObject json;
-			
-				long rawdate;
-				Date appdate;
-				SimpleDateFormat sf;
-				String newappdate;
-				String newtime;
+				Log.d("inside code ", String.valueOf(count));
+				JSONObject mainobj;
+				Log.d("patients: " , String.valueOf(patientList.size()));
 				for (int i = 0; i < count; i++) {
-					json = start_object.getJSONObject(i);
 					
-					rawdate=Long.valueOf(json.getString("appointment_date"));
-					appdate=new Date(rawdate);
-					sf=new SimpleDateFormat("yyyy-mm-dd");
-					newappdate = sf.format(appdate);
-					sf =new SimpleDateFormat("HH:mm:ss");
-					newtime=sf.format(appdate);
+					mainobj=start_object.getJSONObject(i);
+					Log.d("after rest", mainobj.toString());
 					
-					appointment.add((i+1) + ") " + "Date: "+newappdate+" Time :"+newtime);
-					rawappointment.add(json.getString("appointment_date"));
+					String fname1 = mainobj.getString("fname");
+					String lname1 = mainobj.getString("lname");
+					String email = mainobj.getString("email");
+					int phone = mainobj.getInt("phone");
 					
-					appointment_id.add(Integer.valueOf((json.getInt("appointment_id"))));
+					String result="Name: " + fname1;
+					result +=", Email: " + email;
+					result +=", Phone: " + phone;
+					
+					//if(patientMap.ge)
+					patientList.add(result);
+					patientMap.put(result, mainobj.getInt("patientId"));
+					
+					Log.d("patients: " , String.valueOf(patientList.size()));
+					
+//					Integer drug_id = Integer.valueOf(json.getString("drugId"));
+//					String name =json.getString("name");
+//					String power = json.getString("power");
+//					
+//								
+//					drugList.add("Drug: "+name+" , Power :"+power);
+//					drugidList.add(drug_id);
+//					drugMap.put("Drug: "+name+" , Power :"+power, drug_id);
 					
 				}
+				
 				
 			}
 			else
@@ -185,6 +181,13 @@ public class ListAppointmentsStaff extends ListActivity {
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.list_patients, menu);
+		return true;
 	}
 
 }
