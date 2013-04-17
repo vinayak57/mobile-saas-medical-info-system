@@ -143,7 +143,7 @@ public enum PatientMedInfoDao {
 	protected void populateVO(PatientMedInfo dto, ResultSet rs) throws SQLException {
 		dto.setWeight(rs.getInt("weight"));
 		dto.setHeight(rs.getInt("height"));
-		dto.setAllergies(rs.getString("bloodgroup"));
+		dto.setBloodgroup(rs.getString("bloodgroup"));
 		dto.setAllergies(rs.getString("allergies"));
 		dto.setPrecautions(rs.getString("precautions"));
 		dto.setSide_effects(rs.getString("side_effects"));
