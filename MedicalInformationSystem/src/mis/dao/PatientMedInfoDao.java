@@ -13,10 +13,12 @@ import java.util.Map;
 
 import mis.constants.SqlConstants;
 import mis.model.AppointmentDetail;
+import mis.model.Patient;
 import mis.model.PatientMedInfo;
 import mis.model.Prescription;
 import mis.model.VisitType;
 import mis.util.DBConnection;
+import mis.util.DateConvert;
 
 public enum PatientMedInfoDao {
 
@@ -112,6 +114,10 @@ public enum PatientMedInfoDao {
 				prest.setString(5, presc.getBloodgroup());
 				prest.setInt(6, presc.getWeight());
 				prest.setInt(7, presc.getHeight());
+				prest.setDate(8, DateConvert.convertUtilToSQLdate(presc.getDob()));
+				prest.setInt(9, presc.getAge());
+				prest.setString(10, presc.getGender());
+				prest.setInt(11, presc.getTenant_id());
 				
 				result = prest.executeUpdate();
 
@@ -127,6 +133,11 @@ public enum PatientMedInfoDao {
 			}
 
 		}
+		else
+		{
+			//update
+			
+		}
 		return result;
 	}
 
@@ -140,6 +151,17 @@ public enum PatientMedInfoDao {
 		}
 	}
 
+	protected PatientMedInfo fillPatientDetails(PatientMedInfo dto, ResultSet rs, int patient_id)
+	{
+		Patient patientObj = PatientDao.instance.getPatientByPatientId(patient_id);
+		
+		dto.setDob(patientObj.getDob());
+		dto.setGender(patientObj.getGender());
+		dto.setFname(patientObj.getFname());
+		dto.setLname(patientObj.getLname());
+		return dto;
+	}
+	
 	protected void populateVO(PatientMedInfo dto, ResultSet rs) throws SQLException {
 		dto.setWeight(rs.getInt("weight"));
 		dto.setHeight(rs.getInt("height"));
@@ -149,6 +171,13 @@ public enum PatientMedInfoDao {
 		dto.setSide_effects(rs.getString("side_effects"));
 		dto.setPatient_med_info_id(rs.getInt("patient_med_info_id"));
 		dto.setPatient_id(rs.getInt("patient_id"));
+		dto.setAge(rs.getInt("age"));
+		dto.setTenant_id(rs.getInt("tenant_id"));
+		dto = fillPatientDetails(dto, rs, dto.getPatient_id());
+		
+		dto.setSurgicalHistory(SurgicalHistoryDao.instance.getSurgicalHistoryInfoByPatientId(dto.getPatient_id()));
+		dto.setSocialHistory(SocialHistoryDao.instance.getSocialHistoryInfoByPatientId(dto.getPatient_id()));
+		dto.setFamilyHistory(FamilyHistoryDao.instance.getFamilyHistoryInfoByPatientId(dto.getPatient_id()));
 
 	}
 

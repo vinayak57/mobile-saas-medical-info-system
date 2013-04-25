@@ -213,31 +213,34 @@ public enum ClinicalRecordsDao {
 	{
 		//ClinicalRecordsDao.instance.insertClinicalRecords();
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date start = null;
-		Date end = null;
-		try {
-			start = formatter.parse("2012-02-01 20:27:05");
-			end = formatter.parse("2012-03-01 20:27:05");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		Date start = null;
+//		Date end = null;
+//		try {
+//			start = formatter.parse("2012-02-01 20:27:05");
+//			end = formatter.parse("2012-03-01 20:27:05");
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
-		for(int i = 1 ; i<1;i++)
+		for(int i = 1 ; i<900;i++)
 		{
-		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllClinicalRecordsByPatient(i);
+		List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllClinicalRecordsByPatient(i);
 		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDiagnosticArea("FrontNeck");
 		
 		//List<ClinicalRecords> recordList = ClinicalRecordsDao.instance.getAllXRayRecordsByDateCreatedRange(start, end);
 		//System.out.println(recordList.size());
-//		for(ClinicalRecords obj : recordList )
-//		{
-//			//System.out.println(obj.getDescription() + obj.getPatient_id() + obj.getHospital_staff_id());
-//			//System.out.println(obj.getXray().get(0).getAttr().getDateCreated().toString());
-//			System.out.println(obj.getXray().get(0).getAttr().getSeverity());
-//			
-//		}
+		for(ClinicalRecords obj : recordList )
+		{
+			//System.out.println(obj.getDescription() + obj.getPatient_id() + obj.getHospital_staff_id());
+			//System.out.println(obj.getXray().get(0).getAttr().getDateCreated().toString());
+			if(obj.getXray().size()>1)
+			{
+				System.out.println(obj.getPatient_id() + obj.getHospital_staff_id() + obj.getDescription());
+			}
+			
+		}
 		}
 		
 	}
