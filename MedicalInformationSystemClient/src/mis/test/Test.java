@@ -1,6 +1,8 @@
 package mis.test;
 
 import java.net.URI;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.ws.rs.core.MediaType;
@@ -38,6 +40,25 @@ public class Test {
 //				.accept(MediaType.APPLICATION_JSON).get(String.class));
 		// Get JSON for application
 		System.out.println(service.path("rest").path("users").path("6")
+				.accept(MediaType.APPLICATION_XML).get(String.class));
+	}
+	
+	public static void searchByDate()
+	{
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date start = null;
+		Date end = null;
+		try {
+			start = formatter.parse("2012-02-01 20:27:05");
+			end = formatter.parse("2012-03-01 20:27:05");
+			
+			formatter.format(start);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(service.path("rest").path("clinicalrecords").path("xray/searchbydatecreated").path(formatter.format(start)).path(formatter.format(end))
 				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
 	
@@ -273,8 +294,65 @@ public class Test {
 	{
 		try{
     
-		String input = "{\"bloodgroup\":\"O+\",\"weight\":\"16\",\"height\":\"4\",\"allergies\":\"viral\",\"precautions\":\"no ice cream\",\"side_effects\":\"cold\",\"patient_id\":\"5\"}";
+		String input = "{\"bloodgroup\":\"O+\",\"weight\":\"16\",\"height\":\"4\",\"allergies\":\"viral\",\"precautions\":\"no ice cream\",\"side_effects\":\"cold\",\"patient_id\":\"5\",\"tenant_id\":\"6\",\"dob\":\"1987-01-01\",\"age\":\"25\",\"gender\":\"male\"}";
 		ClientResponse response = service.path("rest").path("patientmedicalinfo").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void insertSurgicalHistory()
+	{
+		try{
+    
+		String input = "{\"type_of_surgery\":\"brain surgery\",\"date_of_surgery\":\"2013-04-01\",\"hospital_staff_id\":\"1\",\"patient_id\":\"38\",\"tenant_id\":\"6\"}";
+		ClientResponse response = service.path("rest").path("surgicalhistoryinfo").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void insertSocialHistory()
+	{
+		try{
+    
+		String input = "{\"isSmoker\":\"false\",\"isAlcoholic\":\"true\",\"isdrug_consumer\":\"false\",\"vaccinations\":\"smallpoc, polio \",\"no_of_pregnancies\":\"0\",\"patient_id\":\"38\",\"tenant_id\":\"6\"}";
+		ClientResponse response = service.path("rest").path("socialhistoryinfo").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void insertFamilyHistory()
+	{
+		try{
+    
+		String input = "{\"member_name\":\"moly\",\"relationship\":\"mother\",\"disease\":\"lung cancer\",\"patient_id\":\"38\",\"tenant_id\":\"6\"}";
+		ClientResponse response = service.path("rest").path("familyhistoryinfo").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
 		String output = response.getEntity(String.class);
@@ -292,7 +370,7 @@ public class Test {
 	{
 		try{
     
-		String input = "{\"userid\":\"10\",\"emergencylocation\":\"201 S 4th Street San Jose CA 95112\",\"latitude\":\"1.999930940\",\"longitude\":\"-245.9540588\",\"tenantid\":\"6\"}";
+		String input = "{\"userid\":\"10\",\"emergencylocation\":\"Mountain View CA 95112\",\"latitude\":\"21.999930940\",\"longitude\":\"-45.9540588\",\"tenantid\":\"6\",\"requestDate\":\"2013-01-01T20:27:05\"}";
 		ClientResponse response = service.path("rest").path("emergency").type("application/json")
 		   .put(ClientResponse.class, input);
 		System.out.println("Output from Server .... \n");
@@ -331,7 +409,13 @@ public class Test {
 		//insertPrescription();
 		//insertPatientMedInfo();
 		//insertHospital();
-		insertEmergencyRequest();
+		//insertEmergencyRequest();
+		//insertSurgicalHistory();
+		//insertSocialHistory();
+		//insertFamilyHistory();
+		
+		//searchByDate();
+		
 //		System.out.println(service.path("rest").path("appointments").path("6")
 //				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
