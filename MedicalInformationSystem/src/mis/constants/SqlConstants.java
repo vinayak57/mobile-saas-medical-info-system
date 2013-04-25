@@ -16,6 +16,7 @@ public class SqlConstants {
 	public static String getAllPatients = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and u.tenantid=?;";
 	public static String getPatientByid ="SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and u.userid=?;";
 	public static String getAllPatientsByName = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and (u.tenantid=? and p.fname=? and p.lname=?)";
+	public static String getPatientBypatientid = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.patient p where u.userid = p.userid and p.patient_id=?;";
 	
 	public static String getStaffByid = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and u.userid=?;";
 	public static String getAllStaff = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and u.tenantid=?;";
@@ -58,7 +59,22 @@ public class SqlConstants {
 	
 	public static String getAllPatientMedInfo="SELECT * FROM medicalinfosystem.patient_medical_info where patient_id=?";
 	public static String getAllPatientMedInfoById="SELECT * FROM medicalinfosystem.patient_medical_info where patient_med_info_id=?";
-	public static String insertPatientMedInfoDetails="INSERT into medicalinfosystem.patient_medical_info(allergies, precautions, side_effects, patient_id,bloodgroup,weight, height) VALUES(?,?,?,?,?,?,?)";
+	public static String insertPatientMedInfoDetails="INSERT into medicalinfosystem.patient_medical_info(allergies, precautions, side_effects, patient_id,bloodgroup,weight, height, dob, age, gender,tenant_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+	
+	public static String getSurgicalHistoryInfoById = "SELECT * FROM medicalinfosystem.surgical_history where patient_id=?";
+	public static String getSurgicalHistoryById = "SELECT * FROM medicalinfosystem.surgical_history where surgical_history_id=?";
+	public static String insertSurgicalHistoryDetails = "INSERT into medicalinfosystem.surgical_history(type_of_surgery, date_of_surgery, hospital_staff_id, patient_id, tenant_id) VALUES(?,?,?,?,?)";
+	public static String updateSurgicalHistoryDetails = "UPDATE medicalinfosystem.surgical_history SET type_of_surgery=?, date_of_surgery=?, hospital_staff_id=?, patient_id=?, tenant_id=? WHERE surgical_history_id=?";
+
+	public static String getSocialHistoryById = "SELECT * FROM medicalinfosystem.social_history where social_history_id=?";
+	public static String getSocialHistoryInfoById = "SELECT * FROM medicalinfosystem.social_history where patient_id=?";
+	public static String insertSocialHistoryDetails = "INSERT into medicalinfosystem.social_history(smoker, alcoholic, drug_consumer,vaccinations, no_of_pregnancies, patient_id, tenant_id) VALUES(?,?,?,?,?,?,?)";
+	public static String updateSocialHistoryDetails = "UPDATE medicalinfosystem.social_history SET smoker=?, alcoholic=?, drug_consumer=?, vaccinations=?,no_of_pregnancies=?, patient_id=?, tenant_id=? WHERE social_history_id=?";
+	
+	public static String getFamilyHistoryById = "SELECT * FROM medicalinfosystem.family_history where family_history_id=?";
+	public static String getFamilyHistoryInfoById = "SELECT * FROM medicalinfosystem.family_history where patient_id=?";
+	public static String insertFamilyHistoryDetails = "INSERT into medicalinfosystem.family_history(member_name, relationship, disease, patient_id, tenant_id) VALUES(?,?,?,?,?)";
+	public static String updateFamilyHistoryDetails = "UPDATE medicalinfosystem.family_history SET member_name=?, relationship=?, disease=?, patient_id=?, tenant_id=? WHERE family_history_id=?";
 	
 	public static String getEmergencyByid ="SELECT * FROM medicalinfosystem.emergency_request where emergency_request_id=?";
 	public static String getAllOpenEmergencyReq = "SELECT * FROM medicalinfosystem.emergency_request where tenantid=? and status='open'";
