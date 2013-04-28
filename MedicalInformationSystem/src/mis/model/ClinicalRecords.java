@@ -2,6 +2,7 @@ package mis.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -12,7 +13,7 @@ import org.bson.types.ObjectId;
 
 @Entity("clinicalrecords")
 @XmlRootElement
-public class ClinicalRecords  implements Serializable{
+public class ClinicalRecords implements Serializable{
 
 	/**
 	 * 
@@ -26,7 +27,14 @@ public class ClinicalRecords  implements Serializable{
 	
 	private int patient_id;
 	
+	private String fname;
+	private String lname;
+	private String email;
+	private String gender;
+	private Date dob;
+	
 	private int hospital_staff_id;
+	
 	
 	@Reference
 	private List<XRayRecords> xray = new ArrayList<XRayRecords>();
@@ -82,6 +90,46 @@ public class ClinicalRecords  implements Serializable{
 
 	public void setMriscan(List<MRIScanRecords> mriscan) {
 		this.mriscan = mriscan;
+	}
+
+	public String getFname() {
+		return fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+	public String getLname() {
+		return lname;
+	}
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 	
 	
