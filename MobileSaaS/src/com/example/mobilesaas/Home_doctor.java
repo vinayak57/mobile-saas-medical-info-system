@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class Home_doctor extends Activity {
 
 	ImageView clinical, history, appointment, prescribe;
 	TextView welcome;
+	Button signout;
 	String user,result;
 	int userid,code;
 	int staffid;
@@ -68,9 +70,22 @@ public class Home_doctor extends Activity {
 		appointment=(ImageView)findViewById(R.id.ivDoctorAppointment);
 		prescribe=(ImageView)findViewById(R.id.ivDoctorPrescription);
 		welcome=(TextView)findViewById(R.id.tvDocWelcome);
+		signout=(Button)findViewById(R.id.bSignout);
 		
 		welcome.setText(welcome.getText().toString()+user);
 		
+		signout.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent browserIntent = new Intent(getApplicationContext(),Login.class);
+				//browserIntent.putExtra("userid", userid);
+				//browserIntent.putExtra("username",user );
+				//browserIntent.putExtra("staffid",staffid );
+				startActivity(browserIntent);
+			}
+		});
 		
 		clinical.setOnClickListener(new View.OnClickListener() {
 			
