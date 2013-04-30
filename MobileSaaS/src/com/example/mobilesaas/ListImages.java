@@ -38,7 +38,7 @@ public class ListImages extends ListActivity {
 	String result;
 	String user,clinicaldata,temp;
 	
-	String extra_image, extra_diago, extra_issue, extra_sev, extra_datec, extra_datem;
+	String extra_image, extra_diago, extra_issue, extra_sev, extra_datec, extra_datem,extra_lab,extra_labstaff;
 	
 	List<String> xdiagno = new ArrayList<String>();
 	List<String> xissue = new ArrayList<String>();
@@ -46,7 +46,10 @@ public class ListImages extends ListActivity {
 	List<String> xdatec = new ArrayList<String>();
 	List<String> ximage = new ArrayList<String>();
 	List<String> xdatem = new ArrayList<String>();
+	List<String> xlabname = new ArrayList<String>();
+	List<String> xlab_staff = new ArrayList<String>();
 	List<String> display = new ArrayList<String>();
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -105,6 +108,8 @@ public class ListImages extends ListActivity {
 			   				extra_sev=xsev.get(i);
 			   				extra_datec=xdatec.get(i);
 			   				extra_datem=xdatem.get(i);
+			   				extra_lab=xlabname.get(i);
+			   				extra_labstaff=xlab_staff.get(i);
 			   				break;
 			   				
 			   			}
@@ -121,6 +126,8 @@ public class ListImages extends ListActivity {
 					browserIntent.putExtra("extra_sev",extra_sev );
 					browserIntent.putExtra("extra_datec",extra_datec );
 					browserIntent.putExtra("extra_datem",extra_datem );
+					browserIntent.putExtra("extra_lab",extra_lab );
+					browserIntent.putExtra("extra_labstaff",extra_labstaff );
 					browserIntent.putExtra("clinicaldata",clinicaldata );
 					startActivity(browserIntent);
 				}
@@ -189,6 +196,9 @@ public class ListImages extends ListActivity {
 							for (int j = 0; j < xraycount; j++) {
 								
 								JSONObject xrayobj = xrayarray.getJSONObject(j);
+								xlabname.add(xrayobj.getString("labName"));
+								xlab_staff.add(xrayobj.getString("lab_staff"));
+								
 								
 								ximage.add(xrayobj.getString("image"));
 								
@@ -212,6 +222,7 @@ public class ListImages extends ListActivity {
 								xsev.add(attrobj.getString("severity"));
 								xdatec.add(cdate);
 								xdatem.add(attrobj.getString("dateModified"));
+								
 								display.add("Date Created : "+ cdate);
 								
 								
