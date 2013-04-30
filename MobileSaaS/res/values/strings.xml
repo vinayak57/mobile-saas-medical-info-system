@@ -40,5 +40,7 @@
     <string name="title_activity_view_patient_med_info">ViewPatientMedInfo</string>
     <string name="title_activity_list_medical_info">ListMedicalInfo</string>
     <string name="title_activity_patient__appointment">Patient Appointment</string>
+    <string name="title_activity_list_view_appointment">View Appointments</string>
+    <string name="title_activity_appointment_details">Appointment Details</string>
 
 </resources>
