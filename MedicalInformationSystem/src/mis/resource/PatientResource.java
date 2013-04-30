@@ -1,6 +1,8 @@
 package mis.resource;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -33,6 +35,16 @@ public class PatientResource {
 	public List<Patient> getPatients(@PathParam("tenantid") int tenantid) {
 		List<Patient> patientObjs = new ArrayList<Patient>();
 		patientObjs.addAll(PatientDao.instance.getAllPatients(tenantid).values());
+		
+		Collections.sort(patientObjs, new Comparator<Patient>() {
+
+	        public int compare(Patient o1, Patient o2) {
+	        	String str2 = o2.getFname() + o2.getLname();
+	        	String str1 = o1.getFname() + o1.getLname();
+	        	
+	            return str1.compareTo(str2);
+	        }
+	    });
 		return patientObjs;
 	}
 	

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mis.constants.SqlConstants;
+import mis.model.FamilyHistory;
 import mis.model.SocialHistory;
 import mis.util.DBConnection;
 import mis.util.DateConvert;
@@ -51,9 +52,10 @@ public enum SocialHistoryDao {
 		return medInfoObj;
 	}
 	
-	public SocialHistory getSocialHistoryInfoByPatientId(int patientid) {
+	public List<SocialHistory> getSocialHistoryInfoByPatientId(int patientid) {
 		
-		SocialHistory medInfoObj = null;
+		List<SocialHistory> medInfoList = new ArrayList<SocialHistory>();
+		//SocialHistory medInfoObj = null;
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement prest = null;
@@ -64,7 +66,7 @@ public enum SocialHistoryDao {
 			prest.setInt(1, patientid);
 			rs = prest.executeQuery();
 			if (rs != null) {
-				medInfoObj = fetchSingleResult(rs);
+				medInfoList = fetchMultiResults(rs);
 			}
 
 		} catch (Exception e) {
@@ -78,7 +80,7 @@ public enum SocialHistoryDao {
 			}
 		}
 
-		return medInfoObj;
+		return medInfoList;
 	}
 	
 	public int putSurgicalHistoryDetails(SocialHistory presc) {

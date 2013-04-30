@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import mis.constants.SqlConstants;
+import mis.model.FamilyHistory;
+import mis.model.HospitalStaff;
 import mis.model.Patient;
 import mis.model.PatientMedInfo;
 import mis.model.SurgicalHistory;
@@ -55,9 +57,10 @@ public enum SurgicalHistoryDao {
 		return medInfoObj;
 	}
 	
-	public SurgicalHistory getSurgicalHistoryInfoByPatientId(int patientid) {
+	public List<SurgicalHistory> getSurgicalHistoryInfoByPatientId(int patientid) {
 		
-		SurgicalHistory medInfoObj = null;
+		//SurgicalHistory medInfoObj = null;
+		List<SurgicalHistory> medInfoList = new ArrayList<SurgicalHistory>();
 		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement prest = null;
@@ -68,8 +71,8 @@ public enum SurgicalHistoryDao {
 			prest.setInt(1, patientid);
 			rs = prest.executeQuery();
 			if (rs != null) {
-				medInfoObj = fetchSingleResult(rs);
-
+				//medInfoObj = fetchSingleResult(rs);
+				medInfoList = fetchMultiResults(rs);
 			}
 
 		} catch (Exception e) {
@@ -83,7 +86,7 @@ public enum SurgicalHistoryDao {
 			}
 		}
 
-		return medInfoObj;
+		return medInfoList;
 	}
 	
 	public int putSurgicalHistoryDetails(SurgicalHistory presc) {
@@ -166,15 +169,28 @@ public enum SurgicalHistoryDao {
 		}
 	}
 
+	protected SurgicalHistory fillStaffDetails(SurgicalHistory dto, ResultSet rs, int hospital_staff_id)
+	{
+		System.out.println("in fillstaff" + hospital_staff_id);
+		HospitalStaff patientObj = HospitalStaffDao.instance.getStaffByStaffId(hospital_staff_id);
+		System.out.println("middle fillstaff");
+		dto.setHospital_staff_name(patientObj.getLname() + ", " + patientObj.getFname());
+		return dto;
+	}
 
 	protected void populateVO(SurgicalHistory dto, ResultSet rs) throws SQLException {
+		
+		dto = fillStaffDetails(dto, rs, rs.getInt("hospital_staff_id"));
+		
+		System.out.println("after fillstaff");
+		
 		dto.setHospital_staff_id(rs.getInt("hospital_staff_id"));
 		dto.setSurgical_history_id(rs.getInt("surgical_history_id"));
 		dto.setType_of_surgery(rs.getString("type_of_surgery"));
 		dto.setDate_of_surgery(DateConvert.convertSQLToUtilDate(rs.getDate("date_of_surgery")));
 		dto.setPatient_id(rs.getInt("patient_id"));
 		dto.setTenant_id(rs.getInt("tenant_id"));
-
+		
 	}
 
 	protected List<SurgicalHistory> fetchMultiResults(ResultSet rs)

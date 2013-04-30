@@ -136,7 +136,39 @@ public enum PatientMedInfoDao {
 		else
 		{
 			//update
-			
+			Connection con = null;
+			ResultSet rs = null;
+			PreparedStatement prest = null;
+
+			try {
+				con = DBConnection.getConnection();
+				String sqlStatement = SqlConstants.updatePatientMedInfoDetails;
+				prest = con.prepareStatement(sqlStatement);
+
+				prest.setString(1, presc.getAllergies());
+				prest.setString(2, presc.getPrecautions());
+				prest.setString(3, presc.getSide_effects());
+				prest.setInt(4, presc.getPatient_id());
+				prest.setString(5, presc.getBloodgroup());
+				prest.setInt(6, presc.getWeight());
+				prest.setInt(7, presc.getHeight());
+				prest.setDate(8, DateConvert.convertUtilToSQLdate(presc.getDob()));
+				prest.setInt(9, presc.getAge());
+				prest.setString(10, presc.getGender());
+				prest.setInt(11, presc.getTenant_id());
+				prest.setInt(12, presc.getPatient_med_info_id());
+				
+				result = prest.executeUpdate();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return result;
 	}
