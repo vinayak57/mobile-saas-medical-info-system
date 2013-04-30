@@ -219,7 +219,7 @@ public enum AppointmentDetailsDao {
 			System.out.println(apmnt.getAppointment_date().toString());
 			prest.setTimestamp(5, new Timestamp(apmnt.getAppointment_date().getTime()));
 			prest.setInt(6, apmnt.getPatient_id());
-			//prest.setInt(7, apmnt.getPrescription_id());
+			prest.setString(7, apmnt.getStatus());
 			result = prest.executeUpdate();
 
 		} catch (Exception e) {
@@ -236,6 +236,35 @@ public enum AppointmentDetailsDao {
 		return result;
 	}
 
+	public int updateAppointmentStatus(int appointment_id)
+	{
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement prest = null;
+		int result = 0;
+
+		try {
+			con = DBConnection.getConnection();
+			String sqlStatement = SqlConstants.updateAppointmentStatus;
+			prest = con.prepareStatement(sqlStatement);
+			prest.setString(1, "close");
+			prest.setInt(2, appointment_id);
+			result = prest.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
+	
 	public int updateAppointment(AppointmentDetail apmnt)
 	{
 		System.out.println("calling update");
@@ -258,7 +287,8 @@ public enum AppointmentDetailsDao {
 			prest.setTimestamp(5, new Timestamp(apmnt.getAppointment_date().getTime()));
 			prest.setInt(6, apmnt.getPatient_id());
 			//prest.setInt(7, apmnt.getPrescription_id());
-			prest.setInt(7, apmnt.getAppointment_id());
+			prest.setString(7, apmnt.getStatus());
+			prest.setInt(8, apmnt.getAppointment_id());
 			result = prest.executeUpdate();
 
 		} catch (Exception e) {

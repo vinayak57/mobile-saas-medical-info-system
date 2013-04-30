@@ -20,6 +20,8 @@ public class AppointmentDetail implements Serializable {
 	private int tenantid;
 	private int patient_id;
 //	private int prescription_id;
+	private String status;
+	
 	
 	
 	public int getAppointment_id() {
@@ -81,6 +83,12 @@ public class AppointmentDetail implements Serializable {
 //	public void setPrescription_id(int prescription_id) {
 //		this.prescription_id = prescription_id;
 //	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	
 }
