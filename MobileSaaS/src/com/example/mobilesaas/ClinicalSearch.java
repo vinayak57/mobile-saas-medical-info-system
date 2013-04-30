@@ -84,7 +84,7 @@ public class ClinicalSearch extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent browserIntent = new Intent(getApplicationContext(),
-						SearchSelection.class);
+						ChooseTimestamp.class);
 				browserIntent.putExtra("userid", userid);
 				browserIntent.putExtra("username", user);
 				browserIntent.putExtra("staffid", staffid);
