@@ -385,6 +385,25 @@ public class Test {
 		}
 	}
 	
+	public static void updateAppointmentStatus()
+	{
+
+		try{
+    
+		String input = "{\"appointment_id\":\"16\"}";
+		ClientResponse response = service.path("rest").path("appointments").path("updatestatus").type("application/json")
+		   .put(ClientResponse.class, input);
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+	    
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public static void deleteUser()
 	{
@@ -415,7 +434,7 @@ public class Test {
 		//insertFamilyHistory();
 		
 		//searchByDate();
-		
+		updateAppointmentStatus();
 //		System.out.println(service.path("rest").path("appointments").path("6")
 //				.accept(MediaType.APPLICATION_XML).get(String.class));
 	}
