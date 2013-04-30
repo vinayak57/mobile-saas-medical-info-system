@@ -80,6 +80,7 @@ public enum VisitTypeDao {
 
 		return visitObj;
 	}
+	
 
 	public Map<String, VisitType> getAllVisitType(int tenantid) {
 
