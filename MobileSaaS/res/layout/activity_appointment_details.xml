@@ -1,0 +1,165 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/background">
+
+      <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp"
+        android:background="#70D0D5D9" >
+        
+ <TextView
+        android:id="@+id/tvTitleAppointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="center_horizontal"
+       	android:textSize="24sp"
+       	android:layout_marginTop="20dp"
+        android:text="Appointment Details" />
+       
+        <TextView
+        android:id="@+id/tvHospitalName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="20sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="70dp"
+        android:text="Hospital :" />
+        
+         <TextView
+        android:id="@+id/tvDataHospitalName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	
+       	android:textSize="20sp"
+       	android:layout_marginLeft="120dp"
+       	android:layout_marginTop="70dp"
+        android:text="" />
+         
+      <TextView
+        android:id="@+id/tvDoctorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="20sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="120dp"
+        android:text="Doctor :" />
+        
+         <TextView
+        android:id="@+id/tvDataDoctorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	
+       	android:textSize="20sp"
+       	android:layout_marginLeft="120dp"
+       	android:layout_marginTop="120dp"
+        android:text="" />
+         
+         <TextView
+        android:id="@+id/tvVisitType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="20sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="170dp"
+        android:text="Visit Type :" />
+        
+         <TextView
+        android:id="@+id/tvDataVisitType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     
+       	android:textSize="20sp"
+       	android:layout_marginLeft="120dp"
+       	android:layout_marginTop="170dp"
+        android:text="" />
+         
+         <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="20sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="200dp"
+        android:text="Status :" />
+        
+         <TextView
+        android:id="@+id/tvDataStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     
+       	android:textSize="20sp"
+       	android:layout_marginLeft="120dp"
+       	android:layout_marginTop="200dp"
+        android:text="" />
+      <!--    
+         <TextView
+        android:id="@+id/tvImageCDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="20sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="230dp"
+        android:text="Created Date :" />
+        
+         <TextView
+        android:id="@+id/tvDataImageCDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     
+       	android:textSize="20sp"
+       	android:layout_marginLeft="160dp"
+       	android:layout_marginTop="230dp"
+        android:text="" />
+         
+         <TextView
+        android:id="@+id/tvImageMDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="20sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="270dp"
+        android:text="Modified Date :" />
+        
+         <TextView
+        android:id="@+id/tvDataImageMDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     
+       	android:textSize="20sp"
+       	android:layout_marginLeft="160dp"
+       	android:layout_marginTop="270dp"
+        android:text="" />
+      -->             
+         <Button
+            android:id="@+id/bPCancelAppointment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel Appointment"
+            android:layout_marginTop="270dp"
+            android:layout_gravity="center_horizontal" /> 
+          
+           <Button
+            android:id="@+id/bPAppointmentBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:layout_marginTop="250dp"
+            android:layout_gravity="left|bottom" /> 
+          
+          
+          
+</FrameLayout>
+</LinearLayout>
