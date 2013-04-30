@@ -53,6 +53,7 @@ public class ClinicalRecordsResource {
 	public List<ClinicalRecords> getClinicalRecordsBySeverity(@PathParam("severity") String severity) {
 		List<ClinicalRecords> objs = new ArrayList<ClinicalRecords>();
 		objs.addAll(ClinicalRecordsDao.instance.getAllXRayRecordsBySeverity(severity.replace("%20", " ")));
+		System.out.println(objs.size());
 		return objs;
 	}
 	

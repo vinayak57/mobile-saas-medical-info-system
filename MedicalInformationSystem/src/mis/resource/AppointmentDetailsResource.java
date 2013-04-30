@@ -79,6 +79,20 @@ public class AppointmentDetailsResource {
 	}
 	
 	@PUT
+	@Path("/updatestatus")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateStatus(AppointmentDetail appointment) {
+		System.out.println(appointment.getAppointment_id());
+		if (AppointmentDetailsDao.instance.updateAppointmentStatus(appointment.getAppointment_id()) != 0) {
+			String result = "User updated";
+			return Response.status(201).entity(result).build();
+		} else {
+			return Response.noContent().build();
+		}
+	}
+
+	
+	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response putPatient(AppointmentDetail appointment) {
 		// return Response.status(201).entity(result).build();
