@@ -33,6 +33,7 @@ public class ListImagesStaff extends ListActivity {
 	String clinicaldata;
 	int code,flag;
 	String timestamp1,timestamp2;
+	String fname,lname;
 	
 	String extra_image, extra_diago, extra_issue, extra_sev, extra_datec, extra_datem,extra_lab,extra_labstaff;
 	
@@ -172,6 +173,12 @@ public class ListImagesStaff extends ListActivity {
         	edate=edate+"%2000:00:00";
         	
         	url="http://10.0.2.2:8080/MedicalInformationSystem/rest/clinicalrecords/xray/searchbydatecreated/"+cdate+"/"+edate;
+        	
+        }
+        else if(flag==4)
+        {
+        	       	
+        	url="http://10.0.2.2:8080/MedicalInformationSystem/rest/clinicalrecords/patient/"+patientid;
         	
         }
         HttpGet request = new HttpGet(url);

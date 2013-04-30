@@ -20,7 +20,7 @@ public class ListMedicalInfo extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_list_medical_info);
+		//setContentView(R.layout.activity_list_medical_info);
 		
 		userid=getIntent().getExtras().getInt("userid");
 		patientId=getIntent().getExtras().getInt("patientid");

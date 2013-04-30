@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 public class ListPatients extends ListActivity {
 
-	int userid,hospital_staff_id, code;
+	int userid,hospital_staff_id, code, flag = -1;
 	String result,fname,lname;
 	Button bSearchPatient, bSearchCancel;
 	EditText etdfname,etdlname;
@@ -50,6 +50,9 @@ public class ListPatients extends ListActivity {
 		userid=getIntent().getExtras().getInt("userid");
 		fname=getIntent().getExtras().getString("fname");
 		lname=getIntent().getExtras().getString("lname");
+		hospital_staff_id=getIntent().getExtras().getInt("staffid");
+        flag=getIntent().getExtras().getInt("flag");
+        
 		//Colelcti.removeAll(arg0)
 		callrest(fname, lname);
 		
@@ -75,7 +78,7 @@ public class ListPatients extends ListActivity {
 					
 					if(save!=-1 && save!=position)
 					{
-						parent.getChildAt(position).setBackgroundColor(Color.GREEN);
+						//parent.getChildAt(position).setBackgroundColor(Color.GREEN);
 					}
 					save=position;
 					
@@ -90,6 +93,18 @@ public class ListPatients extends ListActivity {
 						
 						Log.d("selected " , String.valueOf(patientId));
 						
+						if(flag!= -1 && flag==4)
+						{
+							Intent browserIntent = new Intent(getApplicationContext(),ListImagesStaff.class);
+							
+							browserIntent.putExtra("userid", userid);
+							browserIntent.putExtra("flag",4);
+							//browserIntent.putExtra("hospital_staff_id", hospital_staff_id);
+							browserIntent.putExtra("patientid", patientId);
+							startActivity(browserIntent);
+						}
+						else
+						{
 							Intent browserIntent = new Intent(getApplicationContext(),ListMedicalInfo.class);
 							
 							browserIntent.putExtra("userid", userid);
@@ -98,6 +113,7 @@ public class ListPatients extends ListActivity {
 							browserIntent.putExtra("patientid", patientId);
 							startActivity(browserIntent);
 							
+						}
 					
 						
 						

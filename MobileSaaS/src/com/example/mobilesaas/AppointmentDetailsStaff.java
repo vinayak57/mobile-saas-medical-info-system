@@ -72,7 +72,7 @@ public class AppointmentDetailsStaff extends Activity {
 	public void updateStatus()
 	{
     	
-String json = "{\"appointment_id\":\"" + app_id + "\"}";
+		String json = "{\"appointment_id\":\"" + app_id + "\"}";
 
         HttpClient httpClient = new DefaultHttpClient();
 
@@ -134,17 +134,15 @@ String json = "{\"appointment_id\":\"" + app_id + "\"}";
 				//int count=start_object.length();
 				JSONObject json = new JSONObject(result);
 			
-				long rawdate;
-
 //				for (int i = 0; i < count; i++) {
 //					
 //					json = start_object.getJSONObject(i);
-					Log.d("after rest", json.toString());
+					//Log.d("after rest", json.toString());
 					name =json.getString("fname") + " " + json.getString("lname");
 					visit = json.getString("visit_type");
 					statusJson = json.getString("status");
 		
-					Log.d("calling patient", String.valueOf(patientId));
+					//Log.d("calling patient", String.valueOf(patientId));
 					
 					
 				//}

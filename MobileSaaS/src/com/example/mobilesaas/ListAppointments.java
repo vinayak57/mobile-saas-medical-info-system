@@ -144,7 +144,7 @@ public class ListAppointments extends ListActivity {
 						
 						rawdate=Long.valueOf(json.getString("appointment_date"));
 						appdate=new Date(rawdate);
-						sf=new SimpleDateFormat("yyyy-mm-dd");
+						sf=new SimpleDateFormat("yyyy-MM-dd");
 						newappdate = sf.format(appdate);
 						sf =new SimpleDateFormat("HH:mm:ss");
 						newtime=sf.format(appdate);

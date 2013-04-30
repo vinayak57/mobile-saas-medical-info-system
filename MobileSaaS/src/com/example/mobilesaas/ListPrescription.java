@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -172,15 +173,16 @@ public class ListPrescription extends ListActivity {
 						instruction.add(json.getString("instruction"));
 						
 						rawdate=Long.valueOf(json.getString("start_date"));
+						Log.d("rawdate", String.valueOf(rawdate));
 						tempdate=new Date(rawdate);
-						sf=new SimpleDateFormat("yyyy-mm-dd");
+						sf=new SimpleDateFormat("yyyy-MM-dd");
 						sdate = sf.format(tempdate);
-						
+						Log.d("start", sdate);
 						start_date.add(sdate);
 						
 						rawdate=Long.valueOf(json.getString("end_date"));
 						tempdate=new Date(rawdate);
-						sf=new SimpleDateFormat("yyyy-mm-dd");
+						sf=new SimpleDateFormat("yyyy-MM-dd");
 						edate = sf.format(tempdate);
 						
 						end_date.add(edate);
