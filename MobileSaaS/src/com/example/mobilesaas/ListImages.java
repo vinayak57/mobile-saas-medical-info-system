@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import android.R.drawable;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,6 +14,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+//import com.example.mobilesaas.R;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -26,7 +28,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-import android.R;
+
 
 public class ListImages extends ListActivity {
 
@@ -76,8 +78,8 @@ public class ListImages extends ListActivity {
         
         listView.setCacheColorHint(0);
         
+       
 		listView.setBackgroundResource(R.drawable.background);
-		
 		
 		listView.setTextFilterEnabled(true);
 		
