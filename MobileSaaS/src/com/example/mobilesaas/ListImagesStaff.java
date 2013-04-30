@@ -106,7 +106,7 @@ public class ListImagesStaff extends ListActivity {
         }
         else if(flag==2)
         {
-        	
+        	url="http://10.0.2.2:8080/MedicalInformationSystem/rest/clinicalrecords/xray/searchbyarea/"+cr;
         }
         HttpGet request = new HttpGet(url);
         request.addHeader("Accept","application/json");
@@ -139,9 +139,9 @@ public class ListImagesStaff extends ListActivity {
 					JSONArray xrayarray = new JSONArray(xray);
 					int xraycount= xrayarray.length();
 					
-					String mriscan= mainobj.getString("mriscan");
-					JSONArray mriscanarray = new JSONArray(mriscan);
-					int mriscancount= mriscanarray.length();
+//					String mriscan= mainobj.getString("mriscan");
+//					JSONArray mriscanarray = new JSONArray(mriscan);
+//					int mriscancount= mriscanarray.length();
 					
 					
 					if(xraycount!=0 && xrayflag==true)//&& clinicaldata.equalsIgnoreCase("xray"))
@@ -188,24 +188,24 @@ public class ListImagesStaff extends ListActivity {
 							
 						}
 					}
-					else if (mriscancount!=0 && xrayflag==false)//clinicaldata.equalsIgnoreCase("mriscan"))
-					{
-						if(mriscancount==0)
-						{
-							Toast toast = Toast.makeText(getApplicationContext(), "You dont have any MRI scans",
-					   				 Toast.LENGTH_LONG);
-					   				 toast.show();
-						}
-						else
-						{
-							for (int j = 0; j < mriscancount; j++) {
-								
-							}
-							
-							
-						}
-						
-					}
+//					else if (mriscancount!=0 && xrayflag==false)//clinicaldata.equalsIgnoreCase("mriscan"))
+//					{
+//						if(mriscancount==0)
+//						{
+//							Toast toast = Toast.makeText(getApplicationContext(), "You dont have any MRI scans",
+//					   				 Toast.LENGTH_LONG);
+//					   				 toast.show();
+//						}
+//						else
+//						{
+//							for (int j = 0; j < mriscancount; j++) {
+//								
+//							}
+//							
+//							
+//						}
+//						
+//					}
 					
 					
 				}//main for

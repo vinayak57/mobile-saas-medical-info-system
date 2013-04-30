@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class ClinicalSearch extends Activity {
-	Button severity, issue, patient, timestamp;
+	Button severity, issue, patient, timestamp, bCDiagnosticArea;
 	int userid, staffid;
 	String user;
 	
@@ -30,8 +30,7 @@ public class ClinicalSearch extends Activity {
         issue=(Button)findViewById(R.id.bIssue);
         patient=(Button)findViewById(R.id.bCPatient);
         timestamp=(Button)findViewById(R.id.bTimeStamp);
-        
-        
+        bCDiagnosticArea = (Button)findViewById(R.id.bCDiagnosticArea);
         
         severity.setOnClickListener(new View.OnClickListener() {
 			
@@ -69,7 +68,13 @@ public class ClinicalSearch extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				Intent browserIntent = new Intent(getApplicationContext(),
+						SearchSelection.class);
+				browserIntent.putExtra("userid", userid);
+				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("staffid", staffid);
+				browserIntent.putExtra("navigation", "patient");
+				startActivity(browserIntent);
 				
 			}
 		});
@@ -78,12 +83,31 @@ public class ClinicalSearch extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				Intent browserIntent = new Intent(getApplicationContext(),
+						SearchSelection.class);
+				browserIntent.putExtra("userid", userid);
+				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("staffid", staffid);
+				browserIntent.putExtra("navigation", "timestamp");
+				startActivity(browserIntent);
 				
 			}
 		});
         
-        
+        bCDiagnosticArea.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent browserIntent = new Intent(getApplicationContext(),
+						SearchSelection.class);
+				browserIntent.putExtra("userid", userid);
+				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("staffid", staffid);
+				browserIntent.putExtra("navigation", "diago");
+				startActivity(browserIntent);
+				
+			}
+		});
         
     }
 
