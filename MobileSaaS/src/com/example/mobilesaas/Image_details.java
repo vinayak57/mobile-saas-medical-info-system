@@ -48,7 +48,10 @@ public class Image_details extends Activity {
         issue.setText(extra_issue);
         sev.setText(extra_sev);
         cdate.setText(extra_datec);
-        mdate.setText(extra_datem);
+        if(extra_datem.equalsIgnoreCase("null"))
+        	mdate.setText("None");
+        	else
+        	mdate.setText(extra_datem);
         
         
         
