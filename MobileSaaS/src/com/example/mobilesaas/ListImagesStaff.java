@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,8 +29,12 @@ import android.widget.Toast;
 public class ListImagesStaff extends ListActivity {
 
 	String user,cr,result;
-	int userid,staffid;
+	int userid,staffid,patientid;
+	String clinicaldata;
 	int code,flag;
+	String timestamp1,timestamp2;
+	
+	String extra_image, extra_diago, extra_issue, extra_sev, extra_datec, extra_datem,extra_lab,extra_labstaff;
 	
 	List<String> display = new ArrayList<String>();
     
@@ -39,7 +44,8 @@ public class ListImagesStaff extends ListActivity {
 	List<String> xdatec = new ArrayList<String>();
 	List<String> ximage = new ArrayList<String>();
 	List<String> xdatem = new ArrayList<String>();
-	
+	List<String> xlabname = new ArrayList<String>();
+	List<String> xlab_staff = new ArrayList<String>();
 	
 	
 	
@@ -51,8 +57,13 @@ public class ListImagesStaff extends ListActivity {
         user=getIntent().getExtras().getString("username");
         userid=getIntent().getExtras().getInt("userid");
         staffid=getIntent().getExtras().getInt("staffid");
+        patientid=getIntent().getExtras().getInt("patientid");
+        
+        clinicaldata="xray";
+        
         cr=getIntent().getExtras().getString("cr");
         flag=getIntent().getExtras().getInt("flag");
+        
         
         
         callrest();
@@ -65,8 +76,13 @@ public class ListImagesStaff extends ListActivity {
         
         ListView listView= getListView();
         
-		listView.setTextFilterEnabled(true);
+        listView.setCacheColorHint(0);
         
+        
+		listView.setBackgroundResource(R.drawable.background);
+		
+		listView.setTextFilterEnabled(true);
+		
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         
 		public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -74,9 +90,42 @@ public class ListImagesStaff extends ListActivity {
 			// TODO Auto-generated method stub
 			try{
 				String product = ((TextView) view).getText().toString();
-				Toast toast = Toast.makeText(getApplicationContext(), product,
-		   				 Toast.LENGTH_LONG);
-		   				 toast.show();
+				
+  				 
+		   		int i=0;
+		   		for(String s : display)
+		   		{
+		   			if(s.equalsIgnoreCase(product))
+		   			{
+		   				i=display.indexOf(product);
+		   				extra_image=ximage.get(i);
+		   				extra_diago=xdiagno.get(i);
+		   				extra_issue=xissue.get(i);
+		   				extra_sev=xsev.get(i);
+		   				extra_datec=xdatec.get(i);
+		   				extra_datem=xdatem.get(i);
+		   				extra_lab=xlabname.get(i);
+		   				extra_labstaff=xlab_staff.get(i);
+		   				break;
+		   				
+		   			}
+		   		}
+		   		
+		   		Intent browserIntent = new Intent(getApplicationContext(),Image_details.class);
+				
+				browserIntent.putExtra("userid", userid);
+				browserIntent.putExtra("username", user);
+				browserIntent.putExtra("patientid", patientid);
+				browserIntent.putExtra("extra_image",extra_image );
+				browserIntent.putExtra("extra_diago",extra_diago );
+				browserIntent.putExtra("extra_issue",extra_issue );
+				browserIntent.putExtra("extra_sev",extra_sev );
+				browserIntent.putExtra("extra_datec",extra_datec );
+				browserIntent.putExtra("extra_datem",extra_datem );
+				browserIntent.putExtra("extra_lab",extra_lab );
+				browserIntent.putExtra("extra_labstaff",extra_labstaff );
+				browserIntent.putExtra("clinicaldata",clinicaldata );
+				startActivity(browserIntent);
 			}
 			catch(Exception e)
 			{
@@ -107,6 +156,23 @@ public class ListImagesStaff extends ListActivity {
         else if(flag==2)
         {
         	url="http://10.0.2.2:8080/MedicalInformationSystem/rest/clinicalrecords/xray/searchbyarea/"+cr;
+        }
+        else if(flag==3)
+        {
+        	timestamp1=getIntent().getExtras().getString("timestamp1");
+        	timestamp2=getIntent().getExtras().getString("timestamp2");
+        	
+        	Date tempdate=new Date(timestamp1);
+			SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd");
+			String cdate = sf.format(tempdate);
+			cdate=cdate+"%2000:00:00";
+			
+        	tempdate=new Date(timestamp2);
+        	String edate=sf.format(tempdate);
+        	edate=edate+"%2000:00:00";
+        	
+        	url="http://10.0.2.2:8080/MedicalInformationSystem/rest/clinicalrecords/xray/searchbydatecreated/"+cdate+"/"+edate;
+        	
         }
         HttpGet request = new HttpGet(url);
         request.addHeader("Accept","application/json");
@@ -158,6 +224,9 @@ public class ListImagesStaff extends ListActivity {
 							for (int j = 0; j < xraycount; j++) {
 								
 								JSONObject xrayobj = xrayarray.getJSONObject(j);
+								
+								xlabname.add(xrayobj.getString("labName"));
+								xlab_staff.add(xrayobj.getString("lab_staff"));
 								
 								ximage.add(xrayobj.getString("image"));
 								
