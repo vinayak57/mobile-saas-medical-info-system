@@ -156,9 +156,9 @@ public enum ClinicalRecordsDao {
 		
 		int len = list.size();
 		//System.out.println(len);
-		if(len>10)
+		if(len>20)
 		{
-			List<ClinicalRecords> newlist = list.subList(0, 10);
+			List<ClinicalRecords> newlist = list.subList(0, 20);
 			return newlist;
 		}
 		return list;
@@ -181,9 +181,9 @@ public enum ClinicalRecordsDao {
 		
 		int len = list.size();
 		//System.out.println(len);
-		if(len>10)
+		if(len>20)
 		{
-			List<ClinicalRecords> newlist = list.subList(0, 10);
+			List<ClinicalRecords> newlist = list.subList(0, 20);
 			return newlist;
 		}
 		
@@ -206,9 +206,9 @@ public enum ClinicalRecordsDao {
 		}
 		int len = list.size();
 		//System.out.println(len);
-		if(len>10)
+		if(len>20)
 		{
-			List<ClinicalRecords> newlist = list.subList(0, 10);
+			List<ClinicalRecords> newlist = list.subList(0, 20);
 			return newlist;
 		}
 		
@@ -235,9 +235,9 @@ public enum ClinicalRecordsDao {
 		
 		int len = list.size();
 		//System.out.println(len);
-		if(len>10)
+		if(len>20)
 		{
-			List<ClinicalRecords> newlist = list.subList(0, 10);
+			List<ClinicalRecords> newlist = list.subList(0, 20);
 			return newlist;
 		}
 		
