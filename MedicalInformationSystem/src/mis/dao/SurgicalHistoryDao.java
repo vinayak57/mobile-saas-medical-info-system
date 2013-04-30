@@ -15,7 +15,7 @@ import mis.model.HospitalStaff;
 import mis.model.Patient;
 import mis.model.PatientMedInfo;
 import mis.model.SurgicalHistory;
-import mis.util.DBConnection;
+import mis.dbconnection.DBConnection;
 import mis.util.DateConvert;
 
 public enum SurgicalHistoryDao {

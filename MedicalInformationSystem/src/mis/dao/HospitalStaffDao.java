@@ -12,7 +12,7 @@ import java.util.Map;
 import mis.constants.SqlConstants;
 import mis.model.HospitalStaff;
 import mis.model.User;
-import mis.util.DBConnection;
+import mis.dbconnection.DBConnection;
 
 public enum HospitalStaffDao {
 	instance;

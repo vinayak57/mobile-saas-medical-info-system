@@ -13,7 +13,7 @@ import mis.constants.SqlConstants;
 import mis.model.Hospital;
 import mis.model.HospitalStaff;
 import mis.model.User;
-import mis.util.DBConnection;
+import mis.dbconnection.DBConnection;
 
 public enum HospitalDao {
 
