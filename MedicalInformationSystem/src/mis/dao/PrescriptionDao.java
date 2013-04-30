@@ -20,7 +20,7 @@ import mis.model.Patient;
 import mis.model.PatientMedInfo;
 import mis.model.Prescription;
 import mis.model.VisitType;
-import mis.util.DBConnection;
+import mis.dbconnection.DBConnection;
 
 public enum PrescriptionDao {
 

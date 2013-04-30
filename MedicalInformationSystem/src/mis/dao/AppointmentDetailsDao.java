@@ -19,8 +19,8 @@ import mis.model.HospitalStaff;
 import mis.model.Patient;
 import mis.model.PatientMedInfo;
 import mis.model.VisitType;
-import mis.util.DBConnection;
 import mis.util.DateConvert;
+import mis.dbconnection.DBConnection;
 
 public enum AppointmentDetailsDao {
 	instance;

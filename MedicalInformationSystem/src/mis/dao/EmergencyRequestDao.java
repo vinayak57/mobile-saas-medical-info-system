@@ -15,7 +15,7 @@ import mis.constants.SqlConstants;
 import mis.model.AppointmentDetail;
 import mis.model.Drug;
 import mis.model.EmergencyRequest;
-import mis.util.DBConnection;
+import mis.dbconnection.DBConnection;
 
 public enum EmergencyRequestDao {
 

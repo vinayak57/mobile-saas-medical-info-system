@@ -11,7 +11,7 @@ import java.util.Map;
 
 import mis.constants.SqlConstants;
 import mis.model.VisitType;
-import mis.util.DBConnection;
+import mis.dbconnection.DBConnection;
 
 public enum VisitTypeDao {
 	instance;

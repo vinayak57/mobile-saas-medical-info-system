@@ -13,7 +13,7 @@ import mis.constants.SqlConstants;
 import mis.model.Location;
 import mis.model.Patient;
 import mis.model.User;
-import mis.util.DBConnection;
+import mis.dbconnection.DBConnection;
 
 public enum LocationDao {
 	instance;

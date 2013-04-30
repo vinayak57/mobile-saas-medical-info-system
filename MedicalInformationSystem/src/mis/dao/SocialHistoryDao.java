@@ -10,7 +10,7 @@ import java.util.List;
 import mis.constants.SqlConstants;
 import mis.model.FamilyHistory;
 import mis.model.SocialHistory;
-import mis.util.DBConnection;
+import mis.dbconnection.DBConnection;
 import mis.util.DateConvert;
 
 public enum SocialHistoryDao {
