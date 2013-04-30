@@ -33,7 +33,7 @@
             android:layout_gravity="center_horizontal" />
     
     <Button
-            android:id="@+id/bCancel"
+            android:id="@+id/bViewCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View/Cancel Appointment"
