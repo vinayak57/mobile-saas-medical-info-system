@@ -53,6 +53,39 @@ public enum HospitalStaffDao {
 
 		return staffList;
 	}
+	
+	public HospitalStaff getStaffByStaffId(int hospitalStaffId)
+	{
+		HospitalStaff staffObj = null;
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement prest = null;
+		try {
+			con = DBConnection.getConnection();
+			String sqlStatement = SqlConstants.getStaffByStaffid;
+			prest = con.prepareStatement(sqlStatement);
+			prest.setInt(1, hospitalStaffId);
+			//prest.setInt(2, tenantid);
+			rs = prest.executeQuery();
+			if (rs != null) {
+				staffObj = fetchSingleResult(rs);
+
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return staffObj;
+	}
+	
 	public HospitalStaff getStaffById(int userid, int tenantid)
 	{
 		HospitalStaff staffObj = null;

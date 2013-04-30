@@ -23,6 +23,7 @@ public class SqlConstants {
 	public static String insertStaff ="INSERT into medicalinfosystem.hospital_staff(fname,lname,details,speciality,userid, hospital_id) VALUES(?,?,?,?,?,?)";
 	public static String updateStaff = "UPDATE medicalinfosystem.hospital_staff SET fname=?,lname=?,details=?,speciality=?, hospital_id=? WHERE hospital_staff_id = ?";
 	public static String getAllStaffByHospital = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and u.tenantid=? and s.hospital_id=?";
+	public static String getStaffByStaffid = "SELECT * FROM medicalinfosystem.user u, medicalinfosystem.hospital_staff s where u.userid = s.userid and s.hospital_staff_id=?";
 	
 	public static String getAllHospital = "SELECT * FROM medicalinfosystem.hospital where tenantid=?";
 	public static String getHospitalByid = "SELECT * FROM medicalinfosystem.hospital where hospital_id=?";
@@ -60,6 +61,7 @@ public class SqlConstants {
 	public static String getAllPatientMedInfo="SELECT * FROM medicalinfosystem.patient_medical_info where patient_id=?";
 	public static String getAllPatientMedInfoById="SELECT * FROM medicalinfosystem.patient_medical_info where patient_med_info_id=?";
 	public static String insertPatientMedInfoDetails="INSERT into medicalinfosystem.patient_medical_info(allergies, precautions, side_effects, patient_id,bloodgroup,weight, height, dob, age, gender,tenant_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+	public static String updatePatientMedInfoDetails = "UPDATE medicalinfosystem.patient_medical_info SET allergies=?, precautions=?, side_effects=?, patient_id=?,bloodgroup=?,weight=?, height=?, dob=?, age=?, gender=?,tenant_id=? WHERE patient_med_info_id=?";
 	
 	public static String getSurgicalHistoryInfoById = "SELECT * FROM medicalinfosystem.surgical_history where patient_id=?";
 	public static String getSurgicalHistoryById = "SELECT * FROM medicalinfosystem.surgical_history where surgical_history_id=?";

@@ -41,6 +41,28 @@ public class MongoHelper {
 	
 	static MongoDBHelper helper = new MongoDBHelper();
 	
+	static HashMap<String, String> notesMap = new HashMap<String, String>();
+	
+	static HashMap<String, String> resultsMap = new HashMap<String, String>();
+	
+	public static void setNotesMap()
+	{
+		notesMap.put("FrontFace", "A front face X-ray is a safe and painless test that uses a small amount of radiation to take a picture of a person's chest. During the examination, an X-ray machine sends a beam of radiation through the frontface, and an image is recorded on special film or a computer.");
+		notesMap.put("Hand", "A front face X-ray is a safe and painless test that uses a small amount of radiation to take a picture of a person's Hand. During the examination, an X-ray machine sends a beam of radiation through the Hand, and an image is recorded on special film or a computer.");
+		notesMap.put("LowerSpinalCord", "A LowerSpinalCord X-ray is a safe and painless test that uses a small amount of radiation to take a picture of a person's LowerSpinalCord. During the examination, an X-ray machine sends a beam of radiation through the LowerSpinalCord, and an image is recorded on special film or a computer.");
+		notesMap.put("Palm", "A Palm X-ray is a safe and painless test that uses a small amount of radiation to take a picture of a person's Palm. During the examination, an X-ray machine sends a beam of radiation through the Palm, and an image is recorded on special film or a computer.");
+		notesMap.put("SpinalCord", "A SpinalCord X-ray is a safe and painless test that uses a small amount of radiation to take a picture of a person's SpinalCord. During the examination, an X-ray machine sends a beam of radiation through the SpinalCord, and an image is recorded on special film or a computer.");
+	}
+	
+	public static void setResultsMap()
+	{
+		resultsMap.put("FrontFace", "Vertebral body height is preserved. Posterior arches are intact. Bone density is within the normal range. No aggressive osteolytic or osteoblastic changes. Craniovertebral junction is normal. ADI is within the normal range for this patient's age. Disk height is maintained at the visualized levels. Uncovertebral joint spacing is preserved. No appreciable facet arthrosis. Tracheal air shadow is midline. Lung apices are clear.");
+		resultsMap.put("Hand", "Vertebral body height is preserved. Posterior arches are intact. Bone density is within the normal range. No aggressive osteolytic or osteoblastic changes. Craniovertebral junction is normal. ADI is within the normal range for this patient's age. Disk height is maintained at the visualized levels. Uncovertebral joint spacing is preserved. No appreciable facet arthrosis. Tracheal air shadow is midline. Lung apices are clear.");
+		resultsMap.put("LowerSpinalCord", "Vertebral body height is preserved. Posterior arches are intact. Bone density is within the normal range. No aggressive osteolytic or osteoblastic changes. Craniovertebral junction is normal. ADI is within the normal range for this patient's age. Disk height is maintained at the visualized levels. Uncovertebral joint spacing is preserved. No appreciable facet arthrosis. Tracheal air shadow is midline. Lung apices are clear.");
+		resultsMap.put("Palm", "Vertebral body height is preserved. Posterior arches are intact. Bone density is within the normal range. No aggressive osteolytic or osteoblastic changes. Craniovertebral junction is normal. ADI is within the normal range for this patient's age. Disk height is maintained at the visualized levels. Uncovertebral joint spacing is preserved. No appreciable facet arthrosis. Tracheal air shadow is midline. Lung apices are clear.");
+		resultsMap.put("SpinalCord", "Vertebral body height is preserved. Posterior arches are intact. Bone density is within the normal range. No aggressive osteolytic or osteoblastic changes. Craniovertebral junction is normal. ADI is within the normal range for this patient's age. Disk height is maintained at the visualized levels. Uncovertebral joint spacing is preserved. No appreciable facet arthrosis. Tracheal air shadow is midline. Lung apices are clear.");
+	}
+	
 	public enum LabStaff{
 		JonSmith, AmandaKeets, DarrylJohnson, AdamVaughan, Jack, PhilJacques;
 		
@@ -108,6 +130,12 @@ public class MongoHelper {
 	public static String getRecordId() {
 	    Random r = new Random( System.currentTimeMillis() );
 	    return String.valueOf((1 + r.nextInt(2)) * 10000 + r.nextInt(10000));
+	}
+	
+	public static String getNotes(String area)
+	{
+		
+		return "";
 	}
 	
 	public static int getPatientId()
@@ -182,7 +210,8 @@ public class MongoHelper {
 		xray.setLabName(LabName.randomLabName().toString());
 		xray.setLocation(LabLocation.randomLabLocation().toString());
 		xray.setLab_staff(LabStaff.randomIssue().toString());
-		
+		xray.setNotes(notesMap.get(xrayName));
+		xray.setResults(resultsMap.get(xrayName));
 		
 		List<HospitalStaff> staffList = HospitalStaffDao.instance.getStaffByHospitalId(6, hospital_staff_id);
 		
@@ -237,6 +266,9 @@ public class MongoHelper {
 	{
 		int patient_id = getPatientId();
 		int hospital_staff_id = getHospitalId();
+		
+		setNotesMap();
+		setResultsMap();
 		
 		//ImagingFiles file = ImagingFilesDao.instance.insertImagingFile();
 		XRayRecords xray = loadXrayFile(path,name,hospital_staff_id);

@@ -44,7 +44,7 @@ public class XRayRecords implements Serializable{
 	private String location;
 	
 	private String notes;
-	
+	private String results;
 	
 	@Embedded
 	private RecordAttribute attr;
@@ -188,6 +188,15 @@ public class XRayRecords implements Serializable{
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
+
+	public String getResults() {
+		return results;
+	}
+
+	public void setResults(String results) {
+		this.results = results;
+	}
+
 	
 	
 }

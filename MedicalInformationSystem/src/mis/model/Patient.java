@@ -1,6 +1,7 @@
 package mis.model;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -126,4 +127,14 @@ public class Patient extends User implements Serializable{
 	public String toString() {
 		return "Patient [id =" + patientId + "fname=" + fname + ",lname=" + lname + ", email=" + email + "gender=" + gender + ",phone=" + phone + ", userid=" + userid +"]";
 	}
+	
+//	public class PatientComparator implements Comparator<Patient> {
+//
+//		public int compare(Patient o1, Patient o2) {
+//			 String s1=o1.getLname() + o1.getFname();
+//	          String s2=o2.getLname() + o2.getFname();
+//
+//	          return s1.compareTo(s2);
+//		}
+//	}
 }

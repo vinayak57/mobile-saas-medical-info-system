@@ -10,6 +10,7 @@ public class SurgicalHistory implements Serializable  {
 	private String type_of_surgery;
 	private Date date_of_surgery;
 	private int hospital_staff_id;
+	private String hospital_staff_name;
 	private int patient_id;
 	private int tenant_id;
 	
@@ -48,6 +49,12 @@ public class SurgicalHistory implements Serializable  {
 	}
 	public void setTenant_id(int tenant_id) {
 		this.tenant_id = tenant_id;
+	}
+	public String getHospital_staff_name() {
+		return hospital_staff_name;
+	}
+	public void setHospital_staff_name(String hospital_staff_name) {
+		this.hospital_staff_name = hospital_staff_name;
 	}
 	
 }

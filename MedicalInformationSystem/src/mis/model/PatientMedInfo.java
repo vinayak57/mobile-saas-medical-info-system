@@ -31,9 +31,9 @@ public class PatientMedInfo implements Serializable {
 	private int tenant_id;
 	
 	
-	private SurgicalHistory surgicalHistory;
+	private List<SurgicalHistory> surgicalHistory = new ArrayList<SurgicalHistory>();
 	
-	private SocialHistory socialHistory;
+	private List<SocialHistory> socialHistory = new ArrayList<SocialHistory>();
 	
 	private List<FamilyHistory> familyHistory = new ArrayList<FamilyHistory>();
 	
@@ -143,19 +143,19 @@ public class PatientMedInfo implements Serializable {
 		this.bloodgroup = bloodgroup;
 	}
 
-	public SurgicalHistory getSurgicalHistory() {
+	public List<SurgicalHistory> getSurgicalHistory() {
 		return surgicalHistory;
 	}
 
-	public void setSurgicalHistory(SurgicalHistory surgicalHistory) {
+	public void setSurgicalHistory(List<SurgicalHistory> surgicalHistory) {
 		this.surgicalHistory = surgicalHistory;
 	}
 
-	public SocialHistory getSocialHistory() {
+	public List<SocialHistory> getSocialHistory() {
 		return socialHistory;
 	}
 
-	public void setSocialHistory(SocialHistory socialHistory) {
+	public void setSocialHistory(List<SocialHistory> socialHistory) {
 		this.socialHistory = socialHistory;
 	}
 
