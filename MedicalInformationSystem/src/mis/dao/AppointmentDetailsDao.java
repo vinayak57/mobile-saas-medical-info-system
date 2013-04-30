@@ -14,6 +14,11 @@ import java.util.Map;
 import mis.constants.SqlConstants;
 import mis.model.AppointmentDetail;
 import mis.model.Drug;
+import mis.model.Hospital;
+import mis.model.HospitalStaff;
+import mis.model.Patient;
+import mis.model.PatientMedInfo;
+import mis.model.VisitType;
 import mis.util.DBConnection;
 import mis.util.DateConvert;
 
@@ -214,9 +219,6 @@ public enum AppointmentDetailsDao {
 			prest.setInt(2, apmnt.getLocation_id());
 			prest.setInt(3, apmnt.getVisit_type_id());
 			prest.setInt(4, apmnt.getTenantid());
-
-			
-			System.out.println(apmnt.getAppointment_date().toString());
 			prest.setTimestamp(5, new Timestamp(apmnt.getAppointment_date().getTime()));
 			prest.setInt(6, apmnt.getPatient_id());
 			prest.setString(7, apmnt.getStatus());
@@ -281,9 +283,6 @@ public enum AppointmentDetailsDao {
 			prest.setInt(2, apmnt.getLocation_id());
 			prest.setInt(3, apmnt.getVisit_type_id());
 			prest.setInt(4, apmnt.getTenantid());
-
-			
-			//System.out.println(apmnt.getAppointment_date().toString());
 			prest.setTimestamp(5, new Timestamp(apmnt.getAppointment_date().getTime()));
 			prest.setInt(6, apmnt.getPatient_id());
 			//prest.setInt(7, apmnt.getPrescription_id());
@@ -326,6 +325,31 @@ public enum AppointmentDetailsDao {
 		}
 	}
 
+	protected AppointmentDetail fillPatientDetails(AppointmentDetail dto, ResultSet rs, int patient_id)
+	{
+		Patient patientObj = PatientDao.instance.getPatientByPatientId(patient_id);
+		dto.setFname(patientObj.getFname());
+		dto.setLname(patientObj.getLname());
+		
+		VisitType obj = VisitTypeDao.instance.getVisitTypeById(dto.getVisit_type_id());
+		
+		dto.setVisit_type(obj.getVisit_type());
+		return dto;
+	}
+	
+	protected AppointmentDetail fillStaffDetails(AppointmentDetail dto, ResultSet rs, int patient_id)
+	{
+		HospitalStaff patientObj = HospitalStaffDao.instance.getStaffByStaffId(patient_id);
+		dto.setStaff_name(patientObj.getLname()+ ", " + patientObj.getFname());
+		
+		Hospital obj = HospitalDao.instance.getHospitalById(patientObj.getHospital_id());
+		
+		dto.setHospital_name(obj.getHospital_name());
+		
+		return dto;
+	}
+	
+	
 	protected void populateVO(AppointmentDetail dto, ResultSet rs)
 			throws SQLException {
 		dto.setAppointment_id(rs.getInt("appointment_id"));
@@ -333,18 +357,10 @@ public enum AppointmentDetailsDao {
 		dto.setLocation_id(rs.getInt("location_id"));
 		dto.setVisit_type_id(rs.getInt("visit_type_id"));
 		dto.setPatient_id(rs.getInt("patient_id"));
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		java.util.Date utilDate = new java.util.Date();
-//		try {
-//		    utilDate = sdf.parse(rs.getTimestamp("appointment_date").toString()); // You get a Java Util Date object(Fri Mar 08 15:40:33 IST 2013)
-//		} catch (ParseException pe) {
-//		   // TODO something.
-//		}
-//		DateTime jodaDate = new DateTime(utilDate);
-		
 		dto.setAppointment_date(new Date(rs.getTimestamp("appointment_date").getTime()));
 		dto.setTenantid(rs.getInt("tenantid"));
-		//System.out.println(dto.getAppointment_date().toString());
+		dto = fillPatientDetails(dto, rs, dto.getPatient_id());
+		dto = fillStaffDetails(dto, rs, dto.getHospital_staff_id());
 		
 	}
 
