@@ -42,5 +42,6 @@
     <string name="title_activity_patient__appointment">Patient Appointment</string>
     <string name="title_activity_list_view_appointment">View Appointments</string>
     <string name="title_activity_appointment_details">Appointment Details</string>
+    <string name="title_activity_appointment_details_staff">AppointmentDetailsStaff</string>
 
 </resources>
