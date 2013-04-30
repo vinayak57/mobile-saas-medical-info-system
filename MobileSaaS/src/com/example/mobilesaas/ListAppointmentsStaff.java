@@ -30,7 +30,7 @@ import android.widget.Toast;
 
 public class ListAppointmentsStaff extends ListActivity {
 
-	int userid,hospital_staff_id,code;
+	int userid,hospital_staff_id,code,patientId;
 	String user,result,isAppointment;
 	List<String> appointment = new ArrayList<String>();
 	List<Integer> appointment_id =new ArrayList<Integer>();
@@ -93,7 +93,6 @@ public class ListAppointmentsStaff extends ListActivity {
 						if(isAppointment.equals("false"))
 						{
 						Intent browserIntent = new Intent(getApplicationContext(),Prescribe_Drug.class);
-						
 						browserIntent.putExtra("userid", userid);
 						//browserIntent.putExtra("username", user);
 						//browserIntent.putExtra("hospital_staff_id", hospital_staff_id);
@@ -103,14 +102,12 @@ public class ListAppointmentsStaff extends ListActivity {
 						else
 						{
 							//Show appointment details instead going to prescribe drug
-							Intent browserIntent = new Intent(getApplicationContext(),Prescribe_Drug.class);
-							
+							Intent browserIntent = new Intent(getApplicationContext(),AppointmentDetailsStaff.class);
 							browserIntent.putExtra("userid", userid);
-							//browserIntent.putExtra("username", user);
+							browserIntent.putExtra("patientId", patientId);
 							//browserIntent.putExtra("hospital_staff_id", hospital_staff_id);
 							browserIntent.putExtra("appid", apid);
 							startActivity(browserIntent);
-							
 						}
 						
 						
@@ -160,12 +157,13 @@ public class ListAppointmentsStaff extends ListActivity {
 					json = start_object.getJSONObject(i);
 					
 					rawdate=Long.valueOf(json.getString("appointment_date"));
+					Log.d("date" , json.getString("appointment_date"));
 					appdate=new Date(rawdate);
-					sf=new SimpleDateFormat("yyyy-mm-dd");
+					sf=new SimpleDateFormat("yyyy-MM-dd");
 					newappdate = sf.format(appdate);
 					sf =new SimpleDateFormat("HH:mm:ss");
 					newtime=sf.format(appdate);
-					
+					patientId = Integer.valueOf(json.getString("patient_id"));
 					appointment.add((i+1) + ") " + "Date: "+newappdate+" Time :"+newtime);
 					rawappointment.add(json.getString("appointment_date"));
 					
