@@ -44,5 +44,6 @@
     <string name="title_activity_appointment_details">Appointment Details</string>
     <string name="title_activity_appointment_details_staff">AppointmentDetailsStaff</string>
     <string name="title_activity_choose_timestamp">Choose Timestamp</string>
+    <string name="title_activity_search_patient">SearchPatient</string>
 
 </resources>
