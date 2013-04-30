@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class JDBCConnectionDriver implements Driver {
 
-    public static final String URL_PREFIX = "jdbc:user_mysql:";
+    public static final String URL_PREFIX = "jdbc:mysql";
     private static final int MAJOR_VERSION = 1;
     private static final int MINOR_VERSION = 0;
     private JDBCConnectionPool pool;
@@ -17,11 +17,10 @@ public class JDBCConnectionDriver implements Driver {
                                InstantiationException, IllegalAccessException,
                                 SQLException
     {
-
-
         DriverManager.registerDriver(this);
         Class.forName(driver).newInstance();
         pool = new JDBCConnectionPool(url, user, password, poolSize);
+        
     }
 
     public Connection connect(String url, Properties props) 

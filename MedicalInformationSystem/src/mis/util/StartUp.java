@@ -47,7 +47,7 @@ public class StartUp extends HttpServlet {
 			Connection[] c = new Connection[noOfConn];
 			for(int i=0;i<noOfConn;i++) {
 				
-				c[i] = DriverManager.getConnection("jdbc:user_mysql:");
+				c[i] = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicalinfosystem");
 			}
 			
 			//sleep(60000);
