@@ -12,15 +12,24 @@ import com.google.code.morphia.Datastore;
 import com.google.code.morphia.Morphia;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
+import com.mongodb.MongoOptions;
 
 public class MongoDBHelper {
-
+	
 	
 	public Datastore getConnection()
 	{
 		Datastore ds = null;
 		try {
-			Mongo mongo = new Mongo("localhost");
+
+			MongoOptions options = new MongoOptions();
+			options.connectionsPerHost = 40;
+			options.connectTimeout = 15;
+			options.socketTimeout = 60000;
+			options.threadsAllowedToBlockForConnectionMultiplier = 1500;
+			
+			Mongo mongo = new Mongo("localhost",options);
+			
 			Morphia morphia = new Morphia();
 			//morphia.map(entityClass);
             morphia.map(ClinicalRecords.class).map(ImagingFiles.class).map(MRIScanRecords.class).map( XRayRecords.class ).map( RecordAttribute.class );
