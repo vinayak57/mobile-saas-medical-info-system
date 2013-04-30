@@ -22,6 +22,11 @@ public class AppointmentDetail implements Serializable {
 //	private int prescription_id;
 	private String status;
 	
+	private String hospital_name;
+	private String staff_name;
+	private String visit_type;
+	private String fname;
+	private String lname;
 	
 	
 	public int getAppointment_id() {
@@ -88,6 +93,36 @@ public class AppointmentDetail implements Serializable {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getHospital_name() {
+		return hospital_name;
+	}
+	public void setHospital_name(String hospital_name) {
+		this.hospital_name = hospital_name;
+	}
+	public String getStaff_name() {
+		return staff_name;
+	}
+	public void setStaff_name(String staff_name) {
+		this.staff_name = staff_name;
+	}
+	public String getVisit_type() {
+		return visit_type;
+	}
+	public void setVisit_type(String visit_type) {
+		this.visit_type = visit_type;
+	}
+	public String getFname() {
+		return fname;
+	}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getLname() {
+		return lname;
+	}
+	public void setLname(String lname) {
+		this.lname = lname;
 	}
 
 	
