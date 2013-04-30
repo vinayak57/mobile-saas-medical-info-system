@@ -39,5 +39,6 @@
     <string name="title_activity_list_patients">ListPatients</string>
     <string name="title_activity_view_patient_med_info">ViewPatientMedInfo</string>
     <string name="title_activity_list_medical_info">ListMedicalInfo</string>
+    <string name="title_activity_patient__appointment">Patient Appointment</string>
 
 </resources>
