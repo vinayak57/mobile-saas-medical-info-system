@@ -2,6 +2,8 @@ package com.example.mobilesaas;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -54,10 +56,42 @@ public class Test extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				callRest();
-				test.setText(result1);
+				//callRest();
+				
+				 Calendar now = Calendar.getInstance();
+		    	 
+			      // SimpleDateFormat sf = new SimpleDateFormat("yyyy/mm/dd");
+			     
+			     //   cal.add(Calendar.DAY_OF_MONTH, 5);
+			     
+			      /*  System.out.println("Current date : " + (now.get(Calendar.MONTH) + 1) + "-"
+			            + now.get(Calendar.DATE) + "-" + now.get(Calendar.YEAR));
+				*/
 				 
-				File imgFile = new File("/mnt/sdcard/mobilesaas.png");
+				 now.add(Calendar.DATE, 1);
+				test.setText("Date : " + (now.get(Calendar.MONTH) + 1) + "-"
+			            + now.get(Calendar.DATE) + "-" + now.get(Calendar.YEAR)+" "+ "Time : " +"9:00:00");
+				 
+				/*"Date : " + (now.get(Calendar.MONTH) + 1) + "-"
+		            + now.get(Calendar.DATE) + "-" + now.get(Calendar.YEAR)+" "+ "Time : " +j+":00:00"
+				*/
+				String product=test.getText().toString();
+				
+				String[] tokens =product.split("Date : ");
+				test.setText("legth "+ tokens.length+"   "+tokens[1]+"   ");
+				
+				String t1[]=tokens[1].split("Time : ");
+				
+				test.setText(t1[0].trim() +"T"+ t1[1].trim());
+				
+				
+				/*Toast toast = Toast.makeText(getApplicationContext(),tokens[1],
+		   				 Toast.LENGTH_LONG);
+		   				 toast.show();
+				*/
+				
+				
+				/*File imgFile = new File("/mnt/sdcard/mobilesaas.png");
 				if(imgFile.exists()){
 
 					Toast toast = Toast.makeText(getApplicationContext(), "file",
@@ -73,13 +107,13 @@ public class Test extends Activity {
 			   				 
 				    ImageView myImage = (ImageView) findViewById(R.id.ivYeda);
 				    myImage.setImageBitmap(myBitmap);
-
+*/
 				}
 			        
 				//String abc=test.getText().toString();
 				//System.out.println(abc);
 				
-			}
+//			/}
 		});
         
     }

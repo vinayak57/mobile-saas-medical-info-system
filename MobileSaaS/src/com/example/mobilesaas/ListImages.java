@@ -74,6 +74,11 @@ public class ListImages extends ListActivity {
         
         ListView listView= getListView();
         
+        listView.setCacheColorHint(0);
+        
+		listView.setBackgroundResource(R.drawable.background);
+		
+		
 		listView.setTextFilterEnabled(true);
 		
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

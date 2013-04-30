@@ -126,10 +126,6 @@ public class Make_appointment extends Activity {
 			
 			int testv=visit.getSelectedItemPosition();
 			testv=testv+1;
-			Toast toast = Toast.makeText(getApplicationContext(), "visit id"+testv,
-	   				 Toast.LENGTH_LONG);
-	   				 toast.show();
-			
 			Intent browserIntent = new Intent(getApplicationContext(),Patient_Appointment.class);
 			
 			browserIntent.putExtra("userid", userid);
