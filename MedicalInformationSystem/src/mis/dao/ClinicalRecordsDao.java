@@ -150,8 +150,16 @@ public enum ClinicalRecordsDao {
 		
 		for(XRayRecords xray: filterXray)
 		{
-			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray).limit(100);
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
 			list.addAll(query.asList());
+		}
+		
+		int len = list.size();
+		//System.out.println(len);
+		if(len>50)
+		{
+			List<ClinicalRecords> newlist = list.subList(0, 50);
+			return newlist;
 		}
 		return list;
 	}
@@ -167,9 +175,18 @@ public enum ClinicalRecordsDao {
 		
 		for(XRayRecords xray: filterXray)
 		{
-			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray).limit(100);
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
 			list.addAll(query.asList());
 		}
+		
+		int len = list.size();
+		//System.out.println(len);
+		if(len>50)
+		{
+			List<ClinicalRecords> newlist = list.subList(0, 50);
+			return newlist;
+		}
+		
 		return list;
 	}
 	
@@ -184,9 +201,18 @@ public enum ClinicalRecordsDao {
 		
 		for(XRayRecords xray: filterXray)
 		{
-			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray).limit(100);
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
 			list.addAll(query.asList());
 		}
+		int len = list.size();
+		//System.out.println(len);
+		if(len>50)
+		{
+			List<ClinicalRecords> newlist = list.subList(0, 50);
+			return newlist;
+		}
+		
+		
 		return list;
 	}
 	
@@ -203,9 +229,18 @@ public enum ClinicalRecordsDao {
 		
 		for(XRayRecords xray: filterXray)
 		{
-			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray).limit(100);
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
 			list.addAll(query.asList());
 		}
+		
+		int len = list.size();
+		//System.out.println(len);
+		if(len>50)
+		{
+			List<ClinicalRecords> newlist = list.subList(0, 50);
+			return newlist;
+		}
+		
 		return list;
 	}
 	
