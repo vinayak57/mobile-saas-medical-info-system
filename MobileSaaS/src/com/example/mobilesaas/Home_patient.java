@@ -59,7 +59,12 @@ public class Home_patient extends Activity {
 			{
 				JSONObject json = new JSONObject(result);
 				patientid= (Integer)json.get("patientId");
-				
+			}
+			else
+			{
+				Toast toast = Toast.makeText(getApplicationContext(), "Some error occured",
+		   				 Toast.LENGTH_LONG);
+		   				 toast.show();
 			}
 		}
 		catch(Exception e)
@@ -90,7 +95,8 @@ public class Home_patient extends Activity {
 				
 				Intent browserIntent = new Intent(getApplicationContext(),Manage_appointment.class);
 				browserIntent.putExtra("userid", userid);
-				browserIntent.putExtra("username",user );
+				browserIntent.putExtra("username",user);
+				browserIntent.putExtra("patientid", patientid);
 				startActivity(browserIntent);
 				
 			}
