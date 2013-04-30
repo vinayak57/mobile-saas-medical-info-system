@@ -45,6 +45,12 @@ public class Manage_appointment extends Activity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			
+			Intent browserIntent = new Intent(getApplicationContext(),ListViewAppointment.class);
+			browserIntent.putExtra("username", user);
+			browserIntent.putExtra("userid", userid);
+			browserIntent.putExtra("patientid", patientid);
+			startActivity(browserIntent);
+			
 		}
 	});
         
