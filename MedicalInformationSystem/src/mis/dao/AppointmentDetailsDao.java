@@ -359,6 +359,7 @@ public enum AppointmentDetailsDao {
 		dto.setPatient_id(rs.getInt("patient_id"));
 		dto.setAppointment_date(new Date(rs.getTimestamp("appointment_date").getTime()));
 		dto.setTenantid(rs.getInt("tenantid"));
+		dto.setStatus(rs.getString("status"));
 		dto = fillPatientDetails(dto, rs, dto.getPatient_id());
 		dto = fillStaffDetails(dto, rs, dto.getHospital_staff_id());
 		
