@@ -150,7 +150,7 @@ public enum ClinicalRecordsDao {
 		
 		for(XRayRecords xray: filterXray)
 		{
-			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray).limit(100);
 			list.addAll(query.asList());
 		}
 		return list;
@@ -167,7 +167,7 @@ public enum ClinicalRecordsDao {
 		
 		for(XRayRecords xray: filterXray)
 		{
-			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray).limit(100);
 			list.addAll(query.asList());
 		}
 		return list;
@@ -184,7 +184,7 @@ public enum ClinicalRecordsDao {
 		
 		for(XRayRecords xray: filterXray)
 		{
-			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray).limit(100);
 			list.addAll(query.asList());
 		}
 		return list;
@@ -203,7 +203,7 @@ public enum ClinicalRecordsDao {
 		
 		for(XRayRecords xray: filterXray)
 		{
-			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray);
+			Query<ClinicalRecords> query = (Query<ClinicalRecords>) ds.createQuery(ClinicalRecords.class).field("xray").hasThisElement(xray).limit(100);
 			list.addAll(query.asList());
 		}
 		return list;
