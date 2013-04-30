@@ -35,6 +35,7 @@ public class SearchSelection extends Activity {
         
         final String[] sev = new String[] { "HIGH", "LOW", "MEDIUM" };
         final String[] issue = new String[] {  "BROKEN", "FRACTURE", "PAIN", "HAIRLINE_FRACTURE" };
+        final String[] diago = new String[] {"FrontFace", "Hand", "LowerSpinalCord", "Palm", "SpinalCord"};
         
         if(navigation.equalsIgnoreCase("issue"))
         {
@@ -55,6 +56,10 @@ public class SearchSelection extends Activity {
         else if(navigation.equalsIgnoreCase("diago"))
         {
         	flag=2;
+        	ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, diago);
+    		
+    		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    		crieteria.setAdapter(dataAdapter);
         }
         
         

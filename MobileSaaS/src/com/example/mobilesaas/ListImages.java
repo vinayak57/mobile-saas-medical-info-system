@@ -54,8 +54,8 @@ public class ListImages extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       //setContentView(R.layout.activity_list_images);
-         
+        //setContentView(R.layout.activity_list_images);
+        
         
         user=getIntent().getExtras().getString("username");
         userid=getIntent().getExtras().getInt("userid");
@@ -78,7 +78,7 @@ public class ListImages extends ListActivity {
         //listView=(ListView)findViewById(R.id.lvTest);
         
         ListView listView= getListView();
-        
+		
         listView.setCacheColorHint(0);
         
        
