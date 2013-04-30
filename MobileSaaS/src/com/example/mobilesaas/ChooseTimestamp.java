@@ -24,6 +24,8 @@ public class ChooseTimestamp extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_timestamp);
     
+    timestamp1=(EditText)findViewById(R.id.etTime1);
+    timestamp2=(EditText)findViewById(R.id.etTime2);
 
     next=(Button)findViewById(R.id.bTimeStampNext);
         
@@ -40,10 +42,11 @@ public class ChooseTimestamp extends FragmentActivity {
 		   				 toast.show();
 			}
 			else{
-			Intent browserIntent = new Intent(getApplicationContext(),Image_details.class);
+			Intent browserIntent = new Intent(getApplicationContext(),ListImagesStaff.class);
 			
 			
 			browserIntent.putExtra("timestamp1",timestamp1.getText().toString() );
+			browserIntent.putExtra("flag",3);
 			browserIntent.putExtra("timestamp2",timestamp2.getText().toString() );
 			
 			startActivity(browserIntent);
