@@ -1,7 +1,9 @@
 package mis.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -16,6 +18,13 @@ public class Prescription implements Serializable{
 	private String instruction;
 	private int tenantid;
 	private int appointment_id;
+	
+	private String patientName;
+	private String staffName;
+	private Date apmntDate;
+	private String hospitalName;
+	private String visitType;
+	private List<Drug> drugs = new ArrayList<Drug>();
 	
 	
 	public int getPrescription_id() {
@@ -66,6 +75,42 @@ public class Prescription implements Serializable{
 	}
 	public void setAppointment_id(int appointment_id) {
 		this.appointment_id = appointment_id;
+	}
+	public String getPatientName() {
+		return patientName;
+	}
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
+	}
+	public String getStaffName() {
+		return staffName;
+	}
+	public void setStaffName(String staffName) {
+		this.staffName = staffName;
+	}
+	public String getHospitalName() {
+		return hospitalName;
+	}
+	public void setHospitalName(String hospitalName) {
+		this.hospitalName = hospitalName;
+	}
+	public String getVisitType() {
+		return visitType;
+	}
+	public void setVisitType(String visitType) {
+		this.visitType = visitType;
+	}
+	public List<Drug> getDrugs() {
+		return drugs;
+	}
+	public void setDrugs(List<Drug> drugs) {
+		this.drugs = drugs;
+	}
+	public Date getApmntDate() {
+		return apmntDate;
+	}
+	public void setApmntDate(Date apmntDate) {
+		this.apmntDate = apmntDate;
 	}
 
 	
