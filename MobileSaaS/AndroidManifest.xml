@@ -320,6 +320,15 @@
             android:name="com.example.mobilesaas.AppointmentDetailsStaff"
             android:label="@string/title_activity_appointment_details_staff" >
         </activity>
+        <activity
+            android:name=".ChooseTimestamp"
+            android:label="@string/title_activity_choose_timestamp" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
