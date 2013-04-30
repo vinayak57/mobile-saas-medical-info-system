@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+ <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#70D0D5D9" >
+
+        <TextView
+            android:id="@+id/tvTitlePatientSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="Search By Patient Name"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/etSearchFname"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="90dp"
+            android:hint="First Name: " >
+        </EditText>
+        
+        <EditText
+            android:id="@+id/etSearchLname"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="140dp"
+            android:hint="Last Name: " >
+        </EditText>
+        
+          <Button
+            android:id="@+id/bSearchPatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:cropToPadding="true"
+            android:layout_gravity="center_horizontal"
+             
+            android:layout_marginTop="210dp"
+             />
+    </FrameLayout>
+
+</LinearLayout>
