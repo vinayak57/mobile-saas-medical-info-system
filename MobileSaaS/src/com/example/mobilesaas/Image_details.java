@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 public class Image_details extends Activity {
 
-	TextView imagename,diago,issue,sev,cdate,mdate;
+	TextView imagename,diago,issue,sev,cdate,mdate,labname,labstaff;
 	Button viewimage;
 	int userid,patientid;
 	String user;
 	String clinicaldata;
-	String extra_image, extra_diago, extra_sev, extra_issue, extra_datec, extra_datem;
+	String extra_image, extra_diago, extra_sev, extra_issue, extra_datec, extra_datem,extra_lab,extra_labstaff;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,8 @@ public class Image_details extends Activity {
         extra_sev=getIntent().getExtras().getString("extra_sev");
         extra_datec=getIntent().getExtras().getString("extra_datec");
         extra_datem=getIntent().getExtras().getString("extra_datem");
+        extra_lab=getIntent().getExtras().getString("extra_lab");
+        extra_labstaff=getIntent().getExtras().getString("extra_labstaff");
         
         
         
@@ -41,9 +43,16 @@ public class Image_details extends Activity {
         sev=(TextView)findViewById(R.id.tvDataImageSev);
         cdate=(TextView)findViewById(R.id.tvDataImageCDate);
         mdate=(TextView)findViewById(R.id.tvDataImageMDate);
+        labname=(TextView)findViewById(R.id.tvDataImageLabname);
+        labstaff=(TextView)findViewById(R.id.tvDataImageLabstaff);
+        
         viewimage=(Button)findViewById(R.id.bViewImage);
         
+        
+        
         imagename.setText(clinicaldata);
+        labname.setText(extra_lab);
+        labstaff.setText(extra_labstaff);
         diago.setText(extra_diago);
         issue.setText(extra_issue);
         sev.setText(extra_sev);
