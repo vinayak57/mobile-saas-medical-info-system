@@ -60,8 +60,8 @@ public class Map extends MapActivity implements LocationListener {
 		provider = locationManager.getBestProvider(criteria, false);
 		location = locationManager.getLastKnownLocation(provider);
 		location= new Location(provider);
-		location.setLatitude(37.422006);
-		location.setLongitude(-122.084095);
+		location.setLatitude(37.337485);
+		location.setLongitude(-121.882013);
 		
 		
 		if (location != null) {
