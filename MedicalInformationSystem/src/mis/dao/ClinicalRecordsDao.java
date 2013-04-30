@@ -26,6 +26,7 @@ public enum ClinicalRecordsDao {
 	instance;
 	MongoDBHelper helper = new MongoDBHelper();
 	private static int count;
+	int noOfRecords=10;
 	
 	private ClinicalRecordsDao() {
 	}
@@ -156,9 +157,9 @@ public enum ClinicalRecordsDao {
 		
 		int len = list.size();
 		//System.out.println(len);
-		if(len>20)
+		if(len>noOfRecords)
 		{
-			List<ClinicalRecords> newlist = list.subList(0, 20);
+			List<ClinicalRecords> newlist = list.subList(0, noOfRecords);
 			return newlist;
 		}
 		return list;
@@ -181,9 +182,9 @@ public enum ClinicalRecordsDao {
 		
 		int len = list.size();
 		//System.out.println(len);
-		if(len>20)
+		if(len>noOfRecords)
 		{
-			List<ClinicalRecords> newlist = list.subList(0, 20);
+			List<ClinicalRecords> newlist = list.subList(0, noOfRecords);
 			return newlist;
 		}
 		
@@ -206,9 +207,9 @@ public enum ClinicalRecordsDao {
 		}
 		int len = list.size();
 		//System.out.println(len);
-		if(len>20)
+		if(len>noOfRecords)
 		{
-			List<ClinicalRecords> newlist = list.subList(0, 20);
+			List<ClinicalRecords> newlist = list.subList(0, noOfRecords);
 			return newlist;
 		}
 		
@@ -235,9 +236,9 @@ public enum ClinicalRecordsDao {
 		
 		int len = list.size();
 		//System.out.println(len);
-		if(len>20)
+		if(len>noOfRecords)
 		{
-			List<ClinicalRecords> newlist = list.subList(0, 20);
+			List<ClinicalRecords> newlist = list.subList(0, noOfRecords);
 			return newlist;
 		}
 		
