@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        	android:layout_gravity="left"
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="10dp"
        	android:layout_marginTop="70dp"
         android:text="Image Name :" />
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        	
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="160dp"
        	android:layout_marginTop="70dp"
         android:text="" />
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        	android:layout_gravity="left"
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="10dp"
        	android:layout_marginTop="110dp"
         android:text="Diagostics :" />
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        	
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="160dp"
        	android:layout_marginTop="110dp"
         android:text="" />
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        	android:layout_gravity="left"
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="10dp"
        	android:layout_marginTop="150dp"
         android:text="Issue :" />
@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
      
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="160dp"
        	android:layout_marginTop="150dp"
         android:text="" />
@@ -88,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        	android:layout_gravity="left"
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="10dp"
        	android:layout_marginTop="190dp"
         android:text="Severity :" />
@@ -98,7 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
      
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="160dp"
        	android:layout_marginTop="190dp"
         android:text="" />
@@ -108,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        	android:layout_gravity="left"
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="10dp"
        	android:layout_marginTop="230dp"
         android:text="Created Date :" />
@@ -118,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
      
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="160dp"
        	android:layout_marginTop="230dp"
         android:text="" />
@@ -128,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        	android:layout_gravity="left"
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="10dp"
        	android:layout_marginTop="270dp"
         android:text="Modified Date :" />
@@ -138,17 +138,59 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
      
-       	android:textSize="20sp"
+       	android:textSize="15sp"
        	android:layout_marginLeft="160dp"
        	android:layout_marginTop="270dp"
         android:text="" />
+         
+         <TextView
+        android:id="@+id/tvImageLabname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="15sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="310dp"
+        android:text="Lab Name :" />
+        
+         <TextView
+        android:id="@+id/tvDataImageLabname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     
+       	android:textSize="15sp"
+       	android:layout_marginLeft="160dp"
+       	android:layout_marginTop="310dp"
+        android:text="" />
+         
+         
+         <TextView
+        android:id="@+id/tvImageLabstaff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_gravity="left"
+       	android:textSize="15sp"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginTop="350dp"
+        android:text="Lab Staff :" />
+        
+         <TextView
+        android:id="@+id/tvDataImageLabstaff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     
+       	android:textSize="15sp"
+       	android:layout_marginLeft="160dp"
+       	android:layout_marginTop="350dp"
+        android:text="" />
+         
                   
          <Button
             android:id="@+id/bViewImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View Image"
-            android:layout_marginTop="320dp"
+            android:layout_marginTop="390dp"
             android:layout_gravity="center_horizontal" /> 
           
           
